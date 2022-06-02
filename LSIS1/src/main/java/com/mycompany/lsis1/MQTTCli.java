@@ -1,10 +1,9 @@
-package sinf1.exemplo;
+package com.mycompany.lsis1;
 
 /**
  *
  * @author LSIS1@ISEP
  */
-
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;

@@ -15,7 +15,8 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>  
-            <version>4.2.6</version>   
+            <version>3.9.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>

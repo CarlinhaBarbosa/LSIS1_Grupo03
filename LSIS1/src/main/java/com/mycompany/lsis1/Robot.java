@@ -1,6 +1,7 @@
 package com.mycompany.lsis1;
 
 public class Robot {
+
     private String idRobot;
     private int idComp;
     private int idEquipa;
@@ -9,10 +10,10 @@ public class Robot {
     private double velocidade;
 
     private static final int INT_DEFAULT = 0;
-    private static final String STRING_DEFAULT ="n/d";
-    private static final double DOUBLE_DEFAULT= 0.0;
+    private static final String STRING_DEFAULT = "n/d";
+    private static final double DOUBLE_DEFAULT = 0.0;
 
-    public Robot(){
+    public Robot() {
         this.idRobot = STRING_DEFAULT;
         this.idComp = INT_DEFAULT;
         this.idEquipa = INT_DEFAULT;
@@ -30,7 +31,7 @@ public class Robot {
         this.velocidade = velocidade;
     }
 
-    public Robot(Robot robot){
+    public Robot(Robot robot) {
         this.idRobot = robot.idRobot;
         this.idComp = robot.idComp;
         this.idEquipa = robot.idEquipa;
@@ -89,20 +90,26 @@ public class Robot {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "Robot{" +
-                "idRobot='" + idRobot + '\'' +
-                ", idComp=" + idComp +
-                ", idEquipa=" + idEquipa +
-                ", nome='" + nome + '\'' +
-                ", tempo=" + tempo +
-                ", velocidade=" + velocidade +
-                '}';
+        return "Robot{"
+                + "idRobot='" + idRobot + '\''
+                + ", idComp=" + idComp
+                + ", idEquipa=" + idEquipa
+                + ", nome='" + nome + '\''
+                + ", tempo=" + tempo
+                + ", velocidade=" + velocidade
+                + '}';
     }
 
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (!(object instanceof Robot)) return false;
-        if (!super.equals(object)) return false;
+        if (this == object) {
+            return true;
+        }
+        if (!(object instanceof Robot)) {
+            return false;
+        }
+        if (!super.equals(object)) {
+            return false;
+        }
         Robot robot = (Robot) object;
         return idComp == robot.idComp && idEquipa == robot.idEquipa && java.lang.Double.compare(robot.tempo, tempo) == 0 && java.lang.Double.compare(robot.velocidade, velocidade) == 0 && java.util.Objects.equals(idRobot, robot.idRobot) && java.util.Objects.equals(nome, robot.nome);
     }
