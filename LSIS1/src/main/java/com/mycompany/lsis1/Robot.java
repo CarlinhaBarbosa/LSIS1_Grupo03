@@ -1,4 +1,4 @@
-
+package com.mycompany.lsis1;
 
 public class Robot {
     private String idRobot;
@@ -13,7 +13,7 @@ public class Robot {
     private static final double DOUBLE_DEFAULT= 0.0;
 
     public Robot(){
-        this.id = STRING_DEFAULT;
+        this.idRobot = STRING_DEFAULT;
         this.idComp = INT_DEFAULT;
         this.idEquipa = INT_DEFAULT;
         this.nome = STRING_DEFAULT;
