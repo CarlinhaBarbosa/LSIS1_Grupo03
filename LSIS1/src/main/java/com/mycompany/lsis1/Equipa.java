@@ -15,7 +15,6 @@ public class Equipa {
 
     private int idEquipa;
     private String nomeEquipa;
-    private ArrayList<String> nomeElementosEquipa;
 
     private static final int INT_DEFAULT = 0;
     private static final String STRING_DEFAULT = "n/d";
@@ -25,19 +24,16 @@ public class Equipa {
     public Equipa() {
         this.idEquipa = ++totalIdEquipa;
         this.nomeEquipa = STRING_DEFAULT;
-        this.nomeElementosEquipa = new ArrayList();
     }
 
-    public Equipa(String nomeEquipa, ArrayList<String> nomeElementosEquipa) {
+    public Equipa(String nomeEquipa) {
         this.idEquipa = ++totalIdEquipa;
         this.nomeEquipa = nomeEquipa;
-        this.nomeElementosEquipa = new ArrayList(nomeElementosEquipa);
     }
 
     public Equipa(Equipa equipa) {
         this.idEquipa = equipa.idEquipa;
         this.nomeEquipa = equipa.nomeEquipa;
-        this.nomeElementosEquipa = new ArrayList();
     }
 
     public int getIdEquipa() {
@@ -46,10 +42,6 @@ public class Equipa {
 
     public String getNomeEquipa() {
         return nomeEquipa;
-    }
-
-    public ArrayList<String> getNomeElementosEquipa() {
-        return nomeElementosEquipa;
     }
 
     public static int getINT_DEFAULT() {
@@ -72,17 +64,13 @@ public class Equipa {
         this.nomeEquipa = nomeEquipa;
     }
 
-    public void setNomeElementosEquipa(ArrayList<String> nomeElementosEquipa) {
-        this.nomeElementosEquipa = nomeElementosEquipa;
-    }
-
     public static void setTotalIdEquipa(int totalIdEquipa) {
         Equipa.totalIdEquipa = totalIdEquipa;
     }
 
     @Override
     public String toString() {
-        return "Equipa{" + "idEquipa=" + idEquipa + ", nomeEquipa=" + nomeEquipa + ", nomeElementosEquipa=" + nomeElementosEquipa + '}';
+        return "Equipa{" + "idEquipa=" + idEquipa + ", nomeEquipa=" + nomeEquipa + '}';
     }
 
     @Override
@@ -101,9 +89,6 @@ public class Equipa {
             return false;
         }
         if (!Objects.equals(this.nomeEquipa, other.nomeEquipa)) {
-            return false;
-        }
-        if (!Objects.equals(this.nomeElementosEquipa, other.nomeElementosEquipa)) {
             return false;
         }
         return true;

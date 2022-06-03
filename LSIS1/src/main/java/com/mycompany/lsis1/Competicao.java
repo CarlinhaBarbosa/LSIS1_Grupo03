@@ -17,19 +17,21 @@ public class Competicao {
     private String nomeCompeticao;
     private Date dataCriacao;
 
-    static int totalIdCompeticao = 0;
-
     private static final int INT_DEFAULT = 0;
     private static final String STRING_DEFAULT = "n/d";
 
     public Competicao() {
-        this.idCompeticao = ++totalIdCompeticao;
         this.nomeCompeticao = STRING_DEFAULT;
         this.dataCriacao = new Date();
     }
 
     public Competicao(String nomeCompeticao, Date dataCriacao) {
-        this.idCompeticao = ++totalIdCompeticao;
+        this.nomeCompeticao = nomeCompeticao;
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Competicao(int idCompeticao, String nomeCompeticao, Date dataCriacao) {
+        this.idCompeticao = idCompeticao;
         this.nomeCompeticao = nomeCompeticao;
         this.dataCriacao = dataCriacao;
     }
@@ -52,10 +54,6 @@ public class Competicao {
         return dataCriacao;
     }
 
-    public static int getTotalIdCompeticao() {
-        return totalIdCompeticao;
-    }
-
     public static int getINT_DEFAULT() {
         return INT_DEFAULT;
     }
@@ -74,10 +72,6 @@ public class Competicao {
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
-    }
-
-    public static void setTotalIdCompeticao(int totalIdCompeticao) {
-        Competicao.totalIdCompeticao = totalIdCompeticao;
     }
 
     @Override
