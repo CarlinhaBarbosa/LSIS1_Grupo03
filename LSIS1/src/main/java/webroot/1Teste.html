@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt">
+    <head>
+        <title>Test1</title>
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="primeiro.css" rel="stylesheet" type="text/css"/>
+
+        <link href="http://fonts.cdnfonts.com/css/elianto" rel="stylesheet"> <!-- letra -->
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body onload="InfoUser()">
+
+        <div class="p"></div>
+
+        <div class="lol" >
+            <div class="leftbox ">
+                <nav class="tentativa">
+
+
+                </nav>
+
+            </div>
+            <form method="POST" class="rightbox" id="cliente">
+
+                <div class="profile tabShow">
+
+                    <h1>Parâmetros </h1>
+                    <input type="hidden" class="input" name="numero" id="numero" value="id nao mostrar" >
+                    <h2>Velocidade máx. atingida </h2>
+                    <input type="text" class="input" name="username" id="username"  value="" >
+                    <h2>Email </h2>
+                    <input type="text" class="input" name="email" id="email"  value="${data.cliente.email}" >
+                    <h2>Phone </h2>
+                    <input type="text" class="input" name="phone" id="phone"  value="${data.cliente.telemovel}" >  
+                    <h2>Nif </h2>
+                    <input type="text" class="input" name="nif" id="nif"  value="${data.cliente.nif}" > 
+                    <h2>password </h2>
+                    <input type="text" class="input"  name="password" id="password"  value="${data.cliente.password}">  
+
+                    <div class="Payment Info tabShow">
+                        <h1>Other Info </h1>
+                        <h2>Plan </h2>
+                        <input type="text" class="input" name="plano" id="plano"  value="${data.cliente.plano}" >
+                        <h2>Nome </h2>
+                        <input type="text" class="input" name="nome" id="nome"  value="${data.cliente.nome}" >
+                    </div>  
+                    <div class="vehicle tabShow">
+                        <h1>Vehicle Info </h1>
+                        <h2>Brand </h2>
+                        <input type="text" class="input"  name="marca" id="marca"  value="${data.cliente.marca}" >
+                        <h2>Model </h2>
+                        <input type="text" class="input" name="modelo" id="modelo"  value="${data.cliente.modelo}" >
+                        <h2>Matricula </h2>
+                        <input type="text" class="input"  name="matricula" id="matricula"  value="${data.cliente.matricula}" >
+                        <h2>Lugar </h2>
+                        <input type="text" class="input" name="lugar" id="lugar"  value="${data.cliente.lugar}" >
+                        <p></p>
+                        <button class="bt" onclick="alterarDados()">Alterar Parâmetros</button>
+                    </div> 
+                </div>
+            </form>
+
+
+
+
+        </div>
+        <p></p>
+        <div class="p"></div>
+
+
+    </body>
+</html>

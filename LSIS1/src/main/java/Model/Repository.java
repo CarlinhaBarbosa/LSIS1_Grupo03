@@ -1,4 +1,4 @@
-package com.mycompany.lsis1;
+package Model;
 
 /**
  *
