@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <link rel="icon" type="image/png" href="icon/img_315977.png">
+        <link type="text/css" href="register_style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="registerRobot.js"></script>      
+    </head>    
+    <body>  
+        <div class='blog'>
+            <div class='header'>
+                <div class='pictit'>
+                    <img alt="nature" src="images/4752495707_72c9b36858_b.jpg" height="200" width="300">
+                </div>
+                <h5>Robô</h5>
+                <h6>Registar</h6>
+            </div>
+            <div class="row">
+                <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo</h2>
+            </div>
+            <div class="row">
+                <div class="column4">     
+                    <div class='form'>                        
+                        <hr>
+                        <form id="registerRobotForm" name="registerRobotForm" action="javascript:Enviar()">
+                            <label for="idEquipaId" id="idEquipaL"> ID da Equipa:</label>
+                            <input type="text" id="idEquipaId" name="nome"/>
+                            <label for="nomeId" id="nomeL">Nome:</label>
+                            <input type="text" id="nomeId" name="nome"/>
+                            <label for="macAddressId" id="macAddressL">Mac Address:</label>
+                            <input type="text" id="macAddressId" name="nome"/>
+                            <input type="submit" value="Registar" />                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="infoPanel"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Customer Page</title>
+        <link rel="icon" type="image/png" href="images/319-3194221_animated-smiley-face-wink.png">
+        <link type="text/css" href="info.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="info.js"></script>    
+    </head>    
+    <body>
+        <div class='blog'>
+            <div class='header'>
+                <div class='pictit'>
+                    <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
+                </div>
+                <h5>Info Page</h5>
+                <h6>Everything you need in one place</h6>
+            </div>      
+            <div class='row'>
+                <div class='column1'>
+                    <button onclick="botaoParkInfo();">Park Info</button>
+                    <p></p>
+                    <button onclick="botaoClientInfo();">Client Info</button>
+                    <input type="text" id="inputIdCliente" placeholder="ID"/>
+                    <p></p>
+                    <button id="botaoCb" onclick="botaoClientBillInfo();"> Client Bill Info</button>
+                    <p></p>
+                </div>
+                <div class='column2'>                
+                    <h2 id="h2ClientInfo" style="display:none">Client Info</h2> 
+                    <p id="pClientInfo" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar"</p>
+                    <form id ="fClientInfo" name="clientInfoForm" style="display:none" action="javascript:alterarDados()">
+                        <label for="nomeId" id="nomeL">Nome:</label>
+                        <input type="text" id="nomeId" name="nome"/>
+
+                        <label for="dataNascId" id="dataNascL">Data de Nascimento:</label>
+                        <input type="text" id="dataNascId" name="dataNasc"/>
+
+                        <label for="numeroFiscalId" id="numeroFiscalL">Número Fiscal:</label>
+                        <input type="text" id="numeroFiscalId" name="numeroFiscal"/> 
+
+                        <label for="numeroTelefoneId" id="numeroTelefoneL">Telefone:</label>
+                        <input type="text" id="numeroTelefoneId" name="numeroTelefone"/> 
+
+                        <label for="emailId" id="emailL">E-mail:</label>
+                        <input type="text" id="emailId" name="email"/> 
+
+                        <label for="moradaId" id="moradaL">Morada:</label>
+                        <input type="text" id="moradaId" name="morada"/>
+
+                        <label for="matricula1Id" id="matricula1L">Matrícula:</label>
+                        <input type="text" id="matricula1Id" placeholder="xx-xx-xx" name="matricula1"/>
+
+                        <label for="matricula2Id" id="matricula2L">Matrícula:</label>
+                        <input type="text" id="matricula2Id" placeholder="xx-xx-xx" name="matricula2"/>     
+                        <input type="submit" value="Alterar" />
+                    </form>                                
+                    <h2 id="h2ParkInfo" style="display:none">Park info</h2> 
+                    <p id="pParkInfo" style="display:none">Parking lot's capacity info</p>
+                    <table id ="tParkInfo" style="display:none">
+                        <tr>
+                            <th>Pisos</th>
+                            <th>Zona A</th> 
+                            <th>Zona B</th>
+                            <th>Zona C </th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table> 
+                    <h2 id="h2ClientBillInfo" style="display:none">Bill Info</h2> 
+                    <p id="pClientBillInfo" style="display:none"> Info about client's bill</p>
+                    <form id ="fClientBillInfo" name="clientBillInfoForm" method="GET" style="display:none">
+                        <label for="dataInicioId" id="dataInicioL">Data de Início:</label>
+                        <input type="text" id="dataInicioId" placeholder="Data" name="dataInicio"/>
+
+                        <label for="dataFimId" id="dataFimL">Data de Fim:</label>
+                        <input type="text" id="dataFimId" placeholder="Data" name="dataFim"/>
+
+                        <label for="valorId" id="valorL">Valor:</label>
+                        <input type="text" id="valorId" placeholder="Valor" name="valor"/> 
+
+                        <label for="viaturaId" id="viaturaL">Nº de Identificação da Viatura:</label>
+                        <input type="text" id="viaturaId" placeholder="Viatura" name="numeroIdentificacaoDaViatura"/> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
