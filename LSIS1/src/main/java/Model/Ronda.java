@@ -9,28 +9,25 @@ package Model;
  * @author diogo
  */
 public class Ronda {
-    private enum TipoRonda{
-        Nao_Definido,Ronda_Teste,Competicao
-    }
-    
+
     private int idRonda;
     private int idCompeticao;
-    private TipoRonda tipoRonda;
-    
+    private String tipoRonda;
+
     private static final int INT_DEFAULT = 0;
-    private static final TipoRonda TIPORONDA_DEFAULT = TipoRonda.Nao_Definido;
-    
-    public Ronda(){
+    private static final String TIPORONDA_DEFAULT = "n/d";
+
+    public Ronda() {
         this.idCompeticao = INT_DEFAULT;
         this.tipoRonda = TIPORONDA_DEFAULT;
     }
 
-    public Ronda(int idCompeticao, TipoRonda tipoRonda) {
+    public Ronda(int idCompeticao, String tipoRonda) {
         this.idCompeticao = idCompeticao;
         this.tipoRonda = tipoRonda;
     }
 
-    public Ronda(int idRonda, int idCompeticao, TipoRonda tipoRonda) {
+    public Ronda(int idRonda, int idCompeticao, String tipoRonda) {
         this.idRonda = idRonda;
         this.idCompeticao = idCompeticao;
         this.tipoRonda = tipoRonda;
@@ -44,7 +41,7 @@ public class Ronda {
         return idCompeticao;
     }
 
-    public TipoRonda getTipoRonda() {
+    public String getTipoRonda() {
         return tipoRonda;
     }
 
@@ -56,7 +53,7 @@ public class Ronda {
         this.idCompeticao = idCompeticao;
     }
 
-    public void setTipoRonda(TipoRonda tipoRonda) {
+    public void setTipoRonda(String tipoRonda) {
         this.tipoRonda = tipoRonda;
     }
 
@@ -85,6 +82,5 @@ public class Ronda {
         }
         return this.tipoRonda == other.tipoRonda;
     }
-    
-    
+
 }

@@ -6,7 +6,7 @@ public class Robot {
 
     private int idRobot;
     private int idEquipa;
-    private String nome;
+    private String nomeRobot;
     private String macAddress;
 
     private static final int INT_DEFAULT = 0;
@@ -14,27 +14,27 @@ public class Robot {
 
     public Robot() {
         this.idEquipa = INT_DEFAULT;
-        this.nome = STRING_DEFAULT;
+        this.nomeRobot = STRING_DEFAULT;
         this.macAddress = STRING_DEFAULT;
     }
 
-    public Robot(int idEquipa, String nome, String macAdress) {
+    public Robot(int idEquipa, String nomeRobot, String macAdress) {
         this.idEquipa = idEquipa;
-        this.nome = nome;
+        this.nomeRobot = nomeRobot;
         this.macAddress = macAdress;
     }
 
-    public Robot(int idRobot, int idEquipa, String nome, String macAdress) {
+    public Robot(int idRobot, int idEquipa, String nomeRobot, String macAdress) {
         this.idRobot = idRobot;
         this.idEquipa = idEquipa;
-        this.nome = nome;
+        this.nomeRobot = nomeRobot;
         this.macAddress = macAdress;
     }
 
     public Robot(Robot robot) {
         this.idRobot = robot.idRobot;
         this.idEquipa = robot.idEquipa;
-        this.nome = robot.nome;
+        this.nomeRobot = robot.nomeRobot;
     }
 
     public int getIdRobot() {
@@ -45,8 +45,8 @@ public class Robot {
         return idEquipa;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeRobot() {
+        return nomeRobot;
     }
 
     public String getMacAdress() {
@@ -61,8 +61,8 @@ public class Robot {
         this.idEquipa = idEquipa;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeRobot(String nomeRobot) {
+        this.nomeRobot = nomeRobot;
     }
 
     public void setMacAdress(String macAdress) {
@@ -71,7 +71,7 @@ public class Robot {
 
     @Override
     public String toString() {
-        return "Robot{" + "idRobot=" + idRobot + ", idEquipa=" + idEquipa + ", nome=" + nome + ", macAdress=" + macAddress + '}';
+        return "Robot{" + "idRobot=" + idRobot + ", idEquipa=" + idEquipa + ", nome=" + nomeRobot + ", macAdress=" + macAddress + '}';
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Robot {
         if (this.idEquipa != other.idEquipa) {
             return false;
         }
-        if (!Objects.equals(this.nome, other.nome)) {
+        if (!Objects.equals(this.nomeRobot, other.nomeRobot)) {
             return false;
         }
         return Objects.equals(this.macAddress, other.macAddress);

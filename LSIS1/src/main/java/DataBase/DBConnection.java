@@ -13,10 +13,10 @@ import java.sql.SQLException;
  * @author joaoferreira
  */
 public class DBConnection {
-    
-    //LOCAL: "jdbc:mysql://localhost:3306/gestao";
-    static final String URL = "jdbc:mysql://localhost:3306/2022sinf1_003";
-    
+
+//    static final String URL = "jdbc:mysql://localhost:3306/2022sinf1_003";
+    static final String URL ="jdbc:mysql://ctesp.dei.isep.ipp.pt:3306/2022sinf1_003";
+
     static final String USER = "2022sinf1_003";
     static final String PASS = "Fw46266oGF.";
 
@@ -30,5 +30,5 @@ public class DBConnection {
             throw new RuntimeException("Error connecting!", exc);
         }
     }
-    
+
 }
