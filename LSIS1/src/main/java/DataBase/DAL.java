@@ -4,6 +4,7 @@
  */
 package DataBase;
 
+import Model.AssociacaoEquipaCompeticao;
 import Model.AssociacaoJuriCompeticao;
 import Model.AssociacaoRobotRonda;
 import Model.AssociacaoRondaCompeticao;
@@ -189,6 +190,19 @@ public class DAL {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoJuriCompeticao (idJuri, idCompeticao) VALUES (?,?)");
             stmt.setInt(1, associacaoJuriCompeticaoInserida.getIdJuri());
             stmt.setInt(2, associacaoJuriCompeticaoInserida.getIdCompeticao());
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void inserirAssociacaoEquipaCompeticao(AssociacaoEquipaCompeticao associacaoEquipaCompeticaoInserida) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoEquipaCompeticao (idEquipa, idCompeticao) VALUES (?,?)");
+            stmt.setInt(1, associacaoEquipaCompeticaoInserida.getIdEquipa());
+            stmt.setInt(2, associacaoEquipaCompeticaoInserida.getIdCompeticao());
             stmt.executeUpdate();
             conn.close();
         } catch (Exception e) {

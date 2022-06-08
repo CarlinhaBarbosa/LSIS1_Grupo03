@@ -5,6 +5,7 @@
 package testeFuncoes;
 
 import DataBase.DAL;
+import Model.AssociacaoEquipaCompeticao;
 import Model.AssociacaoJuriCompeticao;
 import Model.AssociacaoRobotRonda;
 import Model.AssociacaoRondaCompeticao;
@@ -67,6 +68,7 @@ public class testeFuncoesDAL {
 //        d.eliminarRobot(1);
 
         /*ASSOCIAÇÕES*/
+        
  /*Inserir AssociacaoRondaCompeticao*/
 //        AssociacaoRondaCompeticao aRc = new AssociacaoRondaCompeticao ();
 //        aRc.setIdRonda(1);
@@ -84,11 +86,19 @@ public class testeFuncoesDAL {
 //        d.inserirAssociacaoRobotRonda(aRr);
 
         /*Inserir AssociacaoJuriCompeticao*/
-        AssociacaoJuriCompeticao aJc = new AssociacaoJuriCompeticao();
-        aJc.setIdJuri(1);
-        aJc.setIdCompeticao(1);
-        System.out.println(aJc.toString());
-        d.inserirAssociacaoJuriCompeticao(aJc);
+//        AssociacaoJuriCompeticao aJc = new AssociacaoJuriCompeticao();
+//        aJc.setIdJuri(1);
+//        aJc.setIdCompeticao(1);
+//        System.out.println(aJc.toString());
+//        d.inserirAssociacaoJuriCompeticao(aJc);
+
+        /*Inserir AssociacaoEquipaCompetica*/
+//        AssociacaoEquipaCompeticao aEc = new AssociacaoEquipaCompeticao();
+//        aEc.setIdEquipa(1);
+//        aEc.setIdCompeticao(1);
+//        System.out.println(aEc.toString());
+//        d.inserirAssociacaoEquipaCompeticao(aEc);
+
     }
 
 }
