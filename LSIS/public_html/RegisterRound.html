@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Registar Ronda</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="icon/img_315977.png">
+        <link type="text/css" href="register_style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="registerCompetition.js"></script>
+    </head>
+    <body>
+        <div class='blog'>
+            <div class='header'>
+                <div class='pictit'>
+                    <img alt="nature" src="images/4752495707_72c9b36858_b.jpg" height="200" width="300">
+                </div>
+                <h5>Ronda</h5>
+                <h6>Registar</h6>
+            </div>
+            <div class="row">
+                <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo de Ronda</h2>
+            </div>
+            <div class="row">
+                <div class="column4">     
+                    <div class='form'>                        
+                        <hr>
+                        <form id="registerRoundForm" name="registerRoundForm" action="javascript:Enviar()">
+                            <label for="competitionId" id="competitionIdL">ID da Competição:</label>
+                            <input type="text" id="competitionId" name="IdCompeticao"/>
+                            <label for="roundType"><b>Tipo de Ronda</b></label><span style="color: red !important; display: inline; float: none;"></span>
+                            <br>
+                            <select id="RoundType" name="Round">
+                                <option value="Não Definido"></option>
+                                <option value="Teste">Teste</option>
+                                <option value="Competicao">Competição</option>
+                            </select> <br><br>
+                            <input type="submit" value="Registar" />                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="infoPanel"></div>
+        </div>
+    </body>
+</html>
