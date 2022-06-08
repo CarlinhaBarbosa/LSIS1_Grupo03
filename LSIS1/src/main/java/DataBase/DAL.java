@@ -153,6 +153,106 @@ public class DAL {
         }
     }
 
+    /*Obter*/
+    public static List<Competicao> obterCompeticao() {
+        List<Competicao> result = new ArrayList<Competicao>();
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM Competicao");
+            rs = stmt.executeQuery();
+            Competicao competicaoRetornoFinal = new Competicao();
+            List<Competicao> listCompeticao = new ArrayList<Competicao>();
+            while (rs.next()) {
+                Competicao competicaoRetorno = new Competicao();
+                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
+                competicaoRetorno.setNomeCompeticao(rs.getString("nomeCompeticao"));
+                competicaoRetorno.setDataCriacao(rs.getDate("dataCriacao"));
+                listCompeticao.add(competicaoRetorno);
+            }
+
+            conn.close();
+            return listCompeticao;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public Ronda obterRonda(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM Ronda WHERE idRonda=?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            Ronda rondaRetorno = new Ronda();
+            while (rs.next()) {
+                rondaRetorno.setIdRonda(rs.getInt("idRonda"));
+                rondaRetorno.setIdCompeticao((rs.getInt("idCompeticao")));
+                rondaRetorno.setTipoRonda(rs.getString("tipoRonda"));
+            }
+
+            conn.close();
+            return rondaRetorno;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return new Ronda();
+    }
+
+    public Equipa obterEquipa(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM Equipa WHERE idEquipa=?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            Equipa equipaRetorno = new Equipa();
+            while (rs.next()) {
+                equipaRetorno.setIdEquipa(rs.getInt("idEquipa"));
+                equipaRetorno.setNomeEquipa(rs.getString("nomeEquipa"));
+            }
+
+            conn.close();
+            return equipaRetorno;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return new Equipa();
+    }
+
+    public Robot obterRobot(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM Robot WHERE idRobot=?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+            Robot robotRetorno = new Robot();
+            while (rs.next()) {
+                robotRetorno.setIdRobot(rs.getInt("idRobot"));
+                robotRetorno.setIdEquipa(rs.getInt("idEquipa"));
+                robotRetorno.setNomeRobot(rs.getString("nomeRobot"));
+                robotRetorno.setMacAdress(rs.getString("macAddress"));
+            }
+
+            conn.close();
+            return robotRetorno;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return new Robot();
+    }
+
     /*ASSOCIAÇÕES*/
 
  /*Inserir*/

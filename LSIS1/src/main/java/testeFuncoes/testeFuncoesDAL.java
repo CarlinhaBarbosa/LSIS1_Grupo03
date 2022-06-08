@@ -31,7 +31,7 @@ public class testeFuncoesDAL {
 
  /*Inserir competicao*/
 //        Competicao c = new Competicao();
-//        c.setNomeCompeticao("LSIS");
+//        c.setNomeCompeticao("lsisTeste");
 //        Date dataCriacao = new Date();
 //        c.setDataCriacao(dataCriacao);
 //        System.out.println(c.toString());
@@ -67,8 +67,14 @@ public class testeFuncoesDAL {
         /*Eliminar*/
 //        d.eliminarRobot(1);
 
+        /*Obter*/
+//        System.out.println(d.obterCompeticao().toString());
+//        System.out.println(d.obterRonda(2).toString());
+//        System.out.println(d.obterEquipa(1).toString());
+//        System.out.println(d.obterRobot(1).toString());
+
+
         /*ASSOCIAÇÕES*/
-        
  /*Inserir AssociacaoRondaCompeticao*/
 //        AssociacaoRondaCompeticao aRc = new AssociacaoRondaCompeticao ();
 //        aRc.setIdRonda(1);
@@ -98,7 +104,6 @@ public class testeFuncoesDAL {
 //        aEc.setIdCompeticao(1);
 //        System.out.println(aEc.toString());
 //        d.inserirAssociacaoEquipaCompeticao(aEc);
-
     }
 
 }
