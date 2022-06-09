@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="pt">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <link rel="icon" type="image/png" href="icon/img_315977.png">
+        <link type="text/css" href="css/register_style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="js/registerClient.js"></script>      
+    </head>    
+    <body>  
+
+    <body>
+        <div class='blog'>
+            <div class='header'>
+                <div class='pictit'>
+                    <img alt="nature" src="images/4752495707_72c9b36858_b.jpg" height="200" width="300">
+                </div>
+                <h5>Parking Lot</h5>
+                <h6>Register</h6>
+            </div>
+            <div class='menu'>
+                <ul>
+                    <li><a href="aboutUs.html">About us</a></li>
+                    <li><a href="customersAccess.html">Customers</a></li>
+                    <li><a href="login.html?type=2">Management</a></li>
+                    <li><a href="prices.html">Prices</a></li>
+                    <li><a href="contactUs.html">Contact Us</a></li>
+                    <li><a href="siteMap.html">Sitemap</a></li>
+                </ul>
+            </div> 
+            <div class="row">
+                <h2 style= "margin-left: 10%; margin-top: 50px">Register Form</h2>
+            </div>
+            <div class="row">
+                <div class="column4">     
+                    <div class='form'>
+                        <!-- menu-->                        
+                        <hr>
+                        <form id="registerClientForm" name="registerClientForm" action="javascript:Enviar()">
+                            <label for="nomeId" id="nomeL">Nome:</label>
+                            <input type="text" id="nomeId" name="nome"/>
+                            <label for="dataNascId" id="dataNascL">Data de Nascimento:</label>
+                            <input type="text" id="dataNascId" name="dataNasc"/>
+                            <label for="numeroTelefoneId" id="numeroL">Telefone:</label>
+                            <input type="text" id="numeroTelefoneId" name="numeroTelefone"/> 
+                            <label for="numeroViaturasId" id="numeroViaturasL">Número de viaturas:</label>
+                            <input type="text" id="numeroViaturasId" name="numeroViaturas"/>
+                            <input type="button" onclick="verificarNumeroDeViaturas()" value="Inserir" />
+                            <label for="matricula1Id" id="matricula1L">Matrícula:</label>
+                            <input type="text" id="matricula1Id" name="matricula1"/>
+                            <!--                        </form>
+                                                </div>
+                                            </div>
+                                            <div class="column4">
+                                                <div class='form'>
+                                                    <h2 style= "text-align: center"> </h2>
+                                                    <hr>
+                                                    <form id="registerClientForm" name="registerClientForm" action="javascript:Enviar()">                            -->
+                            <label for="emailId" id="emailL">E-mail:</label>
+                            <input type="text" id="emailId" placeholder="someguy@mail.com" name="email"/>
+                            <label for="nrFiscalID" id="nrFiscalL">Número Fiscal:</label>
+                            <input type="text" id="nrFiscalID" name="numeroFiscal"/>
+                            <label for="passwordID" id="passwordL">Password:</label>
+                            <input type="text" id="passwordID" name="password"/>
+                            <label for="matricula2Id" id="matricula2L">Matrícula:</label>
+                            <input type="text" id="matricula2Id" name="matricula2"/>
+                            <label for="moradaId" id="moradaL">Morada:</label>
+                            <input type="text" id="moradaId" name="morada"/>
+                            <input type="submit" value="Register" />                      
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="infoPanel"></div>
+        </div>
+    </body>
+</html>

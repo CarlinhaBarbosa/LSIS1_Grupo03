@@ -12,6 +12,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.StaticHandler;
 import static io.vertx.ext.web.handler.StaticHandler.DEFAULT_WEB_ROOT;
 import io.vertx.mqtt.MqttClient;
 import io.vertx.mqtt.MqttClientOptions;
@@ -43,9 +44,10 @@ public class ServerVerticleMqtt extends AbstractVerticle {
         maqiatto.onComplete(connectHandler(client));
 
         Router router = Router.router(vertx);
+        router.route("/*").handler(StaticHandler.create(webRoot));
 
         HttpServerOptions Options = new HttpServerOptions();
-        Options.setPort(3347);
+        Options.setPort(7506);
 
         vertx.createHttpServer(Options)
                 .requestHandler(router)
@@ -69,7 +71,7 @@ public class ServerVerticleMqtt extends AbstractVerticle {
             if (s.succeeded()) {
                 System.out.println("Ligado e a subscrever tópicos " + client.clientId());
                 String topico1 = "1200638@isep.ipp.pt/lsis1";
-                subscrever(topico1);
+                subscrever(client, topico1); //alterado
             } else {
                 System.out.println("Falhou ligação ");
                 System.out.println(s.cause());
@@ -77,7 +79,7 @@ public class ServerVerticleMqtt extends AbstractVerticle {
         };
     }
 
-    public void subscrever(String topico) {
+    public void subscrever(MqttClient client, String topico) { //alterado
         client.publishHandler(topicHandler())
                 .subscribe(topico, 0);
     }
