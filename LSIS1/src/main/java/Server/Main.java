@@ -8,7 +8,12 @@ import io.vertx.core.Vertx;
 
 /**
  *
- * @author joaoferreira
+ * @author LSIS- Grupo 3
+ * 1201141 - Bernardo Oliveira
+ * 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça
+ * 1201059 - Francisca Ribeiro
+ * 1200638 - João Ferreira
  */
 public class Main {
 

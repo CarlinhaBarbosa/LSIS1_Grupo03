@@ -24,13 +24,22 @@ import java.util.List;
 
 /**
  *
- * @author joaoferreira
+ * @author LSIS- Grupo 3
+ * 1201141 - Bernardo Oliveira
+ * 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça
+ * 1201059 - Francisca Ribeiro
+ * 1200638 - João Ferreira
  */
 public class DAL {
 
-    /*OBJECTOS*/
-
- /*Inserir*/
+    /**
+     * **INSERT**
+     * Inserir Competição
+     * 
+     * @param competicaoInserida 
+     */
+    
     public static void inserirCompeticao(Competicao competicaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -45,6 +54,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * Inserir Ronda
+     * 
+     * @param rondaInserida 
+     */
     public void inserirRonda(Ronda rondaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -58,6 +73,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * Inserir Equipa
+     * 
+     * @param equipaInserida 
+     */
     public void inserirEquipa(Equipa equipaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -70,6 +91,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * Inserir Robot
+     * 
+     * @param robotInserido 
+     */
     public void inserirRobot(Robot robotInserido) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -84,7 +111,14 @@ public class DAL {
         }
     }
 
-    /*Update*/
+    /**
+     * **UPDATE**
+     * ATUALIZAR COMPETIÇÃO
+     * 
+     * @param idCompeticao
+     * @param nomeCompeticao
+     * @param dataCriacao 
+     */
     public void actualizarCompeticao(int idCompeticao, String nomeCompeticao, java.util.Date dataCriacao) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -100,6 +134,13 @@ public class DAL {
         }
     }
 
+    /**
+     * **UPDATE**
+     * ATUALIZAR RONDA
+     * 
+     * @param idRonda
+     * @param tipoRonda 
+     */
     public void actualizarRonda(int idRonda, String tipoRonda) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -113,6 +154,13 @@ public class DAL {
         }
     }
 
+    /**
+     * **UPDATE**
+     * ATUALIZAR EQUIPA
+     * 
+     * @param idEquipa
+     * @param nomeEquipa 
+     */
     public void actualizarEquipa(int idEquipa, String nomeEquipa) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -126,6 +174,14 @@ public class DAL {
         }
     }
 
+    /**
+     * **UPDATE**
+     * Atualizar Robot
+     * 
+     * @param idRobot
+     * @param nomeRobot
+     * @param macAddress 
+     */
     public void actualizarRobot(int idRobot, String nomeRobot, String macAddress) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -140,7 +196,12 @@ public class DAL {
         }
     }
 
-    /*Eliminar*/
+    /**
+     * **DELETE**
+     * ELIMINAR ROBOT
+     * 
+     * @param idRobot 
+     */
     public void eliminarRobot(int idRobot) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -153,7 +214,12 @@ public class DAL {
         }
     }
 
-    /*Obter*/
+    /**
+     * **SELECT**
+     * OBTER COMPETIÇÃO
+     * 
+     * @return 
+     */
     public static List<Competicao> obterCompeticao() {
         List<Competicao> result = new ArrayList<Competicao>();
         try {
@@ -181,6 +247,8 @@ public class DAL {
         return result;
     }
 
+    //**
+    
     public Ronda obterRonda(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
@@ -205,6 +273,13 @@ public class DAL {
         return new Ronda();
     }
 
+    /**
+     * **SELECT**
+     * OBTER EQUIPA ATRAVÉS DO ID
+     * 
+     * @param id
+     * @return 
+     */
     public Equipa obterEquipa(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
@@ -228,6 +303,13 @@ public class DAL {
         return new Equipa();
     }
 
+    /**
+     * **SELECT**
+     * OBTER ROBOT ATRAVÉS DO ID
+     * 
+     * @param id
+     * @return 
+     */
     public Robot obterRobot(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
@@ -253,9 +335,13 @@ public class DAL {
         return new Robot();
     }
 
-    /*ASSOCIAÇÕES*/
 
- /*Inserir*/
+ /**
+  * **INSERT**
+  * ASSOCIAR UMA RONDA A UMA COMPETIÇÃO
+  * 
+  * @param associacaoRondaCompeticaoInserida 
+  */
     public void inserirAssociacaoRondaCompeticao(AssociacaoRondaCompeticao associacaoRondaCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -269,6 +355,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * ASSOCIAR UM ROBOT A UMA RONDA
+     * 
+     * @param associacaoRobotRondaInserida 
+     */
     public void inserirAssociacaoRobotRonda(AssociacaoRobotRonda associacaoRobotRondaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -284,6 +376,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * ASSOCIAR UM JURI A UMA COMPETIÇÃO
+     * 
+     * @param associacaoJuriCompeticaoInserida 
+     */
     public void inserirAssociacaoJuriCompeticao(AssociacaoJuriCompeticao associacaoJuriCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -297,6 +395,12 @@ public class DAL {
         }
     }
 
+    /**
+     * **INSERT**
+     * ASSOCIAR UMA EQUIPA A UMA COMPETIÇÃO
+     * 
+     * @param associacaoEquipaCompeticaoInserida 
+     */
     public void inserirAssociacaoEquipaCompeticao(AssociacaoEquipaCompeticao associacaoEquipaCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
