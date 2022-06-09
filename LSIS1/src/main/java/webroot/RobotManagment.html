@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Robot Managment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="images/319-3194221_animated-smiley-face-wink.png">
+        <link type="text/css" href="info.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="RobotManagment.js"></script>
+    </head>
+    <body>
+        <div>
+            <div class='blog'>
+                <div class='header'>
+                    <div class='pictit'>
+                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
+                    </div>
+                    <h5>Info Page</h5>
+                    <h6>Everything you need in one place</h6>
+                </div>      
+                <div class='row'>
+                    <div class='column1'>
+                        <button onclick="botaoRobotList();">Robot List</button>
+                        <p></p>
+                        <button onclick="botaoRobotInfo();">Robot Info</button>
+                        <input type="text" id="inputIdRobot" placeholder="ROBOT ID"/>
+                        <p></p>
+                    </div>
+                    <div class='column2'>  
+                        <h2 id="h2RobotList" style="display:none">Robot's List</h2> 
+                        <p id="pRobotList" style="display:none">All your team's registered robots! </p>
+                        <table id ="tRobotList" style="display:none">
+                            <tr>
+                                <th>Id Robot</th>
+                                <th>Id Equipa</th> 
+                                <th>Nome Robot</th>
+                                <th>Mac Address</th>
+                            </tr>
+                            <tr>
+                                <th>1</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <h2 id="h2RobotInfo" style="display: none">Robot Info</h2>
+                        <p id="pRobotInfo" style="display:none">If you wish to change your data, just fill in the label you want and click on the button "Alterar"</p>
+                        <form id ="fRobotInfo" name="RobotInfoForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="robotId" id="robotIdL">Id Robot:</label>
+                            <input type="text" id="robotId" name="id"/>
+
+                            <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
+                            <input type="text" id="teamNameId" name="teamName"/>
+
+                            <label for="robotNameId" id="robotNameL">Robot Name:</label>
+                            <input type="text" id="robotNameId" name="Robotname"/>
+
+                            <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
+                            <input type="text" id="macAddressId" name="MacAddress"/>
+                            <input type="submit" value='Alterar'>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

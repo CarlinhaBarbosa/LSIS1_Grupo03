@@ -1,0 +1,346 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 30 Mar 2022, 22:26:38
+    Author     : OLAF
+*/
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body{
+    background-color: #ffffff;
+}
+
+.blog {
+    background: beige;
+    height: 100%;
+}
+
+.cursor {
+    cursor: url('images/car.jpg'), auto;
+}
+
+.pictit {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex:1;
+}
+.row iframe{
+    display: none;
+    height: 500px;
+    width: 500px;
+    resize: both;
+    overflow: auto;
+}
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column1 {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    flex: 1;
+    text-decoration: none;
+}
+
+.column2 {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    flex: 7;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+
+.column4 {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    flex: 4;
+    margin-left: 5%;
+}
+
+.header {
+    background : sandybrown;
+    height: 100%;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+
+.header img {
+    float: left;
+}
+.header h1,h3 {
+    margin-top: 10px;
+    margin-left: 100px;
+    margin-bottom: 0.25em;
+}
+h1t {
+    font-family: Arial;
+    font-size:48px;
+    color: black
+
+}
+
+h1 {
+    font-family: Arial;
+    font-size:48px;
+    color: black
+}
+
+h2 {
+    font-family:Arial;
+    font-size:26px;
+    color: black;
+}
+
+h3 {
+    font-family:Arial;
+    font-size:36px;
+    color: black
+}
+
+h4 {
+    margin-top: 3%;
+    font-family:Arial;
+    font-size:28px;
+    color: black;
+    line-height: 1%;
+    padding-left: 3%;
+    text-decoration: none;
+}
+
+h5 {
+    font-family:Arial;
+    font-size:36px;
+    color: black;
+    line-height: 3%;
+    text-align: center;
+}
+
+h6 {
+    font-family:Arial;
+    font-size:26px;
+    color: black;
+    line-height: 3%;
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.menu ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li a {
+    display: block;
+    width: 160px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menu li a:hover {
+    background-color: chocolate;
+}
+
+/*Form contact*/
+
+
+form {
+    font-family: Verdana,Tahoma,sans-serif;
+    font-size: 20px;
+    max-width: 700px;
+    margin-top: 20px;
+    margin-left: 20%;
+}
+
+form input[type="text"], input[type="number"], input[type="date"], input[type="email"], input[type="submit"], input[type="time"],input[type="password"], textarea, option, select {
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    color: black;
+    margin-left: 5em;
+    margin-bottom: 1em;
+    border-radius: 0px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid;
+    font-size: 18px;
+
+}
+
+
+form button:hover, input:hover, textarea:hover, input:focus, textarea:focus {
+    border-color: #000066;
+    box-shadow: 5px 0px 9px black;
+    background-color: #66FFFF;
+    color: black;
+    font-weight: bold;
+}
+
+form input {
+    height: 40px;
+    width: 100px;
+    font-weight: bold;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid;
+    color: black;
+}
+
+form button {
+    margin-left: 8em;
+    height: 40px;
+    width: 150px;
+    font-weight: bold;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid;
+    color: black;
+}
+
+
+form textarea {
+    width: 330px;
+    height: 120px;
+    line-height: 20px;
+    max-width: 400px;
+    margin-left: 8em;
+}
+
+form label {
+    text-align: left;
+    float: left;
+    color: black;
+    font-weight: bold;
+    width: 50%;
+    padding: 4%;
+}
+
+/*checkbox*/
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 32px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    left: 5em;
+    height: 25px;
+    width: 25px;
+    background-color: grey;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.form{
+    float: left;
+}
+
+.form_error {
+    width: 100%;
+    margin-top: 60px;
+    padding-left: 10px;
+}
+.form_error p{
+    margin-top: 27px;
+    font-size: 11px;
+    padding: 1.2em;
+}
+.area_form_error {
+    padding-left: 10px;
+    width: 100%;
+}
+.area_form_error p{
+    font-size: 11px;
+    margin-top: 120px;
+    padding: 0.6em;
+}
+table th, td {
+    border : 1px solid black;
+
+}
