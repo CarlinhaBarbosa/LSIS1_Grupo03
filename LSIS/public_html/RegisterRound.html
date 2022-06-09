@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <link rel="icon" type="image/png" href="icon/img_315977.png">
         <link type="text/css" href="register_style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width">
-        <script src="registerCompetition.js"></script>
+        <script src="RegisterRound.js"></script>
     </head>
     <body>
         <div class='blog'>
@@ -23,10 +23,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <h6>Registar</h6>
             </div>
             <div class="row">
-                <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo de Ronda</h2>
-            </div>
-            <div class="row">
-                <div class="column4">     
+                <div class='column1'>
+                    <button onclick="botaoCompetitionList();">Competition List</button>
+                    <p></p>
+                </div>
+                <div class='column2'>   
+                    <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo de Ronda</h2>
+                    <h2 id="h2CompetitionTableInfo" style="display:none">Competitions info</h2> 
+                    <p id="pCompetitionTableInfo" style="display:none">Competitions available at the moment</p>
+                    <table id ="tCompetitionTableInfo" style="display:none">
+                        <tr>
+                            <th>Id Competição</th>
+                            <th>Nome Competição</th> 
+                            <th>Data Criação</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
                     <div class='form'>                        
                         <hr>
                         <form id="registerRoundForm" name="registerRoundForm" action="javascript:Enviar()">

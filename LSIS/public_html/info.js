@@ -7,8 +7,8 @@
 /* global fetch */
 
 function botaoClientInfo() {
-    var xH = document.getElementById("h2ClientInfo");
-    var xP = document.getElementById("pClientInfo");
+    var xH = document.getElementById("h2TeamInfo");
+    var xP = document.getElementById("pTeamInfo");
     var xI = document.getElementById("fTeamInfo");
     if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
         xH.style.display = "block";
