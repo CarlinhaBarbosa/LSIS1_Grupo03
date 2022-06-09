@@ -4,14 +4,23 @@
  */
 package Server;
 
+import Model.Competicao;
+import static DataBase.DAL.inserirCompeticao;
 import Model.Repository;
+import io.netty.handler.codec.mqtt.MqttQoS;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.Promise;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerOptions;
+import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import static io.vertx.ext.web.handler.StaticHandler.DEFAULT_WEB_ROOT;
 import io.vertx.mqtt.MqttClient;
@@ -45,6 +54,10 @@ public class ServerVerticleMqtt extends AbstractVerticle {
 
         Router router = Router.router(vertx);
         router.route("/*").handler(StaticHandler.create(webRoot));
+        router.route().handler(BodyHandler.create());
+        router.route(HttpMethod.POST, "/registarCompetição").handler(this::registarCompeticao);
+//        router.route(HttpMethod.POST, "/updateCliente").handler(this::updateCliente);
+//        router.route(HttpMethod.GET, "/selecionarCliente").handler(this::selecionarCliente);
 
         HttpServerOptions Options = new HttpServerOptions();
         Options.setPort(7506);
@@ -79,7 +92,7 @@ public class ServerVerticleMqtt extends AbstractVerticle {
         };
     }
 
-    public void subscrever(MqttClient client, String topico) { //alterado
+    public void subscrever(MqttClient client, String topico) { //alterado. acrescentei client
         client.publishHandler(topicHandler())
                 .subscribe(topico, 0);
     }
@@ -94,4 +107,41 @@ public class ServerVerticleMqtt extends AbstractVerticle {
         };
     }
 
+    private void receiveMsgs(RoutingContext rc) {
+        String msg = rc.request().getParam("msg");
+        System.out.println("-> msg: " + msg);
+
+        publicar(client, "1180902@isep.ipp.pt/lsis1", msg);
+
+        rc.response().setStatusCode(200)
+                .putHeader("content-type", "application/json; charset=utf-8")
+                .end(Json.encodePrettily(msg));
+    }
+
+    public void publicar(MqttClient client, String topico, String msg) {
+        try {
+            client.publish(topico,
+                    Buffer.buffer(msg),
+                    MqttQoS.AT_MOST_ONCE,
+                    false,
+                    false);
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+    }
+
+    private void registarCompeticao(RoutingContext rc) {
+        String nome = rc.request().getParam("nome");
+        String password = rc.request().getParam("password");
+        String dataNas = rc.request().getParam("dataNasc");
+        String email = rc.request().getParam("email");
+        String nrFiscal = rc.request().getParam("numeroFiscal");
+        String telefone = rc.request().getParam("numeroTelefone");
+        String morada = rc.request().getParam("morada");
+        Competicao competicaoNova = new Competicao();
+        inserirCompeticao(competicaoNova);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+        response.end(Json.encodePrettily(competicaoNova));
+    }
 }

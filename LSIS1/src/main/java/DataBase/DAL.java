@@ -31,7 +31,7 @@ public class DAL {
     /*OBJECTOS*/
 
  /*Inserir*/
-    public void inserirCompeticao(Competicao competicaoInserida) {
+    public static void inserirCompeticao(Competicao competicaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Competicao (nomeCompeticao, dataCriacao) VALUES (?,?)");
