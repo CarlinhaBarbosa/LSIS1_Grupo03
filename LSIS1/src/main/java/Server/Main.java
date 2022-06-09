@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
-        vertx.deployVerticle(new ServerVerticleMqtt());
+        vertx.deployVerticle(new VerticleRSJson());
 
         System.out.println("serververticle running");
     }
