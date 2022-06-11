@@ -11,7 +11,7 @@ h1{
 
 .split{
     height : 100%;
-    background-image: url(background.jpg);
+    background-image: url(../Imagens/background.jpg);
     width: 25%; 
     position: fixed;
   }

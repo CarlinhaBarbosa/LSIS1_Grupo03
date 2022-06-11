@@ -15,7 +15,7 @@ import static io.vertx.ext.web.handler.StaticHandler.DEFAULT_WEB_ROOT;
  */
 public class VerticleRSJson extends AbstractVerticle {
 
-    String webRoot = DEFAULT_WEB_ROOT;
+    String webRoot = "src/main/java/webroot";
     Router router;
     MQTTCli mqttCli;
 
