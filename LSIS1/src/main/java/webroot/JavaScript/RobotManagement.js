@@ -75,10 +75,10 @@ function botaoRobotInfo() {
 
 function botaoEliminarRobot() {
     var txt;
-    if (confirm("Press a button!")) {
-        txt = "You pressed OK!";
+    if (confirm("Pretende eliminar o robô?")) {
+        txt = "Robô eliminado";
     } else {
-        txt = "You pressed Cancel!";
+        txt = "Eliminação cancelada";
     }
     document.getElementById("demo").value = txt;
     console.log(txt);
