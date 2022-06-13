@@ -7,7 +7,7 @@
 /* global fetch */
 
 function Enviar() {
-    var nomeInput = document.getElementById("nomeId");
+    var nomeInput = document.getElementById("nomeCompeticaoId");
     var dataCriacaoInput = document.getElementById("dataCriacaoId");
 
     if (nomeInput.value === "") {
@@ -18,14 +18,18 @@ function Enviar() {
 //        alert("Insira uma data válida");
 //        dataCriacaoInput.focus;
 //        return false;
-//    }
+   // }
 
-    let form = document.getElementById("registerCompetitionForm");
-    let formdata = new FormData(form);
+    let form = document.getElementById("registerCompetitionFormId");
+    let formData = new FormData(form);
+    
+    for (var pair of formData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
 
     fetch('/registarCompeticao', {
         method: 'POST',
-        body: formdata
+        body: formData
     })
             .then((res) => {
                 if (res.status === 200) {

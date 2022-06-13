@@ -24,28 +24,23 @@ import java.util.List;
 
 /**
  *
- * @author LSIS- Grupo 3
- * 1201141 - Bernardo Oliveira
- * 1200928 - Carla Barbosa
- * 1201822 - Daniel Graça
- * 1201059 - Francisca Ribeiro
- * 1200638 - João Ferreira
+ * @author LSIS- Grupo 3 1201141 - Bernardo Oliveira 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça 1201059 - Francisca Ribeiro 1200638 - João Ferreira
  */
 public class DAL {
 
     /**
-     * **INSERT**
-     * Inserir Competição
-     * 
-     * @param competicaoInserida 
+     * **INSERT** Inserir Competição
+     *
+     * @param competicaoInserida
      */
-    
     public static void inserirCompeticao(Competicao competicaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Competicao (nomeCompeticao, dataCriacao) VALUES (?,?)");
             stmt.setString(1, competicaoInserida.getNomeCompeticao());
-            Date dataConvertidaParaSqlDate = new Date(competicaoInserida.getDataCriacao().getTime());
+            java.util.Date javaDate = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(competicaoInserida.getDataCriacaoString());
+            Date dataConvertidaParaSqlDate = new Date(javaDate.getTime());
             stmt.setDate(2, dataConvertidaParaSqlDate);
             stmt.executeUpdate();
             conn.close();
@@ -55,12 +50,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * Inserir Ronda
-     * 
-     * @param rondaInserida 
+     * **INSERT** Inserir Ronda
+     *
+     * @param rondaInserida
      */
-    public void inserirRonda(Ronda rondaInserida) {
+    public static void inserirRonda(Ronda rondaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ronda (idCompeticao, tipoRonda) VALUES (?,?)");
@@ -74,12 +68,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * Inserir Equipa
-     * 
-     * @param equipaInserida 
+     * **INSERT** Inserir Equipa
+     *
+     * @param equipaInserida
      */
-    public void inserirEquipa(Equipa equipaInserida) {
+    public static void inserirEquipa(Equipa equipaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Equipa (nomeEquipa) VALUES (?)");
@@ -92,12 +85,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * Inserir Robot
-     * 
-     * @param robotInserido 
+     * **INSERT** Inserir Robot
+     *
+     * @param robotInserido
      */
-    public void inserirRobot(Robot robotInserido) {
+    public static void inserirRobot(Robot robotInserido) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Robot (idEquipa, nomeRobot, MacAddress) VALUES (?,?,?)");
@@ -112,14 +104,13 @@ public class DAL {
     }
 
     /**
-     * **UPDATE**
-     * ATUALIZAR COMPETIÇÃO
-     * 
+     * **UPDATE** ATUALIZAR COMPETIÇÃO
+     *
      * @param idCompeticao
      * @param nomeCompeticao
-     * @param dataCriacao 
+     * @param dataCriacao
      */
-    public void actualizarCompeticao(int idCompeticao, String nomeCompeticao, java.util.Date dataCriacao) {
+    public static void actualizarCompeticao(int idCompeticao, String nomeCompeticao, java.util.Date dataCriacao) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE Competicao SET nomeCompeticao=?, dataCriacao=? WHERE idCompeticao=?");
@@ -135,13 +126,12 @@ public class DAL {
     }
 
     /**
-     * **UPDATE**
-     * ATUALIZAR RONDA
-     * 
+     * **UPDATE** ATUALIZAR RONDA
+     *
      * @param idRonda
-     * @param tipoRonda 
+     * @param tipoRonda
      */
-    public void actualizarRonda(int idRonda, String tipoRonda) {
+    public static void actualizarRonda(int idRonda, String tipoRonda) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE Ronda SET tipoRonda=? WHERE idRonda=?");
@@ -155,13 +145,12 @@ public class DAL {
     }
 
     /**
-     * **UPDATE**
-     * ATUALIZAR EQUIPA
-     * 
+     * **UPDATE** ATUALIZAR EQUIPA
+     *
      * @param idEquipa
-     * @param nomeEquipa 
+     * @param nomeEquipa
      */
-    public void actualizarEquipa(int idEquipa, String nomeEquipa) {
+    public static void actualizarEquipa(int idEquipa, String nomeEquipa) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE Equipa SET nomeEquipa=? WHERE idEquipa=?");
@@ -175,14 +164,13 @@ public class DAL {
     }
 
     /**
-     * **UPDATE**
-     * Atualizar Robot
-     * 
+     * **UPDATE** Atualizar Robot
+     *
      * @param idRobot
      * @param nomeRobot
-     * @param macAddress 
+     * @param macAddress
      */
-    public void actualizarRobot(int idRobot, String nomeRobot, String macAddress) {
+    public static void actualizarRobot(int idRobot, String nomeRobot, String macAddress) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE Robot SET nomeRobot=?, MacAddress=? WHERE idRobot=?");
@@ -197,12 +185,11 @@ public class DAL {
     }
 
     /**
-     * **DELETE**
-     * ELIMINAR ROBOT
-     * 
-     * @param idRobot 
+     * **DELETE** ELIMINAR ROBOT
+     *
+     * @param idRobot
      */
-    public void eliminarRobot(int idRobot) {
+    public static void eliminarRobot(int idRobot) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Robot WHERE idRobot=?");
@@ -215,10 +202,9 @@ public class DAL {
     }
 
     /**
-     * **SELECT**
-     * OBTER COMPETIÇÃO
-     * 
-     * @return 
+     * **SELECT** OBTER COMPETIÇÃO
+     *
+     * @return
      */
     public static List<Competicao> obterCompeticao() {
         List<Competicao> result = new ArrayList<Competicao>();
@@ -231,11 +217,11 @@ public class DAL {
             Competicao competicaoRetornoFinal = new Competicao();
             List<Competicao> listCompeticao = new ArrayList<Competicao>();
             while (rs.next()) {
-                Competicao competicaoRetorno = new Competicao();
-                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
-                competicaoRetorno.setNomeCompeticao(rs.getString("nomeCompeticao"));
-                competicaoRetorno.setDataCriacao(rs.getDate("dataCriacao"));
-                listCompeticao.add(competicaoRetorno);
+//                Competicao competicaoRetorno = new Competicao();
+//                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
+//                competicaoRetorno.setNomeCompeticao(rs.getString("nomeCompeticao"));
+//                competicaoRetorno.setDataCriacao(rs.getDate("dataCriacao"));
+//                listCompeticao.add(competicaoRetorno);
             }
 
             conn.close();
@@ -248,8 +234,7 @@ public class DAL {
     }
 
     //**
-    
-    public Ronda obterRonda(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+    public static Ronda obterRonda(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
@@ -274,13 +259,12 @@ public class DAL {
     }
 
     /**
-     * **SELECT**
-     * OBTER EQUIPA ATRAVÉS DO ID
-     * 
+     * **SELECT** OBTER EQUIPA ATRAVÉS DO ID
+     *
      * @param id
-     * @return 
+     * @return
      */
-    public Equipa obterEquipa(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+    public static Equipa obterEquipa(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
@@ -304,13 +288,12 @@ public class DAL {
     }
 
     /**
-     * **SELECT**
-     * OBTER ROBOT ATRAVÉS DO ID
-     * 
+     * **SELECT** OBTER ROBOT ATRAVÉS DO ID
+     *
      * @param id
-     * @return 
+     * @return
      */
-    public Robot obterRobot(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+    public static Robot obterRobot(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
@@ -335,14 +318,12 @@ public class DAL {
         return new Robot();
     }
 
-
- /**
-  * **INSERT**
-  * ASSOCIAR UMA RONDA A UMA COMPETIÇÃO
-  * 
-  * @param associacaoRondaCompeticaoInserida 
-  */
-    public void inserirAssociacaoRondaCompeticao(AssociacaoRondaCompeticao associacaoRondaCompeticaoInserida) {
+    /**
+     * **INSERT** ASSOCIAR UMA RONDA A UMA COMPETIÇÃO
+     *
+     * @param associacaoRondaCompeticaoInserida
+     */
+    public static void inserirAssociacaoRondaCompeticao(AssociacaoRondaCompeticao associacaoRondaCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoRondaCompeticao (idRonda, idCompeticao) VALUES (?,?)");
@@ -356,12 +337,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * ASSOCIAR UM ROBOT A UMA RONDA
-     * 
-     * @param associacaoRobotRondaInserida 
+     * **INSERT** ASSOCIAR UM ROBOT A UMA RONDA
+     *
+     * @param associacaoRobotRondaInserida
      */
-    public void inserirAssociacaoRobotRonda(AssociacaoRobotRonda associacaoRobotRondaInserida) {
+    public static void inserirAssociacaoRobotRonda(AssociacaoRobotRonda associacaoRobotRondaInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoRobotRonda (idRobot, idRonda, tempo, velocidade) VALUES (?,?,?,?)");
@@ -377,12 +357,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * ASSOCIAR UM JURI A UMA COMPETIÇÃO
-     * 
-     * @param associacaoJuriCompeticaoInserida 
+     * **INSERT** ASSOCIAR UM JURI A UMA COMPETIÇÃO
+     *
+     * @param associacaoJuriCompeticaoInserida
      */
-    public void inserirAssociacaoJuriCompeticao(AssociacaoJuriCompeticao associacaoJuriCompeticaoInserida) {
+    public static void inserirAssociacaoJuriCompeticao(AssociacaoJuriCompeticao associacaoJuriCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoJuriCompeticao (idJuri, idCompeticao) VALUES (?,?)");
@@ -396,12 +375,11 @@ public class DAL {
     }
 
     /**
-     * **INSERT**
-     * ASSOCIAR UMA EQUIPA A UMA COMPETIÇÃO
-     * 
-     * @param associacaoEquipaCompeticaoInserida 
+     * **INSERT** ASSOCIAR UMA EQUIPA A UMA COMPETIÇÃO
+     *
+     * @param associacaoEquipaCompeticaoInserida
      */
-    public void inserirAssociacaoEquipaCompeticao(AssociacaoEquipaCompeticao associacaoEquipaCompeticaoInserida) {
+    public static void inserirAssociacaoEquipaCompeticao(AssociacaoEquipaCompeticao associacaoEquipaCompeticaoInserida) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO AssociacaoEquipaCompeticao (idEquipa, idCompeticao) VALUES (?,?)");

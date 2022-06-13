@@ -13,23 +13,21 @@ import Model.Competicao;
 import Model.Equipa;
 import Model.Robot;
 import Model.Ronda;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
- * @author LSIS- Grupo 3
- * 1201141 - Bernardo Oliveira
- * 1200928 - Carla Barbosa
- * 1201822 - Daniel Graça
- * 1201059 - Francisca Ribeiro
- * 1200638 - João Ferreira
+ * @author LSIS- Grupo 3 1201141 - Bernardo Oliveira 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça 1201059 - Francisca Ribeiro 1200638 - João Ferreira
  */
 public class testeFuncoesDAL {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         DAL d = new DAL();
 
         /*OBJECTOS*/
@@ -77,8 +75,6 @@ public class testeFuncoesDAL {
 //        System.out.println(d.obterRonda(2).toString());
 //        System.out.println(d.obterEquipa(1).toString());
 //        System.out.println(d.obterRobot(1).toString());
-
-
         /*ASSOCIAÇÕES*/
  /*Inserir AssociacaoRondaCompeticao*/
 //        AssociacaoRondaCompeticao aRc = new AssociacaoRondaCompeticao ();
@@ -109,6 +105,12 @@ public class testeFuncoesDAL {
 //        aEc.setIdCompeticao(1);
 //        System.out.println(aEc.toString());
 //        d.inserirAssociacaoEquipaCompeticao(aEc);
+
+        /*Experiência*/
+//        String object = "2022-10-10";
+//        SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date1 = formatter1.parse(object);
+//        System.out.println(date1.toString());
     }
 
 }
