@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Team Search</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="images/319-3194221_animated-smiley-face-wink.png">
+        <link type="text/css" href="CSS/info.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width">
+        <script src="JavaScript/info.js"></script>
+    </head>
+    <body>
+        <div>
+            <div class='blog'>
+                <div class='header'>
+                    <div class='pictit'>
+                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
+                    </div>
+                    <h5>Info Page</h5>
+                    <h6>Everything you need in one place</h6>
+                </div>      
+                <div class='row'>
+                    <div class='column1'>
+                        <button onclick="botaoParkInfo();">Park Info</button>
+                        <p></p>
+                        <button onclick="botaoClientInfo();">Team Info</button>
+                        <input type="text" id="inputIdCliente" placeholder="TEAM ID"/>
+                        <p></p>
+                        <button onclick="botaoRobotInfo();">Robot Info</button>
+                        <input type="text" id="inputIdRobot" placeholder="ROBOT ID"/>
+                        <p></p>
+                        <button id="botaoCb" onclick="botaoClientBillInfo();"> Client Bill Info</button>
+                        <p></p>
+                    </div>
+                    <div class='column2'>                
+                        <h2 id="h2ClientInfo" style="display:none">Team Info</h2> 
+                        <p id="pClientInfo" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar"</p>
+                        <form id ="fTeamInfo" name="teamInfoForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="teamId" id="teamL">Id Equipa:</label>
+                            <input type="text" id="teamId" name="id"/>
+
+                            <label for="teamNameId" id="teamNameL">Team Name:</label>
+                            <input type="text" id="teamNameId" name="teamName"/>
+                            <input type="submit" value="Alterar">
+                        </form>
+                        <h2 id="h2RobotInfo" style="display: none">Robot Info</h2>
+                        <p id="pRobotInfo" style="display:none">All the info you need about that awesome robot!</p>
+                        <form id ="fRobotInfo" name="RobotInfoForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="robotId" id="robotIdL">Id Robot:</label>
+                            <input type="text" id="robotId" name="id"/>
+
+                            <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
+                            <input type="text" id="teamNameId" name="teamName"/>
+                            
+                            <label for="robotNameId" id="robotNameL">Robot Name:</label>
+                            <input type="text" id="robotNameId" name="Robotname"/>
+                            
+                            <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
+                            <input type="text" id="macAddressId" name="MacAddress"/>
+                        </form>
+
+
+                        <h2 id="h2ParkInfo" style="display:none">Park info</h2> 
+                        <p id="pParkInfo" style="display:none">Parking lot's capacity info</p>
+                        <table id ="tParkInfo" style="display:none">
+                            <tr>
+                                <th>Pisos</th>
+                                <th>Zona A</th> 
+                                <th>Zona B</th>
+                                <th>Zona C </th>
+                            </tr>
+                            <tr>
+                                <th>1</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table> 
+                        <h2 id="h2ClientBillInfo" style="display:none">Bill Info</h2> 
+                        <p id="pClientBillInfo" style="display:none"> Info about client's bill</p>
+                        <form id ="fClientBillInfo" name="clientBillInfoForm" method="GET" style="display:none">
+                            <label for="dataInicioId" id="dataInicioL">Data de Início:</label>
+                            <input type="text" id="dataInicioId" placeholder="Data" name="dataInicio"/>
+
+                            <label for="dataFimId" id="dataFimL">Data de Fim:</label>
+                            <input type="text" id="dataFimId" placeholder="Data" name="dataFim"/>
+
+                            <label for="valorId" id="valorL">Valor:</label>
+                            <input type="text" id="valorId" placeholder="Valor" name="valor"/> 
+
+                            <label for="viaturaId" id="viaturaL">Nº de Identificação da Viatura:</label>
+                            <input type="text" id="viaturaId" placeholder="Viatura" name="numeroIdentificacaoDaViatura"/> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

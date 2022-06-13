@@ -5,12 +5,12 @@
 body{
     overflow: hidden;
    
-    background-image: url(background.jpg);
+    background-image: url(../Imagens/background.jpg);
 }
 .sky{
     height: 100vh;
     width: 100%;
-    background-image: url(background.jpg);
+    background-image: url(../Imagens/background.jpg);
     background-repeat: no-repeat;
     position: absolute;
 }
@@ -18,7 +18,7 @@ body{
 .track{
     height:60vh;
     width:800vw;
-    background-image: url(track.png);
+    background-image: url(../Imagens/track.png);
     position:absolute;
     top:70vh;
     background-repeat: repeat-x; 
@@ -27,7 +27,7 @@ body{
 .car{
     height: 250px;
     width: 400px;
-    background-image: url(car_body.png);
+    background-image: url(../Imagens/car_body.png);
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
