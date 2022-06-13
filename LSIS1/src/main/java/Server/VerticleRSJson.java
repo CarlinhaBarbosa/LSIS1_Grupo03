@@ -35,11 +35,18 @@ public class VerticleRSJson extends AbstractVerticle {
 
     String webRoot = "src/main/java/webroot";
     Router router;
+//    BotTelegram bot;
+
 //    MQTTCli mqttCli;
 //    String webroot = DEFAULT_WEB_ROOT;
 
+
     @Override
     public void start(Promise<Void> promise) throws Exception {
+        
+//        bot = new BotTelegram (vertx);
+//        telegramBot(bot);
+
 
 //        Repository repo = new Repository();
 //        Handlers handlers = new Handlers(repo);
@@ -53,7 +60,7 @@ public class VerticleRSJson extends AbstractVerticle {
         router.route(HttpMethod.POST, "/registarRobot").handler(this::registarRobot);
         router.route(HttpMethod.GET, "/selecionarEquipa").handler(this::selecionarEquipa);
         router.route(HttpMethod.POST, "/atualizarEquipa").handler(this::updateEquipa);
-
+          
 //        mqttCli = new MQTTCli(vertx, repo);
         HttpServerOptions options = new HttpServerOptions();
 //        options.setHost("127.0.0.1").setPort(7506);
@@ -82,6 +89,15 @@ public class VerticleRSJson extends AbstractVerticle {
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
         response.end(Json.encodePrettily(competicaoNova));
     }
+    
+//    public void telegramBot(BotTelegram bot) {
+//        try {
+//            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+//            botsApi.registerBot(bot);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace(System.out);
+//        }
+//    }
 
     private void registarRonda(RoutingContext rc) {
         String idCompeticao = rc.request().getParam("CompeticaoId");
