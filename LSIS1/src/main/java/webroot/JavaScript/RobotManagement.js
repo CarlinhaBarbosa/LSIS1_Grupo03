@@ -1,3 +1,5 @@
+/* global fetch */
+
 function botaoRobotList() {
     var xH = document.getElementById("h2RobotList");
     var xP = document.getElementById("pRobotList");
@@ -66,7 +68,71 @@ function botaoRobotInfo() {
                 document.getElementById("robotId").value = data.idRobot;
                 document.getElementById("teamNameId").value = data.idEquipa;
                 document.getElementById("robotNameId").value = data.nomeRobot;
-                document.getElementById("macAddressId").value = data.macAddress;
+                document.getElementById("macAddressId").value = data.macAdress;
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoEliminarRobot() {
+    var txt;
+    if (confirm("Press a button!")) {
+        txt = "You pressed OK!";
+    } else {
+        txt = "You pressed Cancel!";
+    }
+    document.getElementById("demo").value = txt;
+    console.log(txt);
+
+    var idAEnviar = document.getElementById("inputIdRobot").value;
+
+    fetch('/eliminarRobot?id=' + idAEnviar, {
+        method: 'POST'
+//        body: formdata
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Competição inserida com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Competição!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function alterarDados() {
+
+    var nomeRobotInput = document.getElementById("robotNameId");
+    var macAddressInput = document.getElementById("macAddressId")
+
+    if (nomeRobotInput.value === "") {
+        alert("Insira um nome válido");
+    }
+    var filterMacAddress = /^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/i;
+    if (!filterMacAddress.test(macAddressInput.value)) {
+        alert("Insira um Mac Address válido");
+        macAddressInput.focus;
+        return false;
+    }
+
+    let form = document.getElementById("fRobotInfo");
+    let formdata = new FormData(form);
+
+    fetch('/atualizarRobot', {
+        method: 'POST',
+        body: formdata
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Equipa inserida com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Equipa!</div>";
+                    return res.json();
+                }
             })
             .catch((err) => console.log(err));
 }

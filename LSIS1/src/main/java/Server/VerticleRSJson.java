@@ -6,6 +6,9 @@ import static DataBase.DAL.inserirEquipa;
 import static DataBase.DAL.inserirRobot;
 import static DataBase.DAL.obterEquipa;
 import static DataBase.DAL.actualizarEquipa;
+import static DataBase.DAL.obterRobot;
+import static DataBase.DAL.actualizarRobot;
+import static DataBase.DAL.eliminarRobot;
 import Model.Competicao;
 import Model.Equipa;
 import Model.Robot;
@@ -39,15 +42,11 @@ public class VerticleRSJson extends AbstractVerticle {
 
 //    MQTTCli mqttCli;
 //    String webroot = DEFAULT_WEB_ROOT;
-
-
     @Override
     public void start(Promise<Void> promise) throws Exception {
-        
+
 //        bot = new BotTelegram (vertx);
 //        telegramBot(bot);
-
-
 //        Repository repo = new Repository();
 //        Handlers handlers = new Handlers(repo);
 //        router = routes(handlers);
@@ -60,11 +59,14 @@ public class VerticleRSJson extends AbstractVerticle {
         router.route(HttpMethod.POST, "/registarRobot").handler(this::registarRobot);
         router.route(HttpMethod.GET, "/selecionarEquipa").handler(this::selecionarEquipa);
         router.route(HttpMethod.POST, "/atualizarEquipa").handler(this::updateEquipa);
-          
+        router.route(HttpMethod.GET, "/selecionarRobot").handler(this::selecionarRobot);
+        router.route(HttpMethod.POST, "/atualizarRobot").handler(this::updateRobot);
+        router.route(HttpMethod.POST, "/eliminarRobot").handler(this::deleteRobot);
+
 //        mqttCli = new MQTTCli(vertx, repo);
         HttpServerOptions options = new HttpServerOptions();
 //        options.setHost("127.0.0.1").setPort(7506);
-        options.setPort(7518);
+        options.setPort(7521);
 
         vertx.createHttpServer(options)
                 .requestHandler(router)
@@ -89,7 +91,7 @@ public class VerticleRSJson extends AbstractVerticle {
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
         response.end(Json.encodePrettily(competicaoNova));
     }
-    
+
 //    public void telegramBot(BotTelegram bot) {
 //        try {
 //            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
@@ -98,7 +100,6 @@ public class VerticleRSJson extends AbstractVerticle {
 //            e.printStackTrace(System.out);
 //        }
 //    }
-
     private void registarRonda(RoutingContext rc) {
         String idCompeticao = rc.request().getParam("CompeticaoId");
         int idCompeticaoFinal = Integer.parseInt(idCompeticao);
@@ -147,6 +148,35 @@ public class VerticleRSJson extends AbstractVerticle {
         actualizarEquipa(idEquipaFinal, nomeEquipa);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        response.end(Json.encodePrettily(cliente));
+        // response.end(Json.encodePrettily(cliente));
+    }
+
+    public void selecionarRobot(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        Robot robot = obterRobot(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+        response.end(Json.encodePrettily(robot));
+    }
+
+    private void updateRobot(RoutingContext rc) {
+        String idRobot = rc.request().getParam("id");
+        int idRobotFinal = Integer.parseInt(idRobot);
+        String nomeRobot = rc.request().getParam("robotName");
+        String macAddress = rc.request().getParam("macAddress");
+        actualizarRobot(idRobotFinal, nomeRobot, macAddress);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+        // response.end(Json.encodePrettily(cliente));
+    }
+
+    public void deleteRobot(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        eliminarRobot(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+//        response.end(Json.encodePrettily(robot));
     }
 }

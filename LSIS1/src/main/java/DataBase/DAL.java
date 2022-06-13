@@ -293,7 +293,7 @@ public class DAL {
      * @param id
      * @return
      */
-    public static Robot obterRobot(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+    public static Robot obterRobot(int id) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
