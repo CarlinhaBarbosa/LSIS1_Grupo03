@@ -18,10 +18,15 @@ public class VerticleRSJson extends AbstractVerticle {
     String webRoot = DEFAULT_WEB_ROOT;
     Router router;
     MQTTCli mqttCli;
+    BotTelegram bot;
 
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
 
+    bot = new BotTelegram(vertx);
+        telegramBot(bot);
+        
+        
         Repository repo = new Repository();
         Handlers handlers = new Handlers(repo);
         router = routes(handlers);
@@ -56,6 +61,15 @@ public class VerticleRSJson extends AbstractVerticle {
 //        //Handlers
 //        router.route(HttpMethod.POST, "/registarCompeticao").handler(handlers::registarCompeticao);
         return router;
+    }
+    
+    public void telegramBot(BotTelegram bot) {
+        try {
+            TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            botsApi.registerBot(bot);
+        } catch (TelegramApiException e) {
+            e.printStackTrace(System.out);
+        }
     }
 
 }
