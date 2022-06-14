@@ -19,6 +19,12 @@ function Enviar() {
         alert("Insira um nome válido");
     }
 
+    var filterMacAddress = /^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$/i;
+    if (!filterMacAddress.test(macAddressInput.value)) {
+        alert("Insira um Mac Address válido");
+        macAddressInput.focus;
+    }
+
     let form = document.getElementById("registerRobotForm");
     let formdata = new FormData(form);
 

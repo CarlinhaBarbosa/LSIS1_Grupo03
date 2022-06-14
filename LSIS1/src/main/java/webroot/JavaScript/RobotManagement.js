@@ -92,10 +92,10 @@ function botaoEliminarRobot() {
             .then((res) => {
                 if (res.status === 200) {
                     var infoPanel = document.getElementById("infoPanel");
-                    infoPanel.innerHTML = "<div>Competição inserida com sucesso!</div>";
+                    infoPanel.innerHTML = "<div>Robô eliminado com sucesso!</div>";
                     return res.json();
                 } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Competição!</div>";
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na  da Competição!</div>";
                     return res.json();
                 }
             })
@@ -105,7 +105,7 @@ function botaoEliminarRobot() {
 function alterarDados() {
 
     var nomeRobotInput = document.getElementById("robotNameId");
-    var macAddressInput = document.getElementById("macAddressId")
+    var macAddressInput = document.getElementById("macAddressId");
 
     if (nomeRobotInput.value === "") {
         alert("Insira um nome válido");
@@ -114,7 +114,6 @@ function alterarDados() {
     if (!filterMacAddress.test(macAddressInput.value)) {
         alert("Insira um Mac Address válido");
         macAddressInput.focus;
-        return false;
     }
 
     let form = document.getElementById("fRobotInfo");
@@ -127,10 +126,10 @@ function alterarDados() {
             .then((res) => {
                 if (res.status === 200) {
                     var infoPanel = document.getElementById("infoPanel");
-                    infoPanel.innerHTML = "<div>Equipa inserida com sucesso!</div>";
+                    infoPanel.innerHTML = "<div>Robô inserida com sucesso!</div>";
                     return res.json();
                 } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Equipa!</div>";
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação do Robô!</div>";
                     return res.json();
                 }
             })

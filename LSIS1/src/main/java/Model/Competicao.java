@@ -5,6 +5,7 @@
 package Model;
 
 import java.util.Date;
+//import java.sql.Date;
 import java.util.Objects;
 
 /**
@@ -16,44 +17,44 @@ public class Competicao {
 
     private int idCompeticao;
     private String nomeCompeticao;
-//    private Date dataCriacao;
-    private String dataCriacaoString;
+    private Date dataCriacao;
+//    private String dataCriacaoString;
 
     private static final int INT_DEFAULT = 0;
     private static final String STRING_DEFAULT = "n/d";
 
     public Competicao() {
         this.nomeCompeticao = STRING_DEFAULT;
-        this.dataCriacaoString = STRING_DEFAULT;
+        this.dataCriacao = new Date();
     }
 
-//    public Competicao(String nomeCompeticao, Date dataCriacao) {
-//        this.nomeCompeticao = nomeCompeticao;
-//        this.dataCriacao = dataCriacao;
-//    }
-
-    public Competicao(String nomeCompeticao, String dataCriacao) {
+    public Competicao(String nomeCompeticao, Date dataCriacao) {
         this.nomeCompeticao = nomeCompeticao;
-        this.dataCriacaoString = dataCriacao;
+        this.dataCriacao = dataCriacao;
     }
 
-//    public Competicao(int idCompeticao, String nomeCompeticao, Date dataCriacao) {
-//        this.idCompeticao = idCompeticao;
+//    public Competicao(String nomeCompeticao, String dataCriacao) {
 //        this.nomeCompeticao = nomeCompeticao;
-//        this.dataCriacao = dataCriacao;
+//        this.dataCriacaoString = dataCriacao;
 //    }
 
-    public Competicao(int idCompeticao, String nomeCompeticao, String dataCriacao) {
+    public Competicao(int idCompeticao, String nomeCompeticao, Date dataCriacao) {
         this.idCompeticao = idCompeticao;
         this.nomeCompeticao = nomeCompeticao;
-        this.dataCriacaoString = dataCriacao;
+        this.dataCriacao = dataCriacao;
     }
 
-//    public Competicao(Competicao competicao) {
-//        this.idCompeticao = competicao.idCompeticao;
-//        this.nomeCompeticao = competicao.nomeCompeticao;
-//        this.dataCriacao = competicao.dataCriacao;
+//    public Competicao(int idCompeticao, String nomeCompeticao, String dataCriacao) {
+//        this.idCompeticao = idCompeticao;
+//        this.nomeCompeticao = nomeCompeticao;
+//        this.dataCriacaoString = dataCriacao;
 //    }
+
+    public Competicao(Competicao competicao) {
+        this.idCompeticao = competicao.idCompeticao;
+        this.nomeCompeticao = competicao.nomeCompeticao;
+        this.dataCriacao = competicao.dataCriacao;
+    }
 
     public int getIdCompeticao() {
         return idCompeticao;
@@ -63,13 +64,13 @@ public class Competicao {
         return nomeCompeticao;
     }
 
-//    public Date getDataCriacao() {
-//        return dataCriacao;
-//    }
-
-    public String getDataCriacaoString() {
-        return dataCriacaoString;
+    public Date getDataCriacao() {
+        return dataCriacao;
     }
+
+//    public String getDataCriacaoString() {
+//        return dataCriacaoString;
+//    }
 
     public static int getINT_DEFAULT() {
         return INT_DEFAULT;
@@ -87,41 +88,41 @@ public class Competicao {
         this.nomeCompeticao = nomeCompeticao;
     }
 
-//    public void setDataCriacao(Date dataCriacao) {
-//        this.dataCriacao = dataCriacao;
-//    }
-
-    public void setDataCriacaoString(String dataCriacaoString) {
-        this.dataCriacaoString = dataCriacaoString;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Competicao{" + "idCompeticao=" + idCompeticao + ", nomeCompeticao=" + nomeCompeticao + ", dataCriacao=" + dataCriacao + '}';
+//    public void setDataCriacaoString(String dataCriacaoString) {
+//        this.dataCriacaoString = dataCriacaoString;
 //    }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final Competicao other = (Competicao) obj;
-//        if (this.idCompeticao != other.idCompeticao) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.nomeCompeticao, other.nomeCompeticao)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.dataCriacao, other.dataCriacao)) {
-//            return false;
-//        }
-//        return true;
-//    }
+    @Override
+    public String toString() {
+        return "Competicao{" + "idCompeticao=" + idCompeticao + ", nomeCompeticao=" + nomeCompeticao + ", dataCriacao=" + dataCriacao + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Competicao other = (Competicao) obj;
+        if (this.idCompeticao != other.idCompeticao) {
+            return false;
+        }
+        if (!Objects.equals(this.nomeCompeticao, other.nomeCompeticao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataCriacao, other.dataCriacao)) {
+            return false;
+        }
+        return true;
+    }
 
 }

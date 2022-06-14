@@ -99,7 +99,7 @@ public class testeFuncoesDAL {
 //        System.out.println(aJc.toString());
 //        d.inserirAssociacaoJuriCompeticao(aJc);
 
-        /*Inserir AssociacaoEquipaCompetica*/
+        /*Inserir AssociacaoEquipaCompeticao*/
 //        AssociacaoEquipaCompeticao aEc = new AssociacaoEquipaCompeticao();
 //        aEc.setIdEquipa(1);
 //        aEc.setIdCompeticao(1);

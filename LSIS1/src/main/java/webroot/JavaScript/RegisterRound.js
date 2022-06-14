@@ -55,10 +55,10 @@ function Enviar() {
             .then((res) => {
                 if (res.status === 200) {
                     var infoPanel = document.getElementById("infoPanel");
-                    infoPanel.innerHTML = "<div>Competição inserida com sucesso!</div>";
+                    infoPanel.innerHTML = "<div>Ronda inserida com sucesso!</div>";
                     return res.json();
                 } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Competição!</div>";
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Ronda!</div>";
                     return res.json();
                 }
             })

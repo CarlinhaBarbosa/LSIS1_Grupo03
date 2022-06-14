@@ -39,8 +39,7 @@ public class DAL {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Competicao (nomeCompeticao, dataCriacao) VALUES (?,?)");
             stmt.setString(1, competicaoInserida.getNomeCompeticao());
-            java.util.Date javaDate = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(competicaoInserida.getDataCriacaoString());
-            Date dataConvertidaParaSqlDate = new Date(javaDate.getTime());
+            Date dataConvertidaParaSqlDate = new Date(competicaoInserida.getDataCriacao().getTime());
             stmt.setDate(2, dataConvertidaParaSqlDate);
             stmt.executeUpdate();
             conn.close();
@@ -204,33 +203,29 @@ public class DAL {
     /**
      * **SELECT** OBTER COMPETIÇÃO
      *
-     * @return
+     * @param listaCompeticoes
      */
-    public static List<Competicao> obterCompeticao() {
-        List<Competicao> result = new ArrayList<Competicao>();
+    public static void obterCompeticao(List<Competicao> listaCompeticoes) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = conn.prepareStatement("SELECT * FROM Competicao");
             rs = stmt.executeQuery();
-            Competicao competicaoRetornoFinal = new Competicao();
-            List<Competicao> listCompeticao = new ArrayList<Competicao>();
+            int c = 0;
             while (rs.next()) {
 //                Competicao competicaoRetorno = new Competicao();
 //                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
 //                competicaoRetorno.setNomeCompeticao(rs.getString("nomeCompeticao"));
 //                competicaoRetorno.setDataCriacao(rs.getDate("dataCriacao"));
-//                listCompeticao.add(competicaoRetorno);
+                listaCompeticoes.add(new Competicao(rs.getInt("idCompeticao"), rs.getString("nomeCompeticao"), rs.getDate("dataCriacao")));
+                c++;
             }
-
             conn.close();
-            return listCompeticao;
-
+            return;
         } catch (Exception e) {
             System.out.println(e);
         }
-        return result;
     }
 
     //**
