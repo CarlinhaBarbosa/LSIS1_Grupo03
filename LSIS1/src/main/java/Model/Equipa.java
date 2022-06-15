@@ -9,12 +9,8 @@ import java.util.Objects;
 
 /**
  *
- * @author LSIS- Grupo 3
- * 1201141 - Bernardo Oliveira
- * 1200928 - Carla Barbosa
- * 1201822 - Daniel Graça
- * 1201059 - Francisca Ribeiro
- * 1200638 - João Ferreira
+ * @author LSIS- Grupo 3 1201141 - Bernardo Oliveira 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça 1201059 - Francisca Ribeiro 1200638 - João Ferreira
  */
 public class Equipa {
 
@@ -27,12 +23,16 @@ public class Equipa {
     static int totalIdEquipa = 0;
 
     public Equipa() {
-        this.idEquipa = ++totalIdEquipa;
+        this.idEquipa = INT_DEFAULT;
         this.nomeEquipa = STRING_DEFAULT;
     }
 
     public Equipa(String nomeEquipa) {
-        this.idEquipa = ++totalIdEquipa;
+        this.nomeEquipa = nomeEquipa;
+    }
+
+    public Equipa(int idEquipa, String nomeEquipa) {
+        this.idEquipa = idEquipa;
         this.nomeEquipa = nomeEquipa;
     }
 

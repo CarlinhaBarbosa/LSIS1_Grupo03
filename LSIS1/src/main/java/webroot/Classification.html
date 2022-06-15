@@ -23,33 +23,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoCompetitionList();">Team Info</button>
+                        <button onclick="botaoCompetitionList();">Competitions List</button>
                         <p></p>
-                        <button onclick='botaoCompetitionSearch();'>Competition Search</button>
-                        <input type="text" id="inputIdCompeticao" placeholder="COMPETITION ID"/>
+                        <button onclick='botaoRoundSearch();'>Round Search</button>
+                        <input type="text" id="inputIdCompeticao" placeholder="Competition ID"/>
                         <p></p>
                         <button onclick="botaoRoundInfo();">Round Info</button>
-                        <input type="text" id="inputIdRound" placeholder="ROBOT ID"/>
+                        <input type="text" id="inputIdRound" placeholder="Robot ID"/>
                         <p></p>
                     </div>
                     <div class='column2'>                
                         <h2 id="h2CompetitionList" style="display:none">Competition List</h2> 
-                        <p id="pCompetitionList" style="display:none"> All competitions Available</p>
-<!--                        Tabela que lista as competicoes(basta um select de todas as competicoes)-->
+                        <p id="pCompetitionList" style="display:none"> All competitions Available</p>           
                         <table id ="tCompetitionList" style="display:none">
+                            <theader id="tHeaderId" style="display:none" ><tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr></theader>
+                            <tbody id="listaCompeticoes">  </tbody> 
                         </table>
-                        
                         <h2 id="h2CompetitionRoundList" style="display: none">Competition's Round List</h2>
                         <p id="pCompetitionRoundList" style="display:none">All rounds from the chosen competition!</p>
-<!--                        Tabela que lista as roundas com essa competicao(select do idCompeticao na tabela "Ronda" da base de dados-->
                         <table id ="tCompetitionRoundList" style="display:none">
+                            <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competicao</th><th>Tipo de Ronda</th></tr></theader>
+                            <tbody id="listaRondas">  </tbody> 
                         </table>
-
                         <h2 id="h2RoundResults" style="display: none">Classification</h2>
                         <p id="pRoundResults" style="display:none">The classification of this round!</p>
-<!--                        Tabela que lista todos os resultados de uma ronda(select do id da ronda na Tabela "AssociacaoRondaRobot" da base de dados)-->
-                        <!--A tabela deve vir ordenada!-->
                         <table id="tRoundResults" style="display: none">
+                            <theader id="tHeaderResultadosRondaId" style="display:none" ><tr><th>Id Robot/Ronda </th><th>Id Robot</th><th>Id Ronda</th><th>Tempo</th><th>Velocidade</th></tr></theader>
+                            <tbody id="listaResultadosRonda">  </tbody> 
                         </table>
                     </div>
                 </div>

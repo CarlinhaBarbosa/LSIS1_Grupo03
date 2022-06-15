@@ -25,10 +25,6 @@ function botaoTeamInfo() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-//                let li = '<tr><th>Nome</th><th>Data de Nascimento</th><th>Número Fiscal</th><th>Telefone</th><th>E-mail</th><th>Morada</th></tr>';
-//                li = li + '<tr><td>' + data.nome + '</td><td>' + data.dataNas + '</td><td>' +
-//                        data.nrFiscal + '</td><td>' + data.telefone + '</td><td>' + data.email + '</td> <td>' + data.morada + '</td></tr>';
-//                document.getElementById("tClientInfoDB").innerHTML = li;
                 document.getElementById("teamId").value = data.idEquipa;
                 document.getElementById("teamNameId").value = data.nomeEquipa;
             })

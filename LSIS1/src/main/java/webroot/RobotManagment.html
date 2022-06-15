@@ -26,9 +26,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 <div class='row'>
                     <div class='column1'>
                         <button onclick="botaoRobotList();">Robot List</button>
+                        <input type="text" id="inputIdTeam" placeholder="Team ID"/>
                         <p></p>
                         <button onclick="botaoRobotInfo();">Robot Info</button>
-                        <input type="text" id="inputIdRobot" placeholder="ROBOT ID"/>
+                        <input type="text" id="inputIdRobot" placeholder="Robot ID"/>
                         <button onclick ="botaoEliminarRobot();"> Eliminar Robot </button>
                         <input id="demo"/> 
                         <p></p>
@@ -37,24 +38,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <h2 id="h2RobotList" style="display:none">Robot's List</h2> 
                         <p id="pRobotList" style="display:none">All your team's registered robots! </p>
                         <table id ="tRobotList" style="display:none">
-                            <tr>
-                                <th>Id Robot</th>
-                                <th>Id Equipa</th> 
-                                <th>Nome Robot</th>
-                                <th>Mac Address</th>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robot</th><th>Id Equipa</th><th>Nome Robot</th><th>Mac Address</th></tr></theader>
+                            <tbody id="listaRobots">  </tbody>  
                         </table>
                         <h2 id="h2RobotInfo" style="display: none">Robot Info</h2>
                         <p id="pRobotInfo" style="display:none">If you wish to change your data, just fill in the label you want and click on the button "Alterar"</p>

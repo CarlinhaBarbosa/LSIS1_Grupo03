@@ -22,15 +22,20 @@ function botaoCompetitionList() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                let li = '<tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr>';
-                li = li + '<tr><td>' + data.idCompeticao + '</td><td>' + data.nomeCompeticao + '</td><td>' +
-                        data.dataCriacao + '</td></tr>';
-                document.getElementById("tCompetitionTableInfo").innerHTML = li;
+                if (data.length > 0) {
+                    document.getElementById("tHeaderId").style.display = 'flex';
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idCompeticao + '</td><td>' + data[i].nomeCompeticao + '</td><td>' +
+                                data[i].dataCriacaoString + '</td></tr>';
+                    }
+                    document.getElementById("listaCompeticoes").innerHTML = li;
+                }
             })
             .catch((err) => console.log(err));
 }
 
-function botaoCompetitionSearch() {
+function botaoRoundSearch() {
     var xH = document.getElementById("h2CompetitionRoundList");
     var xP = document.getElementById("pCompetitionRoundList");
     var xI = document.getElementById("tCompetitionRoundList");
@@ -43,8 +48,9 @@ function botaoCompetitionSearch() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
+    var idAEnviar = document.getElementById("inputIdCompeticao").value;
 
-    fetch('/obterCompeticoes', {
+    fetch('/obterRondasCompeticao?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -54,10 +60,15 @@ function botaoCompetitionSearch() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                let li = '<tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr>';
-                li = li + '<tr><td>' + data.idCompeticao + '</td><td>' + data.nomeCompeticao + '</td><td>' +
-                        data.dataCriacao + '</td></tr>';
-                document.getElementById("tCompetitionTableInfo").innerHTML = li;
+                if (data.length > 0) {
+                    document.getElementById("tHeaderRondasId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idRonda + '</td><td>' + data[i].idCompeticao + '</td><td>' + data[i].tipoRonda + '</td></tr>';
+                    }
+                    document.getElementById("listaRondas").innerHTML = li;
+                }
             })
             .catch((err) => console.log(err));
 }
@@ -75,8 +86,9 @@ function botaoRoundInfo() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
+    var idAEnviar = document.getElementById("inputIdRound").value;
 
-    fetch('/obterCompeticoes', {
+    fetch('/obterResultadosRonda?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -86,10 +98,15 @@ function botaoRoundInfo() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                let li = '<tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr>';
-                li = li + '<tr><td>' + data.idCompeticao + '</td><td>' + data.nomeCompeticao + '</td><td>' +
-                        data.dataCriacao + '</td></tr>';
-                document.getElementById("tCompetitionTableInfo").innerHTML = li;
+                if (data.length > 0) {
+                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                    }
+                    document.getElementById("listaResultadosRonda").innerHTML = li;
+                }
             })
             .catch((err) => console.log(err));
 }

@@ -14,7 +14,9 @@ function botaoRobotList() {
         xI.style.display = "none";
     }
 
-    fetch('/selecionarRobot?id=' + idAEnviar, {
+    var idAEnviar = document.getElementById("inputIdTeam").value;
+
+    fetch('/selecionarRobotsEquipa?id=' + idAEnviar, {
         method: 'GET',
     })
             .then((res) => {
@@ -24,14 +26,16 @@ function botaoRobotList() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-//                let li = '<tr><th>Nome</th><th>Data de Nascimento</th><th>Número Fiscal</th><th>Telefone</th><th>E-mail</th><th>Morada</th></tr>';
-//                li = li + '<tr><td>' + data.nome + '</td><td>' + data.dataNas + '</td><td>' +
-//                        data.nrFiscal + '</td><td>' + data.telefone + '</td><td>' + data.email + '</td> <td>' + data.morada + '</td></tr>';
-//                document.getElementById("tClientInfoDB").innerHTML = li;
-                document.getElementById("robotId").value = data.idRobot;
-                document.getElementById("teamNameId").value = data.idEquipa;
-                document.getElementById("robotNameId").value = data.nomeRobot;
-                document.getElementById("macAddressId").value = data.macAddress;
+                if (data.length > 0) {
+                    document.getElementById("tHeaderRobotsId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idRobot + '</td><td>' + data[i].idEquipa + '</td><td>' +
+                                data[i].nomeRobot + '</td><td>' + data[i].macAdress + '</td></tr>';
+                    }
+                    document.getElementById("listaRobots").innerHTML = li;
+                }
             })
             .catch((err) => console.log(err));
 }
@@ -61,10 +65,6 @@ function botaoRobotInfo() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-//                let li = '<tr><th>Nome</th><th>Data de Nascimento</th><th>Número Fiscal</th><th>Telefone</th><th>E-mail</th><th>Morada</th></tr>';
-//                li = li + '<tr><td>' + data.nome + '</td><td>' + data.dataNas + '</td><td>' +
-//                        data.nrFiscal + '</td><td>' + data.telefone + '</td><td>' + data.email + '</td> <td>' + data.morada + '</td></tr>';
-//                document.getElementById("tClientInfoDB").innerHTML = li;
                 document.getElementById("robotId").value = data.idRobot;
                 document.getElementById("teamNameId").value = data.idEquipa;
                 document.getElementById("robotNameId").value = data.nomeRobot;
@@ -87,7 +87,6 @@ function botaoEliminarRobot() {
 
     fetch('/eliminarRobot?id=' + idAEnviar, {
         method: 'POST'
-//        body: formdata
     })
             .then((res) => {
                 if (res.status === 200) {

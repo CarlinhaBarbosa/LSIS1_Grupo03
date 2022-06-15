@@ -29,7 +29,7 @@ function botaoCompetitionList() {
             })
             .then((data) => {
                 if (data.length > 0) {
-                    document.getElementById("aa").style.display = 'flex';
+                    document.getElementById("tHeaderId").style.display = 'flex';
 
                     let li = "";
                     for (let i = 0; i < data.length; i++) {

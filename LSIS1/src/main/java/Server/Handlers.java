@@ -1,6 +1,7 @@
 package Server;
 
 import static DataBase.DAL.actualizarEquipa;
+import static DataBase.DAL.actualizarResultadoRobot;
 import static DataBase.DAL.actualizarRobot;
 import static DataBase.DAL.eliminarRobot;
 import static DataBase.DAL.inserirAssociacaoEquipaCompeticao;
@@ -8,9 +9,16 @@ import static DataBase.DAL.inserirCompeticao;
 import static DataBase.DAL.inserirEquipa;
 import static DataBase.DAL.inserirRobot;
 import static DataBase.DAL.inserirRonda;
-import static DataBase.DAL.obterCompeticao;
-import static DataBase.DAL.obterEquipa;
-import static DataBase.DAL.obterRobot;
+import static DataBase.DAL.obterListaCompeticoes;
+import static DataBase.DAL.obterUmaEquipa;
+import static DataBase.DAL.obterUmRobot;
+import static DataBase.DAL.obterListaEquipas;
+import static DataBase.DAL.obterListaRobots;
+import static DataBase.DAL.obterListaRobotsDeUmaEquipa;
+import static DataBase.DAL.obterListaRondasDeUmaCompeticao;
+import static DataBase.DAL.obterResultadoDeUmRobotDeUmaRonda;
+import static DataBase.DAL.obterResultadosDeUmaRonda;
+import Model.AssociacaoRobotRonda;
 import Model.AssociacaoEquipaCompeticao;
 import Model.Competicao;
 import Model.Equipa;
@@ -18,15 +26,9 @@ import Model.Robot;
 import Model.Ronda;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
-import static io.vertx.ext.web.handler.StaticHandler.DEFAULT_WEB_ROOT;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -47,14 +49,14 @@ class Handlers {
 
     public void registarCompeticao(RoutingContext rc) {
 //        try {
-            String nomeCompeticao = rc.request().getParam("nomeCompeticaoId");
-            String dataCriacaoCompeticao = rc.request().getParam("dataCriacaoId");
+        String nomeCompeticao = rc.request().getParam("nomeCompeticaoId");
+        String dataCriacaoCompeticao = rc.request().getParam("dataCriacaoId");
 //            Date dataCriacaoCompeticaoConvertida;
 //            dataCriacaoCompeticaoConvertida = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(dataCriacaoCompeticao);
-            Competicao competicaoNova = new Competicao(nomeCompeticao, dataCriacaoCompeticao);
-            inserirCompeticao(competicaoNova);
-            HttpServerResponse response = rc.response();
-            response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+        Competicao competicaoNova = new Competicao(nomeCompeticao, dataCriacaoCompeticao);
+        inserirCompeticao(competicaoNova);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
 //        } catch (ParseException ex) {
 //            Logger.getLogger(VerticleRSJson.class.getName()).log(Level.SEVERE, null, ex);
 //        }
@@ -68,7 +70,6 @@ class Handlers {
         inserirRonda(rondaNova);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        response.end(Json.encodePrettily(rondaNova));
     }
 
     public void registarEquipa(RoutingContext rc) { //falta testar (comment : joaoFerreira, 13/06/22
@@ -77,7 +78,6 @@ class Handlers {
         inserirEquipa(equipaNova);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        response.end(Json.encodePrettily(equipaNova));
     }
 
     public void registarRobot(RoutingContext rc) { //falta testar (comment : joaoFerreira, 13/06/22
@@ -89,13 +89,12 @@ class Handlers {
         inserirRobot(robotNovo);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        response.end(Json.encodePrettily(robotNovo));
     }
 
     public void selecionarEquipa(RoutingContext rc) {
         String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
-        Equipa equipa = obterEquipa(idFinal);
+        Equipa equipa = obterUmaEquipa(idFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
         response.end(Json.encodePrettily(equipa));
@@ -108,13 +107,12 @@ class Handlers {
         actualizarEquipa(idEquipaFinal, nomeEquipa);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-        // response.end(Json.encodePrettily(cliente));
     }
 
     public void selecionarRobot(RoutingContext rc) {
         String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
-        Robot robot = obterRobot(idFinal);
+        Robot robot = obterUmRobot(idFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
         response.end(Json.encodePrettily(robot));
@@ -128,7 +126,6 @@ class Handlers {
         actualizarRobot(idRobotFinal, nomeRobot, macAddress);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-        // response.end(Json.encodePrettily(cliente));
     }
 
     public void deleteRobot(RoutingContext rc) {
@@ -137,14 +134,13 @@ class Handlers {
         eliminarRobot(idFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
-//        response.end(Json.encodePrettily(robot));
     }
 
-    public void obterListaCompeticoes(RoutingContext rc) {
+    public void obterCompeticoes(RoutingContext rc) {
         HttpServerResponse response = rc.response();
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Competicao> listaCompeticoes = new ArrayList<>();
-        obterCompeticao(listaCompeticoes);
+        obterListaCompeticoes(listaCompeticoes);
         System.out.println(listaCompeticoes.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaCompeticoes));
@@ -159,6 +155,86 @@ class Handlers {
         inserirAssociacaoEquipaCompeticao(associacaoEquipaCompeticaoNova);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        response.end(Json.encodePrettily(associacaoEquipaCompeticaoNova));
+    }
+
+    public void obterEquipas(RoutingContext rc) {
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<Equipa> listaEquipas = new ArrayList<>();
+        obterListaEquipas(listaEquipas);
+        System.out.println(listaEquipas.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaEquipas));
+    }
+
+    public void obterRobots(RoutingContext rc) {
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<Robot> listaRobots = new ArrayList<>();
+        obterListaRobots(listaRobots);
+        System.out.println(listaRobots.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaRobots));
+    }
+
+    public void obterRobotsDeUmaEquipa(RoutingContext rc) {
+        String idEquipa = rc.request().getParam("id");
+        int idEquipaFinal = Integer.parseInt(idEquipa);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<Robot> listaRobots = new ArrayList<>();
+        obterListaRobotsDeUmaEquipa(listaRobots, idEquipaFinal);
+        System.out.println(listaRobots.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaRobots));
+    }
+
+    public void obterRondasDeUmaCompeticao(RoutingContext rc) {
+        String idCompeticao = rc.request().getParam("id");
+        int idCompeticaoFinal = Integer.parseInt(idCompeticao);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<Ronda> listaRondas = new ArrayList<>();
+        obterListaRondasDeUmaCompeticao(listaRondas, idCompeticaoFinal);
+        System.out.println(listaRondas.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaRondas));
+    }
+
+    public void obterResultadosRonda(RoutingContext rc) {
+        String idRonda = rc.request().getParam("id");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+        obterResultadosDeUmaRonda(listaAssociacaoRobotRonda, idRondaFinal);
+        System.out.println(listaAssociacaoRobotRonda.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
+    }
+
+    public void obterResultadoDeUmRobot(RoutingContext rc) {
+        String idRonda = rc.request().getParam("id");
+        String idRobot = rc.request().getParam("idRobot");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        int idRobotFinal = Integer.parseInt(idRobot);
+        AssociacaoRobotRonda robotRonda = obterResultadoDeUmRobotDeUmaRonda(idRobotFinal, idRondaFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+        response.end(Json.encodePrettily(robotRonda));
+    }
+
+    public void updateResultadoRobot(RoutingContext rc) {
+        String idAssociacaoRonda = rc.request().getParam("association");
+        String idRobot = rc.request().getParam("robot");
+        String tempo = rc.request().getParam("tempo");
+        String velocidade = rc.request().getParam("velocidade");
+        int idAssociacaoRondaFinal = Integer.parseInt(idAssociacaoRonda);
+        int idRobotFinal = Integer.parseInt(idRobot);
+        double tempoFinal = Double.parseDouble(tempo);
+        double velocidadeFinal = Double.parseDouble(velocidade);
+        actualizarResultadoRobot(idAssociacaoRondaFinal, idRobotFinal, tempoFinal, velocidadeFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
     }
 }

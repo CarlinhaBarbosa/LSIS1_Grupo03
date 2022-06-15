@@ -45,6 +45,12 @@ public class AssociacaoRobotRonda {
         this.tempo = tempo;
         this.velocidade = velocidade;
     }
+    public AssociacaoRobotRonda(int idAssociacaoRobotRonda, int idRobot, double tempo, double velocidade) {
+        this.idAssociacaoRobotRonda = idAssociacaoRobotRonda;
+        this.idRobot = idRobot;
+        this.tempo = tempo;
+        this.velocidade = velocidade;
+    }
 
     public int getIdAssociacaoRobotRonda() {
         return idAssociacaoRobotRonda;

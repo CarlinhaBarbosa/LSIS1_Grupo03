@@ -25,7 +25,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class='column1'>
                         <button onclick="botaoCompetitionList();">Competition List</button>
                         <p></p>
-                        <button onclick='botaoCompetitionSearch();'>Competition Search</button>
+                        <button onclick='botaoRoundSearch();'>Round Search</button>
                         <input type="text" id="inputIdCompeticao" placeholder="COMPETITION ID"/>
                         <p></p>
                         <button onclick="botaoRoundInfo();">Round Info</button>
@@ -38,46 +38,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class='column2'>                
                         <h2 id="h2CompetitionList" style="display:none">Competition List</h2> 
                         <p id="pCompetitionList" style="display:none"> All competitions Available</p>
-                        <!--                        Tabela que lista as competicoes(basta um select de todas as competicoes)-->
                         <table id ="tCompetitionList" style="display:none">
+                            <theader id="tHeaderId" style="display:none" ><tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr></theader>
+                            <tbody id="listaCompeticoes">  </tbody> 
                         </table>
-
                         <h2 id="h2CompetitionRoundList" style="display: none">Competition's Round List</h2>
                         <p id="pCompetitionRoundList" style="display:none">All rounds from the chosen competition!</p>
-                        <!--                        Tabela que lista as roundas com essa competicao(select do idCompeticao na tabela "Ronda" da base de dados-->
                         <table id ="tCompetitionRoundList" style="display:none">
+                            <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competicao</th><th>Tipo de Ronda</th></tr></theader>
+                            <tbody id="listaRondas">  </tbody> 
                         </table>
-
                         <h2 id="h2RoundResults" style="display: none">Classification</h2>
                         <p id="pRoundResults" style="display:none">The classification of this round!</p>
-                        <!--                        Tabela que lista todos os resultados de uma ronda(select do id da ronda na Tabela "AssociacaoRondaRobot" da base de dados)-->
-                        <!--A tabela deve vir ordenada!-->
                         <table id="tRoundResults" style="display: none">
+                            <theader id="tHeaderResultadosRondaId" style="display:none" ><tr><th>Id Robot/Ronda </th><th>Id Robot</th><th>Id Ronda</th><th>Tempo</th><th>Velocidade</th></tr></theader>
+                            <tbody id="listaResultadosRonda">  </tbody> 
                         </table>
-
                         <h2 id="h2RobotResult" style="display: none">Classification</h2>
-                        <p id="pRobotResult" style="display:none">The robot's classification at this round!</p>
-                        <!--                        Form que lista os resultados de um robot numa ronda(select do robot e do id da ronda na Tabela "AssociacaoRondaRobot" da base de dados) para poder ser alterado o tempo e a velocidade-->
-                        
+                        <p id="pRobotResult" style="display:none">The robot's classification at this round!</p>                       
                         <form id ="fRobotResult" name="RobotResultsForm" style="display:none" action="javascript:alterarDados()">
                             <label for="associationId" id="AssociationIdL">Id Associação:</label>
                             <input type="text" id="associationId" name="association"/>
 
                             <label for="robotId" id="robotIdL">Robot ID:</label>
                             <input type="text" id="robotId" name="robot"/>
-                            
-                            <label for="roundId" id="roundIdL">Robot Name:</label>
-                            <input type="text" id="roundId" name="Round"/>
-                            
+
+                            <label for="roundId" id="roundIdL">Round ID:</label>
+                            <input type="text" id="roundId" name="round"/>
+
                             <label for="tempo" id="tempoL">Tempo:</label>
                             <input type="text" id="tempoId" name="tempo"/>
-                            
+
                             <label for="velocidade" id="velocidadeL">Velocidade:</label>
                             <input type="text" id="velocidadeId" name="velocidade"/>
                             <input type="submit" value="Alterar">
                         </form>
                     </div>
                 </div>
+                <div class="row" id="infoPanel"></div>
             </div>
         </div>
     </body>
