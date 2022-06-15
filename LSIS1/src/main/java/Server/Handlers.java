@@ -46,19 +46,18 @@ class Handlers {
     }
 
     public void registarCompeticao(RoutingContext rc) {
-        try {
+//        try {
             String nomeCompeticao = rc.request().getParam("nomeCompeticaoId");
             String dataCriacaoCompeticao = rc.request().getParam("dataCriacaoId");
-            Date dataCriacaoCompeticaoConvertida;
-            dataCriacaoCompeticaoConvertida = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(dataCriacaoCompeticao);
-            Competicao competicaoNova = new Competicao(nomeCompeticao, dataCriacaoCompeticaoConvertida);
+//            Date dataCriacaoCompeticaoConvertida;
+//            dataCriacaoCompeticaoConvertida = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(dataCriacaoCompeticao);
+            Competicao competicaoNova = new Competicao(nomeCompeticao, dataCriacaoCompeticao);
             inserirCompeticao(competicaoNova);
             HttpServerResponse response = rc.response();
             response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//            response.end(Json.encodePrettily(competicaoNova));
-        } catch (ParseException ex) {
-            Logger.getLogger(VerticleRSJson.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (ParseException ex) {
+//            Logger.getLogger(VerticleRSJson.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public void registarRonda(RoutingContext rc) {
@@ -148,7 +147,7 @@ class Handlers {
         obterCompeticao(listaCompeticoes);
         System.out.println(listaCompeticoes.toString());
         response.setStatusCode(200);
-        response.end(listaCompeticoes.toString());
+        response.end(Json.encodePrettily(listaCompeticoes));
     }
 
     public void inscricaoEquipaCompeticao(RoutingContext rc) {

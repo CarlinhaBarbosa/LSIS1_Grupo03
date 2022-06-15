@@ -36,7 +36,7 @@ public class VerticleRSJson extends AbstractVerticle {
 
 //        mqttCli = new MQTTCli(vertx, repo);
         HttpServerOptions options = new HttpServerOptions();
-        options.setHost("127.0.0.1").setPort(7506);
+        options.setHost("127.0.0.1").setPort(7525);
 //        options.setPort(7530);
 
         vertx.createHttpServer(options)

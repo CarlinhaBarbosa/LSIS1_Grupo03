@@ -107,11 +107,11 @@ public class Utils {
         } while (true);
     }
 
-    static public Date obterDataConvertidaParaJavaDateComParametroData(Data object) throws ParseException {
-        String dataInicioParaConversao = Integer.toString(object.getDia()) + "/" + Integer.toString(object.getMes()) + "/" + Integer.toString(object.getAno());
-        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
-        Date date1 = formatter1.parse(dataInicioParaConversao);
-        return date1;
+    static public String obterDataConvertidaParaJavaDateComParametroSqlDate(java.sql.Date object) throws ParseException {
+        java.util.Date dateFinal = new java.util.Date(object.getTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String format = formatter.format(dateFinal);
+        return format;
     }
 
     static public Date obterDataConvertidaParaJavaDateComParametroString(String object) throws ParseException {
@@ -121,7 +121,7 @@ public class Utils {
     }
 
     static public java.sql.Date obterDataConvertidaParaSqlDatecomParametroString(String date) throws ParseException {
-        SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date dateJava = formatter1.parse(date);
         java.sql.Date sqlFinalDate = new java.sql.Date(dateJava.getTime());
         return sqlFinalDate;

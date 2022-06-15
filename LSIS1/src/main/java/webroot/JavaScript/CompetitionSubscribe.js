@@ -28,10 +28,18 @@ function botaoCompetitionList() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                let li = '<tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr>';
-                li = li + '<tr><td>' + data.idCompeticao + '</td><td>' + data.nomeCompeticao + '</td><td>' +
-                        data.dataCriacao + '</td></tr>';
-                document.getElementById("tCompetitionTableInfo").innerHTML = li;
+                if (data.length > 0) {
+                    document.getElementById("aa").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idCompeticao + '</td><td>' + data[i].nomeCompeticao + '</td><td>' +
+                                data[i].dataCriacaoString + '</td></tr>';
+                    }
+                    document.getElementById("listaCompeticoes").innerHTML = li;
+                }
+
+
             })
             .catch((err) => console.log(err));
 }

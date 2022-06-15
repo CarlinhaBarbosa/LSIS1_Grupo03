@@ -39,7 +39,7 @@ public class DAL {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Competicao (nomeCompeticao, dataCriacao) VALUES (?,?)");
             stmt.setString(1, competicaoInserida.getNomeCompeticao());
-            Date dataConvertidaParaSqlDate = new Date(competicaoInserida.getDataCriacao().getTime());
+            Date dataConvertidaParaSqlDate = utils.Utils.obterDataConvertidaParaSqlDatecomParametroString(competicaoInserida.getDataCriacaoString());
             stmt.setDate(2, dataConvertidaParaSqlDate);
             stmt.executeUpdate();
             conn.close();
@@ -214,11 +214,7 @@ public class DAL {
             rs = stmt.executeQuery();
             int c = 0;
             while (rs.next()) {
-//                Competicao competicaoRetorno = new Competicao();
-//                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
-//                competicaoRetorno.setNomeCompeticao(rs.getString("nomeCompeticao"));
-//                competicaoRetorno.setDataCriacao(rs.getDate("dataCriacao"));
-                listaCompeticoes.add(new Competicao(rs.getInt("idCompeticao"), rs.getString("nomeCompeticao"), rs.getDate("dataCriacao")));
+                listaCompeticoes.add(new Competicao(rs.getInt("idCompeticao"), rs.getString("nomeCompeticao"), rs.getDate("dataCriacao").toString()));
                 c++;
             }
             conn.close();
@@ -229,7 +225,7 @@ public class DAL {
     }
 
     //**
-    public static Ronda obterRonda(int id) { //alterar para static aquando da implementação (08/06/22 - joaoferreira
+    public static Ronda obterRonda(int id) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
