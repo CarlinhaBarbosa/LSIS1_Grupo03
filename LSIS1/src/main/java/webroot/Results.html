@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Results</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="CSS/info.css" rel="stylesheet">
+        <script src="JavaScript/Results.js"></script>  
+    </head>
+    <body>
+        <div>
+            <div class='blog'>
+                <div class='header'>
+                    <div class='pictit'>
+                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
+                    </div>
+                    <h5>Classification Page</h5>
+                    <h6>Know your bot's classification</h6>
+                </div>      
+                <div class='row'>
+                    <div class='column1'>
+                        <button onclick="botaoCompetitionList();">Competition List</button>
+                        <p></p>
+                        <button onclick='botaoCompetitionSearch();'>Competition Search</button>
+                        <input type="text" id="inputIdCompeticao" placeholder="COMPETITION ID"/>
+                        <p></p>
+                        <button onclick="botaoRoundInfo();">Round Info</button>
+                        <input type="text" id="inputIdRound" placeholder="ROUND ID"/>
+                        <p></p>
+                        <button onclick='botaoRobotResult();'>Robot Result</button>
+                        <input type='text' id='inputIdRobot' placeholder="Robot ID"/>
+                        <p></p>
+                    </div>
+                    <div class='column2'>                
+                        <h2 id="h2CompetitionList" style="display:none">Competition List</h2> 
+                        <p id="pCompetitionList" style="display:none"> All competitions Available</p>
+                        <!--                        Tabela que lista as competicoes(basta um select de todas as competicoes)-->
+                        <table id ="tCompetitionList" style="display:none">
+                        </table>
+
+                        <h2 id="h2CompetitionRoundList" style="display: none">Competition's Round List</h2>
+                        <p id="pCompetitionRoundList" style="display:none">All rounds from the chosen competition!</p>
+                        <!--                        Tabela que lista as roundas com essa competicao(select do idCompeticao na tabela "Ronda" da base de dados-->
+                        <table id ="tCompetitionRoundList" style="display:none">
+                        </table>
+
+                        <h2 id="h2RoundResults" style="display: none">Classification</h2>
+                        <p id="pRoundResults" style="display:none">The classification of this round!</p>
+                        <!--                        Tabela que lista todos os resultados de uma ronda(select do id da ronda na Tabela "AssociacaoRondaRobot" da base de dados)-->
+                        <!--A tabela deve vir ordenada!-->
+                        <table id="tRoundResults" style="display: none">
+                        </table>
+
+                        <h2 id="h2RobotResult" style="display: none">Classification</h2>
+                        <p id="pRobotResult" style="display:none">The robot's classification at this round!</p>
+                        <!--                        Form que lista os resultados de um robot numa ronda(select do robot e do id da ronda na Tabela "AssociacaoRondaRobot" da base de dados) para poder ser alterado o tempo e a velocidade-->
+                        
+                        <form id ="fRobotResult" name="RobotResultsForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="associationId" id="AssociationIdL">Id Associação:</label>
+                            <input type="text" id="associationId" name="association"/>
+
+                            <label for="robotId" id="robotIdL">Robot ID:</label>
+                            <input type="text" id="robotId" name="robot"/>
+                            
+                            <label for="roundId" id="roundIdL">Robot Name:</label>
+                            <input type="text" id="roundId" name="Round"/>
+                            
+                            <label for="tempo" id="tempoL">Tempo:</label>
+                            <input type="text" id="tempoId" name="tempo"/>
+                            
+                            <label for="velocidade" id="velocidadeL">Velocidade:</label>
+                            <input type="text" id="velocidadeId" name="velocidade"/>
+                            <input type="submit" value="Alterar">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
