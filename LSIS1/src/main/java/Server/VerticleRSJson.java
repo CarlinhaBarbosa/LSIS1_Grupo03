@@ -21,7 +21,7 @@ public class VerticleRSJson extends AbstractVerticle {
     String webRoot = "src/main/java/webroot";
     Router router;
 //    BotTelegram bot;
-//    MQTTCli mqttCli;
+    MQTTCli mqttCli;
 //    String webroot = DEFAULT_WEB_ROOT;
 
     @Override
@@ -33,7 +33,7 @@ public class VerticleRSJson extends AbstractVerticle {
         Handlers handlers = new Handlers(repo/*, bot*/);
         router = routes(handlers);
 
-//        mqttCli = new MQTTCli(vertx, repo);
+        mqttCli = new MQTTCli(vertx, repo);
         HttpServerOptions options = new HttpServerOptions();
         options.setHost("127.0.0.1").setPort(7570);
 //        options.setPort(7530);
