@@ -1,9 +1,15 @@
 package Server;
 
+import static DataBase.DAL.actualizarCompeticao;
 import static DataBase.DAL.actualizarEquipa;
 import static DataBase.DAL.actualizarResultadoRobot;
 import static DataBase.DAL.actualizarRobot;
+import static DataBase.DAL.actualizarRonda;
+import static DataBase.DAL.eliminarCompeticao;
+import static DataBase.DAL.eliminarEquipa;
+import static DataBase.DAL.eliminarEquipaDeUmaCompeticao;
 import static DataBase.DAL.eliminarRobot;
+import static DataBase.DAL.eliminarRonda;
 import static DataBase.DAL.inserirAssociacaoEquipaCompeticao;
 import static DataBase.DAL.inserirCompeticao;
 import static DataBase.DAL.inserirEquipa;
@@ -13,11 +19,14 @@ import static DataBase.DAL.obterListaCompeticoes;
 import static DataBase.DAL.obterUmaEquipa;
 import static DataBase.DAL.obterUmRobot;
 import static DataBase.DAL.obterListaEquipas;
+import static DataBase.DAL.obterListaEquipasDeUmaCompeticao;
 import static DataBase.DAL.obterListaRobots;
 import static DataBase.DAL.obterListaRobotsDeUmaEquipa;
 import static DataBase.DAL.obterListaRondasDeUmaCompeticao;
 import static DataBase.DAL.obterResultadoDeUmRobotDeUmaRonda;
 import static DataBase.DAL.obterResultadosDeUmaRonda;
+import static DataBase.DAL.obterUmaCompeticao;
+import static DataBase.DAL.obterUmaRonda;
 import Model.AssociacaoRobotRonda;
 import Model.AssociacaoEquipaCompeticao;
 import Model.Competicao;
@@ -234,6 +243,88 @@ class Handlers {
         double tempoFinal = Double.parseDouble(tempo);
         double velocidadeFinal = Double.parseDouble(velocidade);
         actualizarResultadoRobot(idAssociacaoRondaFinal, idRobotFinal, tempoFinal, velocidadeFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+    }
+
+    public void selecionarCompeticao(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        Competicao competicao = obterUmaCompeticao(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+        response.end(Json.encodePrettily(competicao));
+    }
+
+    public void updateCompeticao(RoutingContext rc) {
+        String idCompeticao = rc.request().getParam("idCompeticao");
+        int idCompeticaoFinal = Integer.parseInt(idCompeticao);
+        String nomeCompeticao = rc.request().getParam("competitionName");
+        String dataCriacaoCompeticao = rc.request().getParam("creationDate");
+        actualizarCompeticao(idCompeticaoFinal, nomeCompeticao, dataCriacaoCompeticao);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+    }
+
+    public void deleteCompeticao(RoutingContext rc) {
+        String id = rc.request().getParam("id"); //testar
+        int idFinal = Integer.parseInt(id);
+        eliminarCompeticao(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+    }
+
+    public void updateRonda(RoutingContext rc) {
+        String idRonda = rc.request().getParam("roundId");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        String idCompeticao = rc.request().getParam("competitionRoundId");
+        int idCompeticaoFinal = Integer.parseInt(idCompeticao);
+        String tipoDeRonda = rc.request().getParam("RoundType");
+        actualizarRonda(idRondaFinal, idCompeticaoFinal, tipoDeRonda);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+    }
+
+    public void deleteRonda(RoutingContext rc) {
+        String id = rc.request().getParam("id"); //testar
+        int idFinal = Integer.parseInt(id);
+        eliminarRonda(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+    }
+
+    public void obterEquipasDeUmaCompeticao(RoutingContext rc) {
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<AssociacaoEquipaCompeticao> listaAssociacaoEquipaCompeticao = new ArrayList<>();
+        obterListaEquipasDeUmaCompeticao(listaAssociacaoEquipaCompeticao);
+        System.out.println(listaAssociacaoEquipaCompeticao.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaAssociacaoEquipaCompeticao));
+    }
+
+    public void deleteEquipaCompeticao(RoutingContext rc) {
+        String id = rc.request().getParam("id"); //testar
+        int idFinal = Integer.parseInt(id);
+        eliminarEquipaDeUmaCompeticao(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+    }
+
+    public void selecionarRonda(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        Ronda ronda = obterUmaRonda(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+        response.end(Json.encodePrettily(ronda));
+    }
+
+    public void updateEquipaCompetitionManagement(RoutingContext rc) {
+        String idEquipa = rc.request().getParam("competitionTeamId");
+        int idEquipaFinal = Integer.parseInt(idEquipa);
+        String nomeEquipa = rc.request().getParam("competitionTeamNameId");
+        actualizarEquipa(idEquipaFinal, nomeEquipa);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
     }

@@ -94,7 +94,7 @@ function botaoEliminarRobot() {
                     infoPanel.innerHTML = "<div>Robô eliminado com sucesso!</div>";
                     return res.json();
                 } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na  da Competição!</div>";
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação do Robô!</div>";
                     return res.json();
                 }
             })

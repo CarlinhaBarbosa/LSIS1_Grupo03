@@ -6,12 +6,8 @@ package Model;
 
 /**
  *
- * @author LSIS- Grupo 3
- * 1201141 - Bernardo Oliveira
- * 1200928 - Carla Barbosa
- * 1201822 - Daniel Graça
- * 1201059 - Francisca Ribeiro
- * 1200638 - João Ferreira
+ * @author LSIS- Grupo 3 1201141 - Bernardo Oliveira 1200928 - Carla Barbosa
+ * 1201822 - Daniel Graça 1201059 - Francisca Ribeiro 1200638 - João Ferreira
  */
 public class Ronda {
 
@@ -23,6 +19,7 @@ public class Ronda {
     private static final String TIPORONDA_DEFAULT = "n/d";
 
     public Ronda() {
+        this.idRonda = INT_DEFAULT;
         this.idCompeticao = INT_DEFAULT;
         this.tipoRonda = TIPORONDA_DEFAULT;
     }

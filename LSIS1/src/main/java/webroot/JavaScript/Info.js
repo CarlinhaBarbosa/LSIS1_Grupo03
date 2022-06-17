@@ -130,7 +130,7 @@ function botaoRobotDetails() {
         xI.style.display = "none";
     }
 
-    fetch('/obterEquipas', {
+    fetch('/obterEquipas', { //alterar fetch (comment by joaoFerreira : 18/06/22
         method: 'GET'
     })
             .then((res) => {

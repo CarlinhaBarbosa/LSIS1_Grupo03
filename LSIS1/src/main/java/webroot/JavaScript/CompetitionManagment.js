@@ -1,3 +1,5 @@
+/* global fetch */
+
 function botaoCompetitionList() {
     var xH = document.getElementById("h2CompetitionTableInfo");
     var xP = document.getElementById("pCompetitionTableInfo");
@@ -51,32 +53,24 @@ function botaoCompetitionShowDetails() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-}
-function submeterDados() {
-    let form = document.getElementById("fCompetitionSubscription");
-    let formData = new FormData(form);
+    var idAEnviar = document.getElementById("inputIdCompetition").value;
 
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-    }
-
-    fetch('/inscreverEquipaCompeticao', {
-        method: 'POST',
-        body: formData
+    fetch('/selecionarCompeticao?id=' + idAEnviar, {
+        method: 'GET',
     })
             .then((res) => {
-                if (res.status === 200) {
-                    var infoPanel = document.getElementById("infoPanel");
-                    infoPanel.innerHTML = "<div>Inscrição inserida com sucesso!</div>";
+                if (res.status === 200)
                     return res.json();
-                } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na inscrição!</div>";
-                    return res.json();
-                }
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                document.getElementById("competitionId").value = data.idCompeticao;
+                document.getElementById("competitionNameId").value = data.nomeCompeticao;
+                document.getElementById("creationDateId").value = data.dataCriacaoString;
             })
             .catch((err) => console.log(err));
 }
-
 function botaoRoundList() {
     var xH = document.getElementById("h2CompetitionRoundList");
     var xP = document.getElementById("pCompetitionRoundList");
@@ -114,6 +108,137 @@ function botaoRoundList() {
             })
             .catch((err) => console.log(err));
 }
+function submeterDadosCompeticao() {
+    let form = document.getElementById("fCompetitionDetails");
+    let formData = new FormData(form);
+
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+
+    fetch('/atualizarCompeticao', {
+        method: 'POST',
+        body: formData
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Competição alterada com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na alteração da competição!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function submeterDadosRonda() {
+    let form = document.getElementById("fRoundDetails");
+    let formData = new FormData(form);
+
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+
+    fetch('/atualizarRonda', {
+        method: 'POST',
+        body: formData
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Ronda alterada com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na alteração da ronda!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function submeterDadosEquipa() {
+    let form = document.getElementById("fCompetitionTeamDetails");
+    let formData = new FormData(form);
+
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
+
+    fetch('/atualizarEquipaCompetitionManagement', {
+        method: 'POST',
+        body: formData
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Equipa alterada com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na alteração da equipa!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoDeleteCompetition() {
+    var idAEnviar = document.getElementById("inputIdCompetition").value;
+
+    fetch('/eliminarCompeticao?id=' + idAEnviar, {
+        method: 'POST'
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Competição  eliminada com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação da Competição!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+function botaoDeleteRound() {
+    var idAEnviar = document.getElementById("inputIdRound").value;
+
+    fetch('/eliminarRonda?id=' + idAEnviar, {
+        method: 'POST'
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Competição  eliminada com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação da Competição!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoDeleteTeamOfCompetition() {
+    var idAEnviar = document.getElementById("inputIdTeam").value;
+
+    fetch('/eliminarEquipa?id=' + idAEnviar, {
+        method: 'POST'
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Equipa  eliminada da competição com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação da equipa da competição!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
 
 function botaoRoundShowDetails() {
     var xH = document.getElementById("h2RoundDetails");
@@ -130,7 +255,7 @@ function botaoRoundShowDetails() {
     }
     var idAEnviar = document.getElementById("inputIdRound").value;
 
-    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+    fetch('/selecionarRonda?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -140,15 +265,9 @@ function botaoRoundShowDetails() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                if (data.length > 0) {
-                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
-
-                    let li = "";
-                    for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
-                    }
-                    document.getElementById("listaResultadosRonda").innerHTML = li;
-                }
+                document.getElementById("roundId").value = data.idRonda;
+                document.getElementById("competitionIdround").value = data.idCompeticao;
+                document.getElementById("RoundTypeId").value = data.tipoRonda;
             })
             .catch((err) => console.log(err));
 }
@@ -166,9 +285,8 @@ function botaoCompetitionListTeams() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-    var idAEnviar = document.getElementById("inputIdRound").value;
 
-    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+    fetch('/obterEquipasDeUmaCompeticao', {
         method: 'GET'
     })
             .then((res) => {
@@ -179,51 +297,13 @@ function botaoCompetitionListTeams() {
             })
             .then((data) => {
                 if (data.length > 0) {
-                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
+                    document.getElementById("tHeaderEquipasCompeticaoId").style.display = 'flex';
 
                     let li = "";
                     for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                        li += '<tr><td>' + data[i].idAssociacaoEquipaCompeticao + '</td><td>' + data[i].idEquipa + '</td><td>' + data[i].idCompeticao + '</td></tr>';
                     }
-                    document.getElementById("listaResultadosRonda").innerHTML = li;
-                }
-            })
-            .catch((err) => console.log(err));
-}
-
-function botaoCompetitionListTeams() {
-    var xH = document.getElementById("h2CompetitionListTeams");
-    var xP = document.getElementById("pCompetitionListTeams");
-    var xI = document.getElementById("tCompetitionListTeams");
-    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
-        xH.style.display = "block";
-        xP.style.display = "block";
-        xI.style.display = "block";
-    } else {
-        xH.style.display = "none";
-        xP.style.display = "none";
-        xI.style.display = "none";
-    }
-    var idAEnviar = document.getElementById("inputIdRound").value;
-
-    fetch('/obterResultadosRonda?id=' + idAEnviar, {
-        method: 'GET'
-    })
-            .then((res) => {
-                if (res.status === 200)
-                    return res.json();
-                else
-                    throw Error("Erro no servidor!!");
-            })
-            .then((data) => {
-                if (data.length > 0) {
-                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
-
-                    let li = "";
-                    for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
-                    }
-                    document.getElementById("listaResultadosRonda").innerHTML = li;
+                    document.getElementById("listaEquipasCompeticao").innerHTML = li;
                 }
             })
             .catch((err) => console.log(err));
@@ -242,9 +322,9 @@ function botaoCompetitionListTeamDetails() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-    var idAEnviar = document.getElementById("inputIdRound").value;
+    var idAEnviar = document.getElementById("inputIdTeam").value;
 
-    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+    fetch('/selecionarEquipa?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -254,15 +334,8 @@ function botaoCompetitionListTeamDetails() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                if (data.length > 0) {
-                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
-
-                    let li = "";
-                    for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
-                    }
-                    document.getElementById("listaResultadosRonda").innerHTML = li;
-                }
+                document.getElementById("competitionTeamId").value = data.idEquipa;
+                document.getElementById("competitionTeamNameId").value = data.nomeEquipa;
             })
             .catch((err) => console.log(err));
 }

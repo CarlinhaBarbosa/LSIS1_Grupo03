@@ -124,14 +124,16 @@ public class DAL {
      * **UPDATE** ATUALIZAR RONDA
      *
      * @param idRonda
+     * @param idCompeticao
      * @param tipoRonda
      */
-    public static void actualizarRonda(int idRonda, String tipoRonda) {
+    public static void actualizarRonda(int idRonda, int idCompeticao, String tipoRonda) {
         try {
             Connection conn = DBConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Ronda SET tipoRonda=? WHERE idRonda=?");
-            stmt.setString(1, tipoRonda);
-            stmt.setInt(2, idRonda);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Ronda SET idCompeticao=?, tipoRonda=? WHERE idRonda=?");
+            stmt.setInt(1, idCompeticao);
+            stmt.setString(2, tipoRonda);
+            stmt.setInt(3, idRonda);
             stmt.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -228,6 +230,19 @@ public class DAL {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public static void eliminarEquipaDeUmaCompeticao(int idEquipa) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM AssociacaoEquipaCompeticao WHERE idEquipa=?");
+            stmt.setInt(1, idEquipa);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     /**
@@ -389,6 +404,26 @@ public class DAL {
             int c = 0;
             while (rs.next()) {
                 listaEquipas.add(new Equipa(rs.getInt("idEquipa"), rs.getString("nomeEquipa")));
+                c++;
+            }
+            conn.close();
+            return;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void obterListaEquipasDeUmaCompeticao(List<AssociacaoEquipaCompeticao> listaAssociaocaoEquipaCompeticao) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoEquipaCompeticao");
+            rs = stmt.executeQuery();
+            int c = 0;
+            while (rs.next()) {
+                listaAssociaocaoEquipaCompeticao.add(new AssociacaoEquipaCompeticao(rs.getInt("idAssociacaoEquipaCompeticao"),
+                        rs.getInt("idEquipa"), rs.getInt("idCompeticao")));
                 c++;
             }
             conn.close();
