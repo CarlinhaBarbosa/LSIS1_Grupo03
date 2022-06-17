@@ -20,17 +20,17 @@ public class VerticleRSJson extends AbstractVerticle {
 
     String webRoot = "src/main/java/webroot";
     Router router;
-//    BotTelegram bot;
+    BotTelegram bot;
     MQTTCli mqttCli;
 //    String webroot = DEFAULT_WEB_ROOT;
 
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
 
-//        bot = new BotTelegram(vertx);
-//        telegramBot(bot);
+        bot = new BotTelegram(vertx);
+        telegramBot(bot);
         Repository repo = new Repository();
-        Handlers handlers = new Handlers(repo/*, bot*/);
+        Handlers handlers = new Handlers(repo, bot);
         router = routes(handlers);
 
         mqttCli = new MQTTCli(vertx, repo);

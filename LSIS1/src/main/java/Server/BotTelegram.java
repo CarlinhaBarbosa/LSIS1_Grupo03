@@ -17,7 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class BotTelegram extends TelegramLongPollingBot {
 
     Vertx vertx;
-    private final String chat_id = "o id do vosso chat";
+    private final String chat_id = "5513869022";
 
     public BotTelegram(Vertx vertx) {
         this.vertx = vertx;
@@ -53,11 +53,11 @@ public class BotTelegram extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "nome do utilizador bot";
+        return "lsisGrupo2bot";
     }
 
     @Override
     public String getBotToken() {
-        return "o token";
+        return "5497785906:AAGIqSdAZusEjAJT8YI9uB7iuv165HwV03E";
     }
 }

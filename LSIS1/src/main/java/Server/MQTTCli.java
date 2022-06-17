@@ -23,7 +23,7 @@ public class MQTTCli {
     private final int BROKER_PORT = 1883;
     private final String USER_NAME = "1200638@isep.ipp.pt";
     private final String PASSWORD = "user123";
-    private final String topico1 = "1200638@isep.ipp.pt/lsis1";
+    private final String topico1 = "1200638@isep.ipp.pt/lsis1/ronda/robot";
 
     public MQTTCli(Vertx vertx, Repository repo) {
         this.vertx = vertx;

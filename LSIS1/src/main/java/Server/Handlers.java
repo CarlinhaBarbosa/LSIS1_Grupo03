@@ -40,11 +40,11 @@ class Handlers {
     String webRoot = "src/main/java/webroot";
 
     Repository repo;
-//    BotTelegram bot;
+    BotTelegram bot;
 
-    public Handlers(Repository repo/*, BotTelegram bot*/) {
+    public Handlers(Repository repo, BotTelegram bot) {
         this.repo = repo;
-//        this.bot = bot;
+        this.bot = bot;
     }
 
     public void registarCompeticao(RoutingContext rc) {
