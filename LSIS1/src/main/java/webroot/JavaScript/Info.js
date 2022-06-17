@@ -78,3 +78,77 @@ function botaoRobotInfo() {
             })
             .catch((err) => console.log(err));
 }
+
+function botaoTeamDetails() {
+    var xH = document.getElementById("h2TeamDetails");
+    var xP = document.getElementById("pTeamDetails");
+    var xI = document.getElementById("fTeamDetails");
+    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
+        xH.style.display = "block";
+        xP.style.display = "block";
+        xI.style.display = "block";
+    } else {
+        xH.style.display = "none";
+        xP.style.display = "none";
+        xI.style.display = "none";
+    }
+
+    fetch('/obterEquipas', {
+        method: 'GET'
+    })
+            .then((res) => {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                if (data.length > 0) {
+                    document.getElementById("tHeaderEquipasId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idEquipa + '</td><td>' + data[i].nomeEquipa + '</td></tr>';
+                    }
+                    document.getElementById("listaEquipas").innerHTML = li;
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoRobotDetails() {
+    var xH = document.getElementById("h2RobotDetails");
+    var xP = document.getElementById("pRobotDetails");
+    var xI = document.getElementById("fRobotDetails");
+    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
+        xH.style.display = "block";
+        xP.style.display = "block";
+        xI.style.display = "block";
+    } else {
+        xH.style.display = "none";
+        xP.style.display = "none";
+        xI.style.display = "none";
+    }
+
+    fetch('/obterEquipas', {
+        method: 'GET'
+    })
+            .then((res) => {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                if (data.length > 0) {
+                    document.getElementById("tHeaderEquipasId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idEquipa + '</td><td>' + data[i].nomeEquipa + '</td></tr>';
+                    }
+                    document.getElementById("listaEquipas").innerHTML = li;
+                }
+            })
+            .catch((err) => console.log(err));
+}

@@ -152,3 +152,118 @@ function botaoRoundShowDetails() {
             })
             .catch((err) => console.log(err));
 }
+
+function botaoCompetitionListTeams() {
+    var xH = document.getElementById("h2CompetitionListTeams");
+    var xP = document.getElementById("pCompetitionListTeams");
+    var xI = document.getElementById("tCompetitionListTeams");
+    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
+        xH.style.display = "block";
+        xP.style.display = "block";
+        xI.style.display = "block";
+    } else {
+        xH.style.display = "none";
+        xP.style.display = "none";
+        xI.style.display = "none";
+    }
+    var idAEnviar = document.getElementById("inputIdRound").value;
+
+    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+        method: 'GET'
+    })
+            .then((res) => {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                if (data.length > 0) {
+                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                    }
+                    document.getElementById("listaResultadosRonda").innerHTML = li;
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoCompetitionListTeams() {
+    var xH = document.getElementById("h2CompetitionListTeams");
+    var xP = document.getElementById("pCompetitionListTeams");
+    var xI = document.getElementById("tCompetitionListTeams");
+    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
+        xH.style.display = "block";
+        xP.style.display = "block";
+        xI.style.display = "block";
+    } else {
+        xH.style.display = "none";
+        xP.style.display = "none";
+        xI.style.display = "none";
+    }
+    var idAEnviar = document.getElementById("inputIdRound").value;
+
+    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+        method: 'GET'
+    })
+            .then((res) => {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                if (data.length > 0) {
+                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                    }
+                    document.getElementById("listaResultadosRonda").innerHTML = li;
+                }
+            })
+            .catch((err) => console.log(err));
+}
+
+function botaoCompetitionListTeamDetails() {
+    var xH = document.getElementById("h2CompetitionTeamDetails");
+    var xP = document.getElementById("pCompetitionTeamDetails");
+    var xI = document.getElementById("fCompetitionTeamDetails");
+    if (xH.style.display === "none" && xP.style.display === "none" && xI.style.display === "none") {
+        xH.style.display = "block";
+        xP.style.display = "block";
+        xI.style.display = "block";
+    } else {
+        xH.style.display = "none";
+        xP.style.display = "none";
+        xI.style.display = "none";
+    }
+    var idAEnviar = document.getElementById("inputIdRound").value;
+
+    fetch('/obterResultadosRonda?id=' + idAEnviar, {
+        method: 'GET'
+    })
+            .then((res) => {
+                if (res.status === 200)
+                    return res.json();
+                else
+                    throw Error("Erro no servidor!!");
+            })
+            .then((data) => {
+                if (data.length > 0) {
+                    document.getElementById("tHeaderResultadosRondaId").style.display = 'flex';
+
+                    let li = "";
+                    for (let i = 0; i < data.length; i++) {
+                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                    }
+                    document.getElementById("listaResultadosRonda").innerHTML = li;
+                }
+            })
+            .catch((err) => console.log(err));
+}
+

@@ -27,7 +27,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     <div class='column1'>
                         <button onclick="botaoTeamInfo();">Team List</button>
                         <p></p>
+                        <button onclick="botaoTeamDetails();">Team Details</button>
+                        <input type="text" id="inputTeamId" placeholder="TEAM ID"/>
+                        <p></p>
                         <button onclick="botaoRobotInfo();">Robot List</button>
+                        <p></p>
+                        <button onclick="botaoRobotDetails();">Robot Details</button>
+                        <input type="text" id="inputRobotId" placeholder="Robot ID"/>
                         <p></p>
                     </div>
                     <div class='column2'>                
@@ -37,12 +43,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <theader id="tHeaderEquipasId" style="display:none" ><tr><th>Id Equipa</th><th>Nome Equipa</th></tr></theader>
                             <tbody id="listaEquipas">  </tbody>  
                         </table>
+                        <!<!-- Listar todas as equipas (SELECT DA TABELA EQUIPAS DA BASE DE DADOS) -->
+                        <h2 id="h2TeamDetails" style="display:none">Team Details</h2> 
+                        <p id="pTeamDetails" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar" </p>
+                        <form id ="fTeamDetails" name="TeamDetailsForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="TeamId" id="TeamIdL">Id Equipa:</label>
+                            <input type="text" id="teamId" name="teamId"/>
+
+                            <label for="teamNameId" id="teamNameIdL">Nome Equipa:</label>
+                            <input type="text" id="teamNameId" name="teamNameId"/>
+                            <input type="submit" value="Alterar">
+                            <input type="submit" value="Delete" style="color:red">
+                        </form>
+                        
                         <h2 id="h2RobotInfo" style="display: none">List of bots</h2>
                         <p id="pRobotInfo" style="display:none">List of all bots registered</p>
                         <table id ="tRobotInfo" style="display:none"> 
                             <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robot</th><th>Id Equipa</th><th>Nome Robot</th><th>Mac Address</th></tr></theader>
                             <tbody id="listaRobots">  </tbody>  
                         </table>
+                        
+                        <!<!-- Listar robot atraves do Id . Faz o select e cria a opção de update e delete -->
+                        <h2 id="h2RobotDetails" style="display:none">Robot Details</h2> 
+                        <p id="pRobotDetails" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar" </p>
+                        <form id ="fRobotDetails" name="TeamDetailsForm" style="display:none" action="javascript:alterarDados()">
+                            <label for="robotId" id="robotIdL">Id Robot:</label>
+                            <input type="text" id="robotId" name="id"/>
+
+                            <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
+                            <input type="text" id="teamNameId" name="teamName"/>
+
+                            <label for="robotNameId" id="robotNameL">Robot Name:</label>
+                            <input type="text" id="robotNameId" name="robotName"/>
+
+                            <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
+                            <input type="text" id="macAddressId" name="macAddress"/>
+                            <input type="submit" value='Alterar'>
+                            <input type="submit" value="Delete" style="color:red">
+                        </form>
                     </div>
                 </div>
             </div>
