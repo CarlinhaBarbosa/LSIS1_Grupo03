@@ -62,16 +62,19 @@ public class testeFuncoesDAL {
 //        d.inserirRobot(rt);
 
         /*Actualizar*/
-//        d.actualizarCompeticao(1, "LSIS1", new Date());
+//      d.actualizarCompeticao(1, "LSIS1", "2022-06-18");
 //        d.actualizarRonda(1, "Teste");
 //        d.actualizarEquipa(1, "Grupo 03");
 //        d.actualizarRobot(1, "thunderbolt", "24:6F:28:B1:96:AC");
 
         /*Eliminar*/
+//        d.eliminarCompeticao(9);
+//        d.eliminarRonda(5);
+//        d.eliminarEquipa(3);
 //        d.eliminarRobot(1);
 
         /*Obter*/
-//        System.out.println(d.obterCompeticao().toString());
+//       System.out.println(d.obterUmaCompeticao(1).toString());
 //        System.out.println(d.obterRonda(2).toString());
 //        System.out.println(d.obterEquipa(1).toString());
 //        System.out.println(d.obterRobot(1).toString());
@@ -112,5 +115,5 @@ public class testeFuncoesDAL {
 //        Date date1 = formatter1.parse(object);
 //        System.out.println(date1.toString());
     }
-
+    
 }

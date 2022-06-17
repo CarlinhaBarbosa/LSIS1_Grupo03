@@ -105,12 +105,12 @@ public class DAL {
      * @param nomeCompeticao
      * @param dataCriacao
      */
-    public static void actualizarCompeticao(int idCompeticao, String nomeCompeticao, java.util.Date dataCriacao) {
+    public static void actualizarCompeticao(int idCompeticao, String nomeCompeticao, String dataCriacao) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("UPDATE Competicao SET nomeCompeticao=?, dataCriacao=? WHERE idCompeticao=?");
             stmt.setString(1, nomeCompeticao);
-            Date dataConvertidaParaSqlDate = new Date(dataCriacao.getTime());
+            Date dataConvertidaParaSqlDate = utils.Utils.obterDataConvertidaParaSqlDatecomParametroString(dataCriacao);
             stmt.setDate(2, dataConvertidaParaSqlDate);
             stmt.setInt(3, idCompeticao);
             stmt.executeUpdate();
@@ -178,7 +178,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void actualizarResultadoRobot(int idAssociacaoRobotRonda, int idRobot, double tempo, double velocidade) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -187,6 +187,42 @@ public class DAL {
             stmt.setDouble(2, velocidade);
             stmt.setInt(3, idRobot);
             stmt.setInt(4, idAssociacaoRobotRonda);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void eliminarCompeticao(int idCompeticao) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Competicao WHERE idCompeticao=?");
+            stmt.setInt(1, idCompeticao);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void eliminarRonda(int idRonda) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Ronda WHERE idRonda=?");
+            stmt.setInt(1, idRonda);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void eliminarEquipa(int idEquipa) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Equipa WHERE idEquipa=?");
+            stmt.setInt(1, idEquipa);
             stmt.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -211,14 +247,37 @@ public class DAL {
         }
     }
 
-    //**
-    public static Ronda obterUmaRonda(int id) {
+    public static Competicao obterUmaCompeticao(int idCompeticao) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM Competicao WHERE idCompeticao=?");
+            stmt.setInt(1, idCompeticao);
+            rs = stmt.executeQuery();
+            Competicao competicaoRetorno = new Competicao();
+            while (rs.next()) {
+                competicaoRetorno.setIdCompeticao(rs.getInt("idCompeticao"));
+                competicaoRetorno.setNomeCompeticao((rs.getString("nomeCompeticao")));
+                competicaoRetorno.setDataCriacaoString(rs.getDate("dataCriacao").toString());
+            }
+
+            conn.close();
+            return competicaoRetorno;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return new Competicao();
+    }
+
+    public static Ronda obterUmaRonda(int idRonda) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = conn.prepareStatement("SELECT * FROM Ronda WHERE idRonda=?");
-            stmt.setInt(1, id);
+            stmt.setInt(1, idRonda);
             rs = stmt.executeQuery();
             Ronda rondaRetorno = new Ronda();
             while (rs.next()) {
@@ -226,10 +285,10 @@ public class DAL {
                 rondaRetorno.setIdCompeticao((rs.getInt("idCompeticao")));
                 rondaRetorno.setTipoRonda(rs.getString("tipoRonda"));
             }
-            
+
             conn.close();
             return rondaRetorno;
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -239,26 +298,26 @@ public class DAL {
     /**
      * **SELECT** OBTER EQUIPA ATRAVÉS DO ID
      *
-     * @param id
+     * @param idEquipa
      * @return
      */
-    public static Equipa obterUmaEquipa(int id) {
+    public static Equipa obterUmaEquipa(int idEquipa) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = conn.prepareStatement("SELECT * FROM Equipa WHERE idEquipa=?");
-            stmt.setInt(1, id);
+            stmt.setInt(1, idEquipa);
             rs = stmt.executeQuery();
             Equipa equipaRetorno = new Equipa();
             while (rs.next()) {
                 equipaRetorno.setIdEquipa(rs.getInt("idEquipa"));
                 equipaRetorno.setNomeEquipa(rs.getString("nomeEquipa"));
             }
-            
+
             conn.close();
             return equipaRetorno;
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -268,16 +327,16 @@ public class DAL {
     /**
      * **SELECT** OBTER ROBOT ATRAVÉS DO ID
      *
-     * @param id
+     * @param idRobot
      * @return
      */
-    public static Robot obterUmRobot(int id) {
+    public static Robot obterUmRobot(int idRobot) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             stmt = conn.prepareStatement("SELECT * FROM Robot WHERE idRobot=?");
-            stmt.setInt(1, id);
+            stmt.setInt(1, idRobot);
             rs = stmt.executeQuery();
             Robot robotRetorno = new Robot();
             while (rs.next()) {
@@ -286,10 +345,10 @@ public class DAL {
                 robotRetorno.setNomeRobot(rs.getString("nomeRobot"));
                 robotRetorno.setMacAdress(rs.getString("macAddress"));
             }
-            
+
             conn.close();
             return robotRetorno;
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -319,7 +378,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void obterListaEquipas(List<Equipa> listaEquipas) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -338,7 +397,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void obterListaRobots(List<Robot> listaRobots) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -357,7 +416,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void obterListaRobotsDeUmaEquipa(List<Robot> listaRobots, int idEquipa) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -377,7 +436,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void obterListaRondasDeUmaCompeticao(List<Ronda> listaRondas, int idCompeticao) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -397,7 +456,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static void obterResultadosDeUmaRonda(List<AssociacaoRobotRonda> listaAssociaocaoRobotRonda, int idRonda) {
         try {
             Connection conn = DBConnection.getConnection();
@@ -421,7 +480,7 @@ public class DAL {
             System.out.println(e);
         }
     }
-    
+
     public static AssociacaoRobotRonda obterResultadoDeUmRobotDeUmaRonda(int idRobot, int idRonda) {
         try {
             Connection conn = DBConnection.getConnection();
