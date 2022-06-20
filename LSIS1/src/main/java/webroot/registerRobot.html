@@ -6,8 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Register Robot</title>
-        <link rel="icon" type="image/png" href="icon/img_315977.png">
+        <title>Registar Robot</title>
         <link type="text/css" href="CSS/register_style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width">
         <script src="JavaScript/RegisterRobot.js"></script>      
@@ -15,17 +14,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>  
         <div class='blog'>
             <div class='header'>
-                <div class='pictit'>
-                    <img alt="nature" src="images/4752495707_72c9b36858_b.jpg" height="200" width="300">
-                </div>
                 <h5>Robot</h5>
                 <h6>Registar</h6>
             </div>
             <div class="row">
-                <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo</h2>
-            </div>
-            <div class="row">
-                <div class="column4">     
+                <div class='column1'>
+                    <button onclick="botaoTeamTableInfo();">Listar Equipas</button>
+                    <input type="text" id="inputIdEquipa" placeholder="ID Equipa"/>
+                    <p></p>
+                </div>
+                <div class="column2">
+                    <h2 id="h2TeamTableInfo" style="display:none">Lista Equipas</h2> 
+                    <p id="pTeamTableInfo" style="display:none">Lista das Equipas existentes</p>
+                    <table id ="tTeamTableInfo" style="display:none">                           
+                    </table>
+                    <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo</h2>
                     <div class='form'>                        
                         <hr>
                         <form id="registerRobotForm" name="registerRobotForm" action="javascript:Enviar()">
