@@ -71,7 +71,7 @@ function botaoRobotInfo() {
                     let li = "";
                     for (let i = 0; i < data.length; i++) {
                         li += '<tr><td>' + data[i].idRobot + '</td><td>' + data[i].idEquipa + '</td><td>' +
-                                data[i].nomeRobot + '</td><td>' + data[i].macAddress + '</td></tr>';
+                                data[i].nomeRobot + '</td><td>' + data[i].macAdress + '</td></tr>';
                     }
                     document.getElementById("listaRobots").innerHTML = li;
                 }
@@ -92,8 +92,8 @@ function botaoTeamDetails() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-
-    fetch('/obterEquipas', {
+    var idAEnviar = document.getElementById("inputTeamId").value;
+    fetch('/selecionarEquipa?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -103,15 +103,8 @@ function botaoTeamDetails() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                if (data.length > 0) {
-                    document.getElementById("tHeaderEquipasId").style.display = 'flex';
-
-                    let li = "";
-                    for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idEquipa + '</td><td>' + data[i].nomeEquipa + '</td></tr>';
-                    }
-                    document.getElementById("listaEquipas").innerHTML = li;
-                }
+                document.getElementById("teamId").value = data.idEquipa;
+                document.getElementById("teamNameId").value = data.nomeEquipa;
             })
             .catch((err) => console.log(err));
 }
@@ -129,8 +122,9 @@ function botaoRobotDetails() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-
-    fetch('/obterEquipas', { //alterar fetch (comment by joaoFerreira : 18/06/22
+    var idAEnviar = document.getElementById("inputRobotId").value;
+    
+    fetch('/selecionarRobot?id=' + idAEnviar, {
         method: 'GET'
     })
             .then((res) => {
@@ -140,14 +134,46 @@ function botaoRobotDetails() {
                     throw Error("Erro no servidor!!");
             })
             .then((data) => {
-                if (data.length > 0) {
-                    document.getElementById("tHeaderEquipasId").style.display = 'flex';
+                document.getElementById("robotId").value = data.idRobot;
+                document.getElementById("teamNameRobotId").value = data.idEquipa;
+                document.getElementById("robotNameId").value = data.nomeRobot;
+                document.getElementById("macAddressId").value = data.macAdress;
 
-                    let li = "";
-                    for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idEquipa + '</td><td>' + data[i].nomeEquipa + '</td></tr>';
-                    }
-                    document.getElementById("listaEquipas").innerHTML = li;
+            })
+            .catch((err) => console.log(err));
+}
+function botaoDeleteTeamOfSistem() {
+    var idAEnviar = document.getElementById("inputIdTeam").value;
+
+    fetch('/eliminarEquipa?id=' + idAEnviar, {
+        method: 'POST'
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Equipa  eliminada do sistema com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação da equipa do sistema!</div>";
+                    return res.json();
+                }
+            })
+            .catch((err) => console.log(err));
+}
+function botaoDeleteRobotOfSystem() {
+    var idAEnviar = document.getElementById("inputRobotId").value;
+
+    fetch('/eliminarRobot?id=' + idAEnviar, {
+        method: 'POST'
+    })
+            .then((res) => {
+                if (res.status === 200) {
+                    var infoPanel = document.getElementById("infoPanel");
+                    infoPanel.innerHTML = "<div>Robô  eliminado do sistema com sucesso!</div>";
+                    return res.json();
+                } else {
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na eliminação do robô do sistema!</div>";
+                    return res.json();
                 }
             })
             .catch((err) => console.log(err));

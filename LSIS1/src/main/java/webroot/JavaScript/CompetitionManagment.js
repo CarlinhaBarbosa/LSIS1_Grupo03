@@ -223,7 +223,7 @@ function botaoDeleteRound() {
 function botaoDeleteTeamOfCompetition() {
     var idAEnviar = document.getElementById("inputIdTeam").value;
 
-    fetch('/eliminarEquipa?id=' + idAEnviar, {
+    fetch('/eliminarEquipaCompeticao?id=' + idAEnviar, {
         method: 'POST'
     })
             .then((res) => {

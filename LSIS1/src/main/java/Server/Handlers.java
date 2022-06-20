@@ -304,7 +304,7 @@ class Handlers {
     }
 
     public void deleteEquipaCompeticao(RoutingContext rc) {
-        String id = rc.request().getParam("id"); //testar
+        String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarEquipaDeUmaCompeticao(idFinal);
         HttpServerResponse response = rc.response();
@@ -327,5 +327,13 @@ class Handlers {
         actualizarEquipa(idEquipaFinal, nomeEquipa);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+    }
+
+    public void deleteEquipaSistema(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        eliminarEquipa(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
     }
 }
