@@ -8,7 +8,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <title>Team Search</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="images/319-3194221_animated-smiley-face-wink.png">
         <link type="text/css" href="CSS/info.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width">
         <script src="JavaScript/Info.js"></script>
@@ -17,35 +16,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <div>
             <div class='blog'>
                 <div class='header'>
-                    <div class='pictit'>
-                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
-                    </div>
-                    <h5>Info Page</h5>
-                    <h6>Everything you need in one place</h6>
+                    <h5>Informações</h5>
+                    <h6>Todas as informações necessárias sobre a tua equipa</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoTeamInfo();">Team List</button>
+                        <button onclick="botaoTeamInfo();">Listar Equipas</button>
                         <p></p>
-                        <button onclick="botaoTeamDetails();">Team Details</button>
-                        <input type="text" id="inputTeamId" placeholder="TEAM ID"/>
+                        <button onclick="botaoTeamDetails();">Detalhes de Equipa</button>
+                        <input type="text" id="inputTeamId" placeholder="ID Equipa"/>
                         <p></p>
-                        <button onclick="botaoRobotInfo();">Robot List</button>
+                        <button onclick="botaoRobotInfo();">Listar Robôs</button>
                         <p></p>
-                        <button onclick="botaoRobotDetails();">Robot Details</button>
-                        <input type="text" id="inputRobotId" placeholder="Robot ID"/>
+                        <button onclick="botaoRobotDetails();">Detalhes do robô</button>
+                        <input type="text" id="inputRobotId" placeholder="ID Robô"/>
                         <p></p>
                     </div>
                     <div class='column2'>                
-                        <h2 id="h2TeamInfo" style="display:none">List of Teams</h2> 
-                        <p id="pTeamInfo" style="display:none"> List of all Teams registered</p>
+                        <h2 id="h2TeamInfo" style="display:none">Equipas</h2> 
+                        <p id="pTeamInfo" style="display:none"> Lista de todas as equipas registadas</p>
                         <table id ="tTeamInfo" style="display:none"> 
                             <theader id="tHeaderEquipasId" style="display:none" ><tr><th>Id Equipa</th><th>Nome Equipa</th></tr></theader>
                             <tbody id="listaEquipas">  </tbody>  
                         </table>
-                        <!<!-- Listar todas as equipas (SELECT DA TABELA EQUIPAS DA BASE DE DADOS) -->
-                        <h2 id="h2TeamDetails" style="display:none">Team Details</h2> 
-                        <p id="pTeamDetails" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar" </p>
+                        <h2 id="h2TeamDetails" style="display:none">Detalhes de Equipa</h2> 
+                        <p id="pTeamDetails" style="display:none"> Se pretender alterar algum dado da equipa, preencha o campo pretendido e carregue no botão "Alterar" </p>
                         <form id ="fTeamDetails" name="TeamDetailsForm" style="display:none" action="javascript:alterarDados()">
                             <label for="TeamId" id="TeamIdL">Id Equipa:</label>
                             <input type="text" id="teamId" name="teamId"/>
@@ -53,19 +48,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <label for="teamNameId" id="teamNameIdL">Nome Equipa:</label>
                             <input type="text" id="teamNameId" name="teamNameId"/>
                             <input type="submit" value="Alterar">
-                            <input type="submit" value="Delete" style="color:red">
+                            <input type="submit" value="Eliminar equipa do sistema" style="color:red">
                         </form>
-                        
-                        <h2 id="h2RobotInfo" style="display: none">List of bots</h2>
-                        <p id="pRobotInfo" style="display:none">List of all bots registered</p>
+
+                        <h2 id="h2RobotInfo" style="display: none">Robôs</h2>
+                        <p id="pRobotInfo" style="display:none">Lista de todos os robôs registados</p>
                         <table id ="tRobotInfo" style="display:none"> 
                             <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robot</th><th>Id Equipa</th><th>Nome Robot</th><th>Mac Address</th></tr></theader>
                             <tbody id="listaRobots">  </tbody>  
                         </table>
-                        
-                        <!<!-- Listar robot atraves do Id . Faz o select e cria a opção de update e delete -->
-                        <h2 id="h2RobotDetails" style="display:none">Robot Details</h2> 
-                        <p id="pRobotDetails" style="display:none"> If you wish to change your data, just fill in the label you want and click on the button "Alterar" </p>
+                        <h2 id="h2RobotDetails" style="display:none">Detalhes do Robô</h2> 
+                        <p id="pRobotDetails" style="display:none">Se pretender alterar algum dado do robô, preencha o campo pretendido e carregue no botão "Alterar"  </p>
                         <form id ="fRobotDetails" name="TeamDetailsForm" style="display:none" action="javascript:alterarDados()">
                             <label for="robotId" id="robotIdL">Id Robot:</label>
                             <input type="text" id="robotId" name="id"/>
@@ -79,7 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
                             <input type="text" id="macAddressId" name="macAddress"/>
                             <input type="submit" value='Alterar'>
-                            <input type="submit" value="Delete" style="color:red">
+                            <input type="submit" value="Eliminar robô do sistema" style="color:red">
                         </form>
                     </div>
                 </div>

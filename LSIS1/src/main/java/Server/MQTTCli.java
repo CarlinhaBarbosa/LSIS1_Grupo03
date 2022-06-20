@@ -12,6 +12,9 @@ import io.vertx.mqtt.MqttClient;
 import io.vertx.mqtt.MqttClientOptions;
 import io.vertx.mqtt.messages.MqttConnAckMessage;
 import io.vertx.mqtt.messages.MqttPublishMessage;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MQTTCli {
 
@@ -62,7 +65,11 @@ public class MQTTCli {
             System.out.println("Topico: " + s.topicName());
             System.out.println("Mensagem: " + s.payload().toString());
             System.out.println("QoS: " + s.qosLevel());
-            repo.inserirNaBDFalsa(s.payload().toString());
+            try {
+                repo.inserirNaBDFalsa(s.payload().toString());
+            } catch (SQLException ex) {
+                Logger.getLogger(MQTTCli.class.getName()).log(Level.SEVERE, null, ex);
+            }
         };
     }
 
