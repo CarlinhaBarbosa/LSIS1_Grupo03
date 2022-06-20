@@ -5,7 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html>
     <head>
-        <title>Classification</title>
+        <title>Classificações</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" href="CSS/info.css" rel="stylesheet">
@@ -15,38 +15,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div>
             <div class='blog'>
                 <div class='header'>
-                    <div class='pictit'>
-                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
-                    </div>
-                    <h5>Classification Page</h5>
-                    <h6>Know your bot's classification</h6>
+                    <h5>Classificações</h5>
+                    <h6>Descobre as classificações do teu robot em qualquer prova!</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoCompetitionList();">Competitions List</button>
+                        <button onclick="botaoCompetitionList();">Listar Competições</button>
                         <p></p>
-                        <button onclick='botaoRoundSearch();'>Round Search</button>
+                        <button onclick='botaoRoundSearch();'>Procurar Ronda</button>
                         <input type="text" id="inputIdCompeticao" placeholder="Competition ID"/>
                         <p></p>
-                        <button onclick="botaoRoundInfo();">Round Info</button>
+                        <button onclick="botaoRoundInfo();">Informação de uma Ronda</button>
                         <input type="text" id="inputIdRound" placeholder="Robot ID"/>
                         <p></p>
                     </div>
                     <div class='column2'>                
-                        <h2 id="h2CompetitionList" style="display:none">Competition List</h2> 
-                        <p id="pCompetitionList" style="display:none"> All competitions Available</p>           
+                        <h2 id="h2CompetitionList" style="display:none">Lista das Competições</h2> 
+                        <p id="pCompetitionList" style="display:none">Todas as competições disponíveis</p>           
                         <table id ="tCompetitionList" style="display:none">
                             <theader id="tHeaderId" style="display:none" ><tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr></theader>
                             <tbody id="listaCompeticoes">  </tbody> 
                         </table>
-                        <h2 id="h2CompetitionRoundList" style="display: none">Competition's Round List</h2>
-                        <p id="pCompetitionRoundList" style="display:none">All rounds from the chosen competition!</p>
+                        <h2 id="h2CompetitionRoundList" style="display: none">Lista de Rondas de uma Competição</h2>
+                        <p id="pCompetitionRoundList" style="display:none">Todas as rondas da competição selecionada</p>
                         <table id ="tCompetitionRoundList" style="display:none">
                             <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competicao</th><th>Tipo de Ronda</th></tr></theader>
                             <tbody id="listaRondas">  </tbody> 
                         </table>
-                        <h2 id="h2RoundResults" style="display: none">Classification</h2>
-                        <p id="pRoundResults" style="display:none">The classification of this round!</p>
+                        <h2 id="h2RoundResults" style="display: none">Classificação</h2>
+                        <p id="pRoundResults" style="display:none">A tabela de classifição da ronda!</p>
                         <table id="tRoundResults" style="display: none">
                             <theader id="tHeaderResultadosRondaId" style="display:none" ><tr><th>Id Robot/Ronda </th><th>Id Robot</th><th>Id Ronda</th><th>Tempo</th><th>Velocidade</th></tr></theader>
                             <tbody id="listaResultadosRonda">  </tbody> 

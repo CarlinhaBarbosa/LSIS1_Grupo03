@@ -1,3 +1,5 @@
+/* global fetch */
+
 function botaoCompetitionList() {
     var xH = document.getElementById("h2CompetitionList");
     var xP = document.getElementById("pCompetitionList");

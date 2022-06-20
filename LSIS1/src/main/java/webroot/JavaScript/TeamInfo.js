@@ -52,10 +52,10 @@ function alterarDados() {
             .then((res) => {
                 if (res.status === 200) {
                     var infoPanel = document.getElementById("infoPanel");
-                    infoPanel.innerHTML = "<div>Equipa inserida com sucesso!</div>";
+                    infoPanel.innerHTML = "<div>Equipa actualizada com sucesso!</div>";
                     return res.json();
                 } else {
-                    infoPanel.innerHTML = "<div>Ocorreu um erro na criação da Equipa!</div>";
+                    infoPanel.innerHTML = "<div>Ocorreu um erro na actualização da Equipa!</div>";
                     return res.json();
                 }
             })

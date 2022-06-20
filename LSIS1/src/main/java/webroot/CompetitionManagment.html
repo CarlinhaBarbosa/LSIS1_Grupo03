@@ -5,10 +5,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html>
     <head>
-        <title>Competition Managment</title>
+        <title>Gestão de Competições</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="icon/img_315977.png">
         <link type="text/css" href="CSS/register_style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width">
         <script src="JavaScript/CompetitionManagment.js"></script>  
@@ -17,40 +16,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div>
             <div class='blog'>
                 <div class='header'>
-                    <div class='pictit'>
-                        <img alt="park" src="images/customer-parking-only-stencil-parking-lot-stencils-industrial-stencils-stencilslab-wall-stencils_1400x.jpg" height="200" width="300">
-                    </div>
-                    <h5>Competition Managment</h5>
-                    <h6>Edit and delete a competition</h6>
+                    <h5>Gestão de Competições</h5>
+                    <h6>Edite e apague uma competição!</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoCompetitionList();">Competition List</button>
+                        <button onclick="botaoCompetitionList();">Listar Competições</button>
                         <p></p>
-                        <button onclick="botaoCompetitionShowDetails();">Competition Details</button>
+                        <button onclick="botaoCompetitionShowDetails();">Detalhes de uma Competição</button>
                         <input type="text" id="inputIdCompetition" placeholder="COMPETITION ID"/>
                         <p></p>
-                        <button onclick='botaoRoundList();'>Round List</button>
+                        <button onclick='botaoRoundList();'>Listar Rondas da Competição</button>
                         <input type="text" id="inputIdCompeticao" placeholder="COMPETITION ID"/>
                         <p></p>
-                        <button onclick="botaoRoundShowDetails();">Round Details</button>
+                        <button onclick="botaoRoundShowDetails();">Detalhes da Ronda</button>
                         <input type="text" id="inputIdRound" placeholder="ROUND ID"/>
                         <p></p>
-                        <button onclick="botaoCompetitionListTeams();">Competition Team List</button>
+                        <button onclick="botaoCompetitionListTeams();">Listar Equipas participantes</button>
                         <p></p>
-                        <button onclick="botaoCompetitionListTeamDetails();">Competition Team List Details</button>
+                        <button onclick="botaoCompetitionListTeamDetails();">Detalhes da Equipa</button>
                         <input type="text" id="inputIdTeam" placeholder="TEAM ID"/>
                         <p></p>
                     </div>
                     <div class='column2'>      
-                        <h2 id="h2CompetitionTableInfo" style="display:none">Competitions info</h2> 
-                        <p id="pCompetitionTableInfo" style="display:none">Competitions available at the moment</p>
+                        <h2 id="h2CompetitionTableInfo" style="display:none">Lista de Competições</h2> 
+                        <p id="pCompetitionTableInfo" style="display:none">Lista de Competições disponíveis</p>
                         <table id ="tCompetitionTableInfo" style="display:none"> 
                             <theader id="tHeaderId" style="display:none" ><tr><th>Id Competicao</th><th>Nome Competicao</th><th>Data Criacao</th></tr></theader>
                             <tbody id="listaCompeticoes">  </tbody>  
                         </table>
-                        <h2 id="h2CompetitionDetails" style="display:none">Competition Details</h2> 
-                        <p id="pCompetitionDetails" style="display:none"> Details of the competition, where you can update and delete them! </p>
+                        <h2 id="h2CompetitionDetails" style="display:none">Detalhes da Competição</h2> 
+                        <p id="pCompetitionDetails" style="display:none"> Detalhes de uma Competição onde podes alterar e apagar o seu conteúdo! </p>
                         <form id ="fCompetitionDetails" name="CompetitionDetailsForm" style="display:none" action="javascript:submeterDadosCompeticao()">
                             <label for="competitionId" id="competitionIdL">Id Competição</label>
                             <input type="text" id="competitionId" name="idCompeticao"/>
@@ -61,14 +57,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <input type="submit" value="Alterar Competição">
                             <input type="button" onclick="botaoDeleteCompetition();" value="Eliminar Competição" style="color:red">
                         </form>
-                        <h2 id="h2CompetitionRoundList" style="display: none">Competition's Round List</h2>
-                        <p id="pCompetitionRoundList" style="display:none">All rounds from the chosen competition!</p>
+                        <h2 id="h2CompetitionRoundList" style="display: none">Listar Rondas da Competição</h2>
+                        <p id="pCompetitionRoundList" style="display:none">Lista de Rondas da Competição selecionada</p>
                         <table id ="tCompetitionRoundList" style="display:none">
                             <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competicao</th><th>Tipo de Ronda</th></tr></theader>
                             <tbody id="listaRondas">  </tbody> 
                         </table>
-                        <h2 id="h2RoundDetails" style="display: none">Round</h2>
-                        <p id="pRoundDetails" style="display:none">The details of this round!</p>
+                        <h2 id="h2RoundDetails" style="display: none">Ronda</h2>
+                        <p id="pRoundDetails" style="display:none">Detalhes da Ronda</p>
                         <form id ="fRoundDetails" name="RoundDetailsForm" style="display:none" action="javascript:submeterDadosRonda()">
                             <label for="roundId" id="roundIdL">Id Ronda:</label>
                             <input type="text" id="roundId" name="roundId"/>
@@ -84,14 +80,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <input type="submit" value="Alterar Ronda">
                             <input type="button" onclick="botaoDeleteRound();" value="Eliminar Ronda" style="color:red">
                         </form>
-                        <h2 id="h2CompetitionListTeams" style="display: none">Competition's Teams List</h2>
-                        <p id="pCompetitionListTeams" style="display:none">All teams from the chosen competition!</p>
+                        <h2 id="h2CompetitionListTeams" style="display: none">Listar Equipas participantes</h2>
+                        <p id="pCompetitionListTeams" style="display:none">Lista de equipas participantes na competição selecionada</p>
                         <table id ="tCompetitionListTeams" style="display:none">
                             <theader id="tHeaderEquipasCompeticaoId" style="display:none" ><tr><th>Id Associacão Equipa/Competição</th><th>Id Equipa</th><th>Id Competição</th></tr></theader>
                             <tbody id="listaEquipasCompeticao">  </tbody> 
                         </table>
-                        <h2 id="h2CompetitionTeamDetails" style="display: none">Teams</h2>
-                        <p id="pCompetitionTeamDetails" style="display:none">The details of the selected team</p>
+                        <h2 id="h2CompetitionTeamDetails" style="display: none">Equipas</h2>
+                        <p id="pCompetitionTeamDetails" style="display:none">Detalhes da Equipa selecionada</p>
                         <form id ="fCompetitionTeamDetails" name="CompetitionDetailsForm" style="display:none" action="javascript:submeterDadosEquipa()">
                             <!--                            <label for="CompetitionTeamAssociationId" id="CompetitionTeamAssociationIdL">Id Associacao:</label>
                                                         <input type="text" id="competitionTeamAssociationId" name="competitionTeamAssociationId"/>-->

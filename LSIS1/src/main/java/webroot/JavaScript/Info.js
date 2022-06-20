@@ -92,7 +92,7 @@ function botaoTeamDetails() {
         xP.style.display = "none";
         xI.style.display = "none";
     }
-    var idAEnviar = document.getElementById("inputTeamId").value;
+    var idAEnviar = document.getElementById("inputId").value;
     fetch('/selecionarEquipa?id=' + idAEnviar, {
         method: 'GET'
     })
@@ -123,7 +123,7 @@ function botaoRobotDetails() {
         xI.style.display = "none";
     }
     var idAEnviar = document.getElementById("inputRobotId").value;
-    
+
     fetch('/selecionarRobot?id=' + idAEnviar, {
         method: 'GET'
     })
@@ -142,10 +142,11 @@ function botaoRobotDetails() {
             })
             .catch((err) => console.log(err));
 }
-function botaoDeleteTeamOfSistem() {
-    var idAEnviar = document.getElementById("inputIdTeam").value;
+function botaoDeleteTeamOfSystem() {
 
-    fetch('/eliminarEquipa?id=' + idAEnviar, {
+    var idAEnviar = document.getElementById("inputId").value;
+
+    fetch('/eliminarEquipaSistema?id=' + idAEnviar, {
         method: 'POST'
     })
             .then((res) => {
