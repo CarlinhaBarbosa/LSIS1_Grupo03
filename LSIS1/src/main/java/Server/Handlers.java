@@ -210,7 +210,7 @@ class Handlers {
         response.end(Json.encodePrettily(listaRondas));
     }
 
-    public void obterResultadosRonda(RoutingContext rc) {
+    public void obterResultadosRonda(RoutingContext rc) { //verificar
         String idRonda = rc.request().getParam("id");
         int idRondaFinal = Integer.parseInt(idRonda);
         HttpServerResponse response = rc.response();
@@ -222,7 +222,7 @@ class Handlers {
         response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
     }
 
-    public void obterResultadoDeUmRobot(RoutingContext rc) {
+    public void obterResultadoDeUmRobot(RoutingContext rc) { //verificar
         String idRonda = rc.request().getParam("id");
         String idRobot = rc.request().getParam("idRobot");
         int idRondaFinal = Integer.parseInt(idRonda);
@@ -233,7 +233,7 @@ class Handlers {
         response.end(Json.encodePrettily(robotRonda));
     }
 
-    public void updateResultadoRobot(RoutingContext rc) {
+    public void updateResultadoRobot(RoutingContext rc) { //verificar
         String idAssociacaoRonda = rc.request().getParam("association");
         String idRobot = rc.request().getParam("robot");
         String tempo = rc.request().getParam("tempo");
@@ -267,7 +267,7 @@ class Handlers {
     }
 
     public void deleteCompeticao(RoutingContext rc) {
-        String id = rc.request().getParam("id"); //testar
+        String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarCompeticao(idFinal);
         HttpServerResponse response = rc.response();
@@ -304,7 +304,7 @@ class Handlers {
     }
 
     public void deleteEquipaCompeticao(RoutingContext rc) {
-        String id = rc.request().getParam("id"); //testar
+        String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarEquipaDeUmaCompeticao(idFinal);
         HttpServerResponse response = rc.response();
@@ -327,5 +327,13 @@ class Handlers {
         actualizarEquipa(idEquipaFinal, nomeEquipa);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
+    }
+
+    public void deleteEquipaSistema(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        eliminarEquipa(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
     }
 }

@@ -24,7 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <button onclick="botaoTeamInfo();">Listar Equipas</button>
                         <p></p>
                         <button onclick="botaoTeamDetails();">Detalhes de Equipa</button>
-                        <input type="text" id="inputTeamId" placeholder="ID Equipa"/>
+                        <input type="text" id="inputId" placeholder="ID Equipa"/>
                         <p></p>
                         <button onclick="botaoRobotInfo();">Listar Robôs</button>
                         <p></p>
@@ -48,7 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <label for="teamNameId" id="teamNameIdL">Nome Equipa:</label>
                             <input type="text" id="teamNameId" name="teamNameId"/>
                             <input type="submit" value="Alterar">
-                            <input type="submit" value="Eliminar equipa do sistema" style="color:red">
+                            <input type="button" onclick="botaoDeleteTeamOfSystem()" value="Eliminar equipa do sistema" style="color:red">
                         </form>
 
                         <h2 id="h2RobotInfo" style="display: none">Robôs</h2>
@@ -64,7 +64,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <input type="text" id="robotId" name="id"/>
 
                             <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
-                            <input type="text" id="teamNameId" name="teamName"/>
+                            <input type="text" id="teamNameRobotId" name="teamName"/>
 
                             <label for="robotNameId" id="robotNameL">Robot Name:</label>
                             <input type="text" id="robotNameId" name="robotName"/>
@@ -72,10 +72,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                             <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
                             <input type="text" id="macAddressId" name="macAddress"/>
                             <input type="submit" value='Alterar'>
-                            <input type="submit" value="Eliminar robô do sistema" style="color:red">
+                            <input type="button" onclick="botaoDeleteRobotOfSystem()" value="Eliminar robô do sistema" style="color:red">
                         </form>
                     </div>
                 </div>
+                <div class="row" id="infoPanel"></div>
             </div>
         </div>
     </body>
