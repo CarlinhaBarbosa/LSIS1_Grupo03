@@ -16,6 +16,7 @@ public class AssociacaoRobotRonda {
     private int idRonda;
     private double tempo;
     private double velocidade;
+    private int pontos;
 
     private static final int INT_DEFAULT = 0;
     private static final double DOUBLE_DEFAULT = 0.0;
@@ -25,6 +26,7 @@ public class AssociacaoRobotRonda {
         this.idRonda = INT_DEFAULT;
         this.tempo = DOUBLE_DEFAULT;
         this.velocidade = DOUBLE_DEFAULT;
+        this.pontos = INT_DEFAULT;
     }
 
     public AssociacaoRobotRonda(int idRobot, int idRonda) {
@@ -32,18 +34,28 @@ public class AssociacaoRobotRonda {
         this.idRonda = idRonda;
         this.tempo = DOUBLE_DEFAULT;
         this.velocidade = DOUBLE_DEFAULT;
+        this.pontos = INT_DEFAULT;
     }
 
-    public AssociacaoRobotRonda(int idAssociacaoRobotRonda, int idRobot, int idRonda, double tempo, double velocidade) {
+    public AssociacaoRobotRonda(int idAssociacaoRobotRonda, int idRobot, int idRonda, double tempo, double velocidade, int pontos) {
         this.idAssociacaoRobotRonda = idAssociacaoRobotRonda;
         this.idRobot = idRobot;
         this.idRonda = idRonda;
         this.tempo = tempo;
         this.velocidade = velocidade;
+        this.pontos = pontos;
+    }
+
+    public AssociacaoRobotRonda(int idRobot, int idRonda, double tempo, double velocidade, int pontos) {
+//        this.idAssociacaoRobotRonda = idAssociacaoRobotRonda;
+        this.idRobot = idRobot;
+        this.idRonda = idRonda;
+        this.tempo = tempo;
+        this.velocidade = velocidade;
+        this.pontos = pontos;
     }
 
     public AssociacaoRobotRonda(int idRobot, int idRonda, double tempo, double velocidade) {
-//        this.idAssociacaoRobotRonda = idAssociacaoRobotRonda;
         this.idRobot = idRobot;
         this.idRonda = idRonda;
         this.tempo = tempo;
@@ -70,6 +82,10 @@ public class AssociacaoRobotRonda {
         return velocidade;
     }
 
+    public int getPontos() {
+        return pontos;
+    }
+
     public void setIdAssociacaoRobotRonda(int idAssociacaoRobotRonda) {
         this.idAssociacaoRobotRonda = idAssociacaoRobotRonda;
     }
@@ -90,9 +106,13 @@ public class AssociacaoRobotRonda {
         this.velocidade = velocidade;
     }
 
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
     @Override
     public String toString() {
-        return "AssociacaoRobotRonda{" + "idAssociacaoRobotRonda=" + idAssociacaoRobotRonda + ", idRobot=" + idRobot + ", idRonda=" + idRonda + ", tempo=" + tempo + ", velocidade=" + velocidade + '}';
+        return "AssociacaoRobotRonda{" + "idAssociacaoRobotRonda=" + idAssociacaoRobotRonda + ", idRobot=" + idRobot + ", idRonda=" + idRonda + ", tempo=" + tempo + ", velocidade=" + velocidade + ", pontos=" + pontos + '}';
     }
 
     @Override
@@ -122,6 +142,7 @@ public class AssociacaoRobotRonda {
         if (Double.doubleToLongBits(this.velocidade) != Double.doubleToLongBits(other.velocidade)) {
             return false;
         }
-        return true;
+        return this.pontos == other.pontos;
     }
+
 }
