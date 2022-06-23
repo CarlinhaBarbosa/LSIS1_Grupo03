@@ -22,11 +22,11 @@ public class MQTTCli {
     Vertx vertx;
     Repository repo;
 
-    private final String BROKER_HOST = "maqiatto.com";
+    private final String BROKER_HOST = "mq.ttmby.org"; /*maqiatto.com*/
     private final int BROKER_PORT = 1883;
     private final String USER_NAME = "1200638@isep.ipp.pt";
     private final String PASSWORD = "user123";
-    private final String topico1 = "1200638@isep.ipp.pt/lsis1/ronda/robot";
+    private final String topico1 = "IGP/LSIS1/Dados";/*"1200638@isep.ipp.pt/lsis1/ronda/robot";*/
 
     public MQTTCli(Vertx vertx, Repository repo) {
         this.vertx = vertx;

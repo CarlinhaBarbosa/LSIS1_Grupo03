@@ -210,7 +210,7 @@ class Handlers {
         response.end(Json.encodePrettily(listaRondas));
     }
 
-    public void obterResultadosRonda(RoutingContext rc) {
+    public void obterResultadosRonda(RoutingContext rc) { //verificar
         String idRonda = rc.request().getParam("id");
         int idRondaFinal = Integer.parseInt(idRonda);
         HttpServerResponse response = rc.response();
@@ -222,7 +222,7 @@ class Handlers {
         response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
     }
 
-    public void obterResultadoDeUmRobot(RoutingContext rc) {
+    public void obterResultadoDeUmRobot(RoutingContext rc) { //verificar
         String idRonda = rc.request().getParam("id");
         String idRobot = rc.request().getParam("idRobot");
         int idRondaFinal = Integer.parseInt(idRonda);
@@ -233,7 +233,7 @@ class Handlers {
         response.end(Json.encodePrettily(robotRonda));
     }
 
-    public void updateResultadoRobot(RoutingContext rc) {
+    public void updateResultadoRobot(RoutingContext rc) { //verificar
         String idAssociacaoRonda = rc.request().getParam("association");
         String idRobot = rc.request().getParam("robot");
         String tempo = rc.request().getParam("tempo");
@@ -267,7 +267,7 @@ class Handlers {
     }
 
     public void deleteCompeticao(RoutingContext rc) {
-        String id = rc.request().getParam("id"); //testar
+        String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarCompeticao(idFinal);
         HttpServerResponse response = rc.response();
