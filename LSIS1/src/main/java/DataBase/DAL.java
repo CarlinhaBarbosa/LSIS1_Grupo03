@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -181,14 +182,16 @@ public class DAL {
         }
     }
 
-    public static void actualizarResultadoRobot(int idAssociacaoRobotRonda, int idRobot, double tempo, double velocidade) {
+    public static void actualizarResultadoRobot(int idAssociacaoRobotRonda, int idRobot, double tempo, double velocidade, int pontos) {
         try {
             Connection conn = DBConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("UPDATE AssociacaoRobotRonda SET tempo=?, velocidade=? WHERE idRobot=? AND idAssociacaoRobotRonda=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE AssociacaoRobotRonda SET tempo=?, velocidade=?, pontos=? WHERE idRobot=? AND idAssociacaoRobotRonda=?");
             stmt.setDouble(1, tempo);
             stmt.setDouble(2, velocidade);
-            stmt.setInt(3, idRobot);
-            stmt.setInt(4, idAssociacaoRobotRonda);
+            stmt.setInt(3, pontos);
+            stmt.setInt(4, idRobot);
+            stmt.setInt(5, idAssociacaoRobotRonda
+            );
             stmt.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -213,6 +216,18 @@ public class DAL {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement("DELETE FROM Ronda WHERE idRonda=?");
             stmt.setInt(1, idRonda);
+            stmt.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void eliminarAssociacaoRobotRonda(int idRobotRonda) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM AssociacaoRobotRonda WHERE idAssociacaoRobotRonda=?");
+            stmt.setInt(1, idRobotRonda);
             stmt.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -496,17 +511,15 @@ public class DAL {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
-            PreparedStatement stmt2 = null;
             ResultSet rs = null;
-            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda ORDER BY tempo ASC");
-            stmt2 = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=?");
-            stmt2.setInt(1, idRonda);
-            rs = stmt2.executeQuery();
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=?");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
             int c = 0;
             while (rs.next()) {
                 listaAssociaocaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idAssociacaoRobotRonda"),
-                        rs.getInt("idRobot"), rs.getInt("idRonda"), rs.getInt("tempo"),
-                        rs.getInt("velocidade")));
+                        rs.getInt("idRobot"), rs.getInt("idRonda"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
                 c++;
             }
             conn.close();
@@ -516,14 +529,176 @@ public class DAL {
         }
     }
 
-    public static AssociacaoRobotRonda obterResultadoDeUmRobotDeUmaRonda(int idRobot, int idRonda) {
+    public static void obterResultadosDeUmaRondaTempo(List<AssociacaoRobotRonda> listaAssociaocaoRobotRonda, int idRonda) {
         try {
             Connection conn = DBConnection.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=? AND idRobot=?");
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY tempo ASC");
             stmt.setInt(1, idRonda);
-            stmt.setInt(2, idRobot);
+            rs = stmt.executeQuery();
+            int c = 0;
+            while (rs.next()) {
+                listaAssociaocaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idAssociacaoRobotRonda"),
+                        rs.getInt("idRobot"), rs.getInt("idRonda"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void obterResultadosDeUmaRondaVelocidade(List<AssociacaoRobotRonda> listaAssociaocaoRobotRonda, int idRonda) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY velocidade ASC");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            while (rs.next()) {
+                listaAssociaocaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idAssociacaoRobotRonda"),
+                        rs.getInt("idRobot"), rs.getInt("idRonda"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void obterResultadosDeUmaRondaPontos(List<AssociacaoRobotRonda> listaAssociaocaoRobotRonda, int idRonda) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY pontos DESC");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            while (rs.next()) {
+                listaAssociaocaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idAssociacaoRobotRonda"),
+                        rs.getInt("idRobot"), rs.getInt("idRonda"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static List<AssociacaoRobotRonda> obterResultadosDeUmaRondaTelegram(int idRonda) {
+        List<AssociacaoRobotRonda> result = new ArrayList<>();
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT idRobot,tempo,velocidade, pontos FROM AssociacaoRobotRonda WHERE idRonda=?");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+            while (rs.next()) {
+                listaAssociacaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idRobot"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return listaAssociacaoRobotRonda;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public static List<AssociacaoRobotRonda> obterResultadosDeUmaRondaTelegramTempo(int idRonda) {
+        List<AssociacaoRobotRonda> result = new ArrayList<>();
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT idRobot,tempo,velocidade, pontos FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY tempo ASC");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+            while (rs.next()) {
+                listaAssociacaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idRobot"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return listaAssociacaoRobotRonda;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public static List<AssociacaoRobotRonda> obterResultadosDeUmaRondaTelegramVelocidade(int idRonda) {
+        List<AssociacaoRobotRonda> result = new ArrayList<>();
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT idRobot,tempo,velocidade, pontos FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY velocidade ASC");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+            while (rs.next()) {
+                listaAssociacaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idRobot"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return listaAssociacaoRobotRonda;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public static List<AssociacaoRobotRonda> obterResultadosDeUmaRondaTelegramPontos(int idRonda) {
+        List<AssociacaoRobotRonda> result = new ArrayList<>();
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT idRobot,tempo,velocidade, pontos FROM AssociacaoRobotRonda WHERE idRonda=? ORDER BY pontos DESC");
+            stmt.setInt(1, idRonda);
+            rs = stmt.executeQuery();
+            int c = 0;
+            List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+            while (rs.next()) {
+                listaAssociacaoRobotRonda.add(new AssociacaoRobotRonda(rs.getInt("idRobot"), rs.getDouble("tempo"),
+                        rs.getDouble("velocidade"), rs.getInt("pontos")));
+                c++;
+            }
+            conn.close();
+            return listaAssociacaoRobotRonda;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public static AssociacaoRobotRonda obterResultadoDeUmRobotDeUmaRonda(int idRobotRonda, int idRonda) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conn.prepareStatement("SELECT * FROM AssociacaoRobotRonda WHERE idRonda=? AND idAssociacaoRobotRonda=?");
+            stmt.setInt(1, idRonda);
+            stmt.setInt(2, idRobotRonda);
             rs = stmt.executeQuery();
             AssociacaoRobotRonda robotRondaRetorno = new AssociacaoRobotRonda();
             while (rs.next()) {
@@ -532,6 +707,8 @@ public class DAL {
                 robotRondaRetorno.setIdRobot(rs.getInt("idRobot"));
                 robotRondaRetorno.setTempo(rs.getDouble("tempo"));
                 robotRondaRetorno.setVelocidade(rs.getDouble("velocidade"));
+                robotRondaRetorno.setPontos(rs.getInt("pontos"));
+
             }
             conn.close();
             return robotRondaRetorno;

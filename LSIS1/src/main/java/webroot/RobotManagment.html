@@ -21,31 +21,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoRobotList();">Listar Robots</button>
                         <input type="text" id="inputIdTeam" placeholder="ID Equipa"/>
+                        <button onclick="botaoRobotList();">Listar Robôs</button>                        
                         <p></p>
-                        <button onclick="botaoRobotInfo();">Detalhes do Robot</button>
-                        <input type="text" id="inputIdRobot" placeholder="ID Robot"/>
+                        <input type="text" id="inputIdRobot" placeholder="ID Robô"/>
+                        <button onclick="botaoRobotInfo();">Detalhes do Robô</button>                      
                         <p></p>
                         <button onclick ="botaoEliminarRobot();"> Eliminar Robot </button>
-                        <input id="demo"/> 
+                        <input id="demo" readonly/> 
                         <p></p>
                     </div>
                     <div class='column2'>  
-                        <h2 id="h2RobotList" style="display:none">Lista de Robots</h2> 
-                        <p id="pRobotList" style="display:none">Todos os Robots registados pela tua Equipa! </p>
+                        <h2 id="h2RobotList" style="display:none">Lista de Robôs</h2> 
+                        <p id="pRobotList" style="display:none">Todos os Robôs registados pela tua Equipa! </p>
                         <table id ="tRobotList" style="display:none">
-                            <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robot</th><th>Id Equipa</th><th>Nome Robot</th><th>Mac Address</th></tr></theader>
+                            <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robô</th><th>Id Equipa</th><th>Nome Robô</th><th>Mac Address</th></tr></theader>
                             <tbody id="listaRobots">  </tbody>  
                         </table>
-                        <h2 id="h2RobotInfo" style="display: none">Informação do Robot</h2>
-                        <p id="pRobotInfo" style="display:none">Caso pretendas alterar os dados do teu Robot, carrega no botão "Alterar"</p>
+                        <h2 id="h2RobotInfo" style="display: none">Informação do Robô</h2>
+                        <p id="pRobotInfo" style="display:none">Caso pretendas alterar os dados do teu Robô, carrega no botão "Alterar"</p>
                         <form id ="fRobotInfo" name="RobotInfoForm" style="display:none" action="javascript:alterarDados()">
-                            <label for="robotId" id="robotIdL">Id Robot:</label>
+                            <label for="robotId" id="robotIdL">Id Robô:</label>
                             <input type="text" id="robotId" name="id"/>
-                            <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
+                            <label for="robotTeamId" id="robotTeamIdL">ID Equipa:</label>
                             <input type="text" id="teamNameId" name="teamName"/>
-                            <label for="robotNameId" id="robotNameL">Robot Name:</label>
+                            <label for="robotNameId" id="robotNameL">Nome Robô:</label>
                             <input type="text" id="robotNameId" name="robotName"/>
                             <label for="macAddressId" id="macAddressIdL">Mac Address:</label>
                             <input type="text" id="macAddressId" name="macAddress"/>

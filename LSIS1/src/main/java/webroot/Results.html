@@ -16,20 +16,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class='blog'>
                 <div class='header'>
                     <h5>Classificações</h5>
-                    <h6>Descobre os resultados de um bot ao longo das rondas</h6>
+                    <h6>Descubra os resultados de um bot ao longo das rondas</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
-                        <button onclick="botaoCompetitionList();">Listar Competição</button>
+                        <button onclick="botaoCompetitionList();">Listar Competições</button>
                         <p></p>
-                        <button onclick='botaoRoundSearch();'>Procurar Ronda</button>
+                        <p></p>
                         <input type="text" id="inputIdCompeticao" placeholder="ID Competição"/>
+                        <button onclick='botaoRoundSearch();'>Procurar Ronda</button>
                         <p></p>
-                        <button onclick="botaoRoundInfo();">Informação da Ronda</button>
                         <input type="text" id="inputIdRound" placeholder="ID Ronda"/>
+                        <button onclick="botaoRoundInfo();">Informação Geral da Ronda</button>
                         <p></p>
-                        <button onclick='botaoRobotResult();'>Resultado do Robot</button>
-                        <input type='text' id='inputIdRobot' placeholder="ID Robot"/>
+                        <button onclick="botaoRoundInfoTempo();">Classificação Ronda/Tempo</button>
+                        <p></p>
+                        <button onclick="botaoRoundInfoVelocidade();">Classificação Ronda/Velocidade</button>
+                        <p></p>
+                        <button onclick="botaoRoundInfoPontos();">Classificação Ronda/Pontos</button>
+                        <p></p>
+                        <input type='text' id='inputIdAssociacaoRobotRonda' placeholder="ID Associação Robot/Ronda"/>
+                        <button onclick='botaoRobotResult();'>Resultado do Robot</button>            
                         <p></p>
                     </div>
                     <div class='column2'>                
@@ -48,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <h2 id="h2RoundResults" style="display: none">Classificação Ronda</h2>
                         <p id="pRoundResults" style="display:none">Classificações da ronda selecionada!</p>
                         <table id="tRoundResults" style="display: none">
-                            <theader id="tHeaderResultadosRondaId" style="display:none" ><tr><th>Id Robot/Ronda </th><th>Id Robot</th><th>Id Ronda</th><th>Tempo</th><th>Velocidade</th></tr></theader>
+                            <theader id="tHeaderResultadosRondaId" style="display:none" ><tr><th>Id Robot/Ronda </th><th>Id Robot</th><th>Id Ronda</th><th>Tempo</th><th>Velocidade</th><th>Pontos</th></tr></theader>
                             <tbody id="listaResultadosRonda">  </tbody> 
                         </table>
                         <h2 id="h2RobotResult" style="display: none">Classificação do Robot</h2>
@@ -67,6 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <label for="pontos" id="pontosL">Pontos:</label>
                             <input type="text" id="pontosId" name="pontos"/>
                             <input type="submit" value="Alterar">
+                            <input type="button" onclick="botaoDeleteRobotResultOfSystem()" value="Eliminar resultado do sistema" style="color:red">
                         </form>
                     </div>
                 </div>

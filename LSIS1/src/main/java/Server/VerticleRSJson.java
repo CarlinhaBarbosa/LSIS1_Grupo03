@@ -35,7 +35,7 @@ public class VerticleRSJson extends AbstractVerticle {
 
         mqttCli = new MQTTCli(vertx, repo);
         HttpServerOptions options = new HttpServerOptions();
-        options.setHost("127.0.0.1").setPort(7522);
+        options.setHost("127.0.0.1").setPort(7670);
 //        options.setPort(7530);
 
         vertx.createHttpServer(options)
@@ -73,6 +73,9 @@ public class VerticleRSJson extends AbstractVerticle {
         router.route(HttpMethod.GET, "/selecionarRobotsEquipa").handler(handlers::obterRobotsDeUmaEquipa);
         router.route(HttpMethod.GET, "/obterRondasCompeticao").handler(handlers::obterRondasDeUmaCompeticao);
         router.route(HttpMethod.GET, "/obterResultadosRonda").handler(handlers::obterResultadosRonda);
+        router.route(HttpMethod.GET, "/obterResultadosRondaTempo").handler(handlers::obterResultadosRondaTempo);
+        router.route(HttpMethod.GET, "/obterResultadosRondaVelocidade").handler(handlers::obterResultadosRondaVelocidade);
+        router.route(HttpMethod.GET, "/obterResultadosRondaPontos").handler(handlers::obterResultadosRondaPontos);
         router.route(HttpMethod.GET, "/obterResultadosRobotRonda").handler(handlers::obterResultadoDeUmRobot);
         router.route(HttpMethod.POST, "/atualizarResultados").handler(handlers::updateResultadoRobot);
         router.route(HttpMethod.GET, "/selecionarCompeticao").handler(handlers::selecionarCompeticao);
@@ -85,6 +88,7 @@ public class VerticleRSJson extends AbstractVerticle {
         router.route(HttpMethod.GET, "/selecionarRonda").handler(handlers::selecionarRonda);
         router.route(HttpMethod.POST, "/atualizarEquipaCompetitionManagement").handler(handlers::updateEquipaCompetitionManagement);
         router.route(HttpMethod.POST, "/eliminarEquipaSistema").handler(handlers::deleteEquipaSistema);
+        router.route(HttpMethod.POST, "/eliminarResultadoRobotRondaSistema").handler(handlers::deleteAssociacaoRobotRonda);
 
         return router;
     }

@@ -17,19 +17,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             <div class='blog'>
                 <div class='header'>
                     <h5>Informações</h5>
-                    <h6>Todas as informações necessárias sobre a tua equipa</h6>
+                    <h6>Informações das equipas</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
                         <button onclick="botaoTeamInfo();">Listar Equipas</button>
                         <p></p>
-                        <button onclick="botaoTeamDetails();">Detalhes de Equipa</button>
+                        <p></p>   
                         <input type="text" id="inputId" placeholder="ID Equipa"/>
+                        <button onclick="botaoTeamDetails();">Detalhes de Equipa</button>                       
                         <p></p>
                         <button onclick="botaoRobotInfo();">Listar Robôs</button>
                         <p></p>
-                        <button onclick="botaoRobotDetails();">Detalhes do robô</button>
+                        <p></p>
                         <input type="text" id="inputRobotId" placeholder="ID Robô"/>
+                        <button onclick="botaoRobotDetails();">Detalhes do robô</button>                       
                         <p></p>
                     </div>
                     <div class='column2'>                
@@ -54,19 +56,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <h2 id="h2RobotInfo" style="display: none">Robôs</h2>
                         <p id="pRobotInfo" style="display:none">Lista de todos os robôs registados</p>
                         <table id ="tRobotInfo" style="display:none"> 
-                            <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robot</th><th>Id Equipa</th><th>Nome Robot</th><th>Mac Address</th></tr></theader>
+                            <theader id="tHeaderRobotsId" style="display:none" ><tr><th>Id Robô</th><th>Id Equipa</th><th>Nome Robô</th><th>Mac Address</th></tr></theader>
                             <tbody id="listaRobots">  </tbody>  
                         </table>
                         <h2 id="h2RobotDetails" style="display:none">Detalhes do Robô</h2> 
                         <p id="pRobotDetails" style="display:none">Se pretender alterar algum dado do robô, preencha o campo pretendido e carregue no botão "Alterar"  </p>
                         <form id ="fRobotDetails" name="TeamDetailsForm" style="display:none" action="javascript:alterarDados()">
-                            <label for="robotId" id="robotIdL">Id Robot:</label>
+                            <label for="robotId" id="robotIdL">Id Robô:</label>
                             <input type="text" id="robotId" name="id"/>
 
-                            <label for="robotTeamId" id="robotTeamIdL">Team ID:</label>
+                            <label for="robotTeamId" id="robotTeamIdL">ID Equipa:</label>
                             <input type="text" id="teamNameRobotId" name="teamName"/>
 
-                            <label for="robotNameId" id="robotNameL">Robot Name:</label>
+                            <label for="robotNameId" id="robotNameL">Nome Robô:</label>
                             <input type="text" id="robotNameId" name="robotName"/>
 
                             <label for="macAddressId" id="macAddressIdL">Mac Address:</label>

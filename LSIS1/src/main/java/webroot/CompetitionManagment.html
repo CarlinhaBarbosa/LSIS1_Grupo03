@@ -17,25 +17,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class='blog'>
                 <div class='header'>
                     <h5>Gestão de Competições</h5>
-                    <h6>Edite e apague uma competição!</h6>
+                    <h6>Consulte e, caso pretenda, edite</h6>
                 </div>      
                 <div class='row'>
                     <div class='column1'>
                         <button onclick="botaoCompetitionList();">Listar Competições</button>
                         <p></p>
-                        <button onclick="botaoCompetitionShowDetails();">Detalhes de uma Competição</button>
-                        <input type="text" id="inputIdCompetition" placeholder="COMPETITION ID"/>
                         <p></p>
-                        <button onclick='botaoRoundList();'>Listar Rondas da Competição</button>
-                        <input type="text" id="inputIdCompeticao" placeholder="COMPETITION ID"/>
+                        <input type="text" id="inputIdCompetition" placeholder="ID Competição"/>
+                        <button onclick="botaoCompetitionShowDetails();">Detalhes de uma Competição</button>                   
                         <p></p>
-                        <button onclick="botaoRoundShowDetails();">Detalhes da Ronda</button>
-                        <input type="text" id="inputIdRound" placeholder="ROUND ID"/>
+                        <input type="text" id="inputIdCompeticao" placeholder="ID Competição"/>
+                        <button onclick='botaoRoundList();'>Listar Rondas da Competição</button>                       
+                        <p></p>
+                        <input type="text" id="inputIdRound" placeholder="ID Ronda"/>
+                        <button onclick="botaoRoundShowDetails();">Detalhes da Ronda</button>                        
                         <p></p>
                         <button onclick="botaoCompetitionListTeams();">Listar Equipas participantes</button>
                         <p></p>
-                        <button onclick="botaoCompetitionListTeamDetails();">Detalhes da Equipa</button>
-                        <input type="text" id="inputIdTeam" placeholder="TEAM ID"/>
+                        <input type="text" id="inputIdTeam" placeholder="ID Equipa"/>
+                        <button onclick="botaoCompetitionListTeamDetails();">Detalhes da Equipa</button>                       
                         <p></p>
                     </div>
                     <div class='column2'>      
@@ -60,7 +61,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <h2 id="h2CompetitionRoundList" style="display: none">Listar Rondas da Competição</h2>
                         <p id="pCompetitionRoundList" style="display:none">Lista de Rondas da Competição selecionada</p>
                         <table id ="tCompetitionRoundList" style="display:none">
-                            <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competicao</th><th>Tipo de Ronda</th></tr></theader>
+                            <theader id="tHeaderRondasId" style="display:none" ><tr><th>Id Ronda</th><th>Id Competição</th><th>Tipo de Ronda</th></tr></theader>
                             <tbody id="listaRondas">  </tbody> 
                         </table>
                         <h2 id="h2RoundDetails" style="display: none">Ronda</h2>

@@ -1,5 +1,6 @@
 package Server;
 
+import DataBase.DAL;
 import static DataBase.DAL.inserirAssociacaoRobotRonda;
 import DataBase.DBConnection;
 import Model.AssociacaoRobotRonda;
@@ -9,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import sun.security.provider.certpath.Vertex;
+import static DataBase.DAL.obterResultadosDeUmaRondaTelegram;
 
 /**
  *
@@ -39,19 +42,21 @@ public class Repository {
 //        inserirAssociacaoRobotRonda(associacaoRobotRondaAinserir);
 //    }
     public void inserirNaBDFalsa(String dados) throws SQLException {
+        BotTelegram tbc = new BotTelegram(vertx);
+
         String split[] = dados.split("#");
 
         System.out.println(split[0]);
         System.out.println(split[1]);
         System.out.println(split[2]);
         System.out.println(split[3]);
+
         String macAddress = split[0];
 
         int idRonda = Integer.parseInt(split[1]);
         double tempo = Double.parseDouble(split[2]);
         double velocidade = Double.parseDouble(split[3]);
 
-        BotTelegram tbc = new BotTelegram(vertx);
         String msg = " - Mac Address: " + macAddress + ", - ID Ronda:" + idRonda + ", - tempo: " + tempo + ", - velocidade: " + velocidade;
         tbc.sendMessage(msg);
         System.out.println("Dados enviados para o Telegram");

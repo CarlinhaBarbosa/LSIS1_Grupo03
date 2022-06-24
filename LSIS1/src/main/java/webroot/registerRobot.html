@@ -6,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Registar Robot</title>
+        <title>Registar Robô</title>
         <link type="text/css" href="CSS/register_style.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width">
         <script src="JavaScript/RegisterRobot.js"></script>      
@@ -14,19 +14,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>  
         <div class='blog'>
             <div class='header'>
-                <h5>Robot</h5>
+                <h5>Robôt</h5>
                 <h6>Registar</h6>
             </div>
             <div class="row">
                 <div class='column1'>
-                    <button onclick="botaoTeamTableInfo();">Listar Equipas</button>
-                    <input type="text" id="inputIdEquipa" placeholder="ID Equipa"/>
+                    <!--                    <input type="text" id="inputIdEquipa" placeholder="ID Equipa"/>-->
+                    <button onclick="botaoTeamTableInfo();">Listar Equipas</button>                 
                     <p></p>
                 </div>
                 <div class="column2">
-                    <h2 id="h2TeamTableInfo" style="display:none">Lista Equipas</h2> 
+                    <h2 id="h2TeamTableInfo" style="display:none">Equipas</h2> 
                     <p id="pTeamTableInfo" style="display:none">Lista das Equipas existentes</p>
                     <table id ="tTeamTableInfo" style="display:none">                           
+                        <theader id="tHeaderId" style="display:none" ><tr><th>Id Equipa</th><th>Nome Equipa</th></tr></theader>
+                        <tbody id="listaEquipas">  </tbody> 
                     </table>
                     <h2 style= "margin-left: 10%; margin-top: 50px">Formulário de Registo</h2>
                     <div class='form'>                        

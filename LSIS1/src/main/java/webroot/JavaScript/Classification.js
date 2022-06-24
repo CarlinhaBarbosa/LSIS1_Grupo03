@@ -103,7 +103,7 @@ function botaoRoundInfo() {
 
                     let li = "";
                     for (let i = 0; i < data.length; i++) {
-                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td></tr>';
+                        li += '<tr><td>' + data[i].idAssociacaoRobotRonda + '</td><td>' + data[i].idRobot + '</td><td>' + data[i].idRonda + '</td><td>' + data[i].tempo + '</td><td>' + data[i].velocidade + '</td><td>' + data[i].pontos + '</td></tr>';
                     }
                     document.getElementById("listaResultadosRonda").innerHTML = li;
                 }

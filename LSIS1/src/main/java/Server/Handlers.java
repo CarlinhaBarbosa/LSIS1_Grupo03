@@ -5,6 +5,7 @@ import static DataBase.DAL.actualizarEquipa;
 import static DataBase.DAL.actualizarResultadoRobot;
 import static DataBase.DAL.actualizarRobot;
 import static DataBase.DAL.actualizarRonda;
+import static DataBase.DAL.eliminarAssociacaoRobotRonda;
 import static DataBase.DAL.eliminarCompeticao;
 import static DataBase.DAL.eliminarEquipa;
 import static DataBase.DAL.eliminarEquipaDeUmaCompeticao;
@@ -24,9 +25,12 @@ import static DataBase.DAL.obterListaRobots;
 import static DataBase.DAL.obterListaRobotsDeUmaEquipa;
 import static DataBase.DAL.obterListaRondasDeUmaCompeticao;
 import static DataBase.DAL.obterResultadoDeUmRobotDeUmaRonda;
-import static DataBase.DAL.obterResultadosDeUmaRonda;
 import static DataBase.DAL.obterUmaCompeticao;
 import static DataBase.DAL.obterUmaRonda;
+import static DataBase.DAL.obterResultadosDeUmaRonda;
+import static DataBase.DAL.obterResultadosDeUmaRondaPontos;
+import static DataBase.DAL.obterResultadosDeUmaRondaTempo;
+import static DataBase.DAL.obterResultadosDeUmaRondaVelocidade;
 import Model.AssociacaoRobotRonda;
 import Model.AssociacaoEquipaCompeticao;
 import Model.Competicao;
@@ -45,7 +49,6 @@ import java.util.List;
  */
 class Handlers {
 
-//    List<Aluno> BDfalsa = new ArrayList<>();
     String webRoot = "src/main/java/webroot";
 
     Repository repo;
@@ -57,18 +60,12 @@ class Handlers {
     }
 
     public void registarCompeticao(RoutingContext rc) {
-//        try {
         String nomeCompeticao = rc.request().getParam("nomeCompeticaoId");
         String dataCriacaoCompeticao = rc.request().getParam("dataCriacaoId");
-//            Date dataCriacaoCompeticaoConvertida;
-//            dataCriacaoCompeticaoConvertida = utils.Utils.obterDataConvertidaParaJavaDateComParametroString(dataCriacaoCompeticao);
         Competicao competicaoNova = new Competicao(nomeCompeticao, dataCriacaoCompeticao);
         inserirCompeticao(competicaoNova);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
-//        } catch (ParseException ex) {
-//            Logger.getLogger(VerticleRSJson.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     public void registarRonda(RoutingContext rc) {
@@ -150,7 +147,6 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Competicao> listaCompeticoes = new ArrayList<>();
         obterListaCompeticoes(listaCompeticoes);
-        System.out.println(listaCompeticoes.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaCompeticoes));
     }
@@ -171,7 +167,6 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Equipa> listaEquipas = new ArrayList<>();
         obterListaEquipas(listaEquipas);
-        System.out.println(listaEquipas.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaEquipas));
     }
@@ -181,7 +176,6 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Robot> listaRobots = new ArrayList<>();
         obterListaRobots(listaRobots);
-        System.out.println(listaRobots.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaRobots));
     }
@@ -193,7 +187,6 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Robot> listaRobots = new ArrayList<>();
         obterListaRobotsDeUmaEquipa(listaRobots, idEquipaFinal);
-        System.out.println(listaRobots.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaRobots));
     }
@@ -205,44 +198,77 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<Ronda> listaRondas = new ArrayList<>();
         obterListaRondasDeUmaCompeticao(listaRondas, idCompeticaoFinal);
-        System.out.println(listaRondas.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaRondas));
     }
 
-    public void obterResultadosRonda(RoutingContext rc) { //verificar
+    public void obterResultadosRonda(RoutingContext rc) {
         String idRonda = rc.request().getParam("id");
         int idRondaFinal = Integer.parseInt(idRonda);
         HttpServerResponse response = rc.response();
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
         obterResultadosDeUmaRonda(listaAssociacaoRobotRonda, idRondaFinal);
-        System.out.println(listaAssociacaoRobotRonda.toString());
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
+    }
+
+    public void obterResultadosRondaTempo(RoutingContext rc) {
+        String idRonda = rc.request().getParam("id");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+        obterResultadosDeUmaRondaTempo(listaAssociacaoRobotRonda, idRondaFinal);
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
+    }
+
+    public void obterResultadosRondaVelocidade(RoutingContext rc) {
+        String idRonda = rc.request().getParam("id");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+        obterResultadosDeUmaRondaVelocidade(listaAssociacaoRobotRonda, idRondaFinal);
+        response.setStatusCode(200);
+        response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
+    }
+
+    public void obterResultadosRondaPontos(RoutingContext rc) {
+        String idRonda = rc.request().getParam("id");
+        int idRondaFinal = Integer.parseInt(idRonda);
+        HttpServerResponse response = rc.response();
+        response.putHeader("content-type", "text/plain; charset=utf-8");
+        List<AssociacaoRobotRonda> listaAssociacaoRobotRonda = new ArrayList<>();
+        obterResultadosDeUmaRondaPontos(listaAssociacaoRobotRonda, idRondaFinal);
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaAssociacaoRobotRonda));
     }
 
     public void obterResultadoDeUmRobot(RoutingContext rc) { //verificar
         String idRonda = rc.request().getParam("id");
-        String idRobot = rc.request().getParam("idRobot");
+        String idRobotRonda = rc.request().getParam("idAssociacaoRobotRonda");
         int idRondaFinal = Integer.parseInt(idRonda);
-        int idRobotFinal = Integer.parseInt(idRobot);
-        AssociacaoRobotRonda robotRonda = obterResultadoDeUmRobotDeUmaRonda(idRobotFinal, idRondaFinal);
+        int idRobotRondaFinal = Integer.parseInt(idRobotRonda);
+        AssociacaoRobotRonda robotRonda = obterResultadoDeUmRobotDeUmaRonda(idRobotRondaFinal, idRondaFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
         response.end(Json.encodePrettily(robotRonda));
     }
 
-    public void updateResultadoRobot(RoutingContext rc) { //verificar
+    public void updateResultadoRobot(RoutingContext rc) {
         String idAssociacaoRonda = rc.request().getParam("association");
         String idRobot = rc.request().getParam("robot");
         String tempo = rc.request().getParam("tempo");
         String velocidade = rc.request().getParam("velocidade");
+        String pontos = rc.request().getParam("pontos");
         int idAssociacaoRondaFinal = Integer.parseInt(idAssociacaoRonda);
         int idRobotFinal = Integer.parseInt(idRobot);
         double tempoFinal = Double.parseDouble(tempo);
         double velocidadeFinal = Double.parseDouble(velocidade);
-        actualizarResultadoRobot(idAssociacaoRondaFinal, idRobotFinal, tempoFinal, velocidadeFinal);
+        int pontosFinal = Integer.parseInt(pontos);
+        actualizarResultadoRobot(idAssociacaoRondaFinal, idRobotFinal, tempoFinal, velocidadeFinal, pontosFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8").end("ok");
     }
@@ -286,7 +312,7 @@ class Handlers {
     }
 
     public void deleteRonda(RoutingContext rc) {
-        String id = rc.request().getParam("id"); //testar
+        String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarRonda(idFinal);
         HttpServerResponse response = rc.response();
@@ -298,7 +324,6 @@ class Handlers {
         response.putHeader("content-type", "text/plain; charset=utf-8");
         List<AssociacaoEquipaCompeticao> listaAssociacaoEquipaCompeticao = new ArrayList<>();
         obterListaEquipasDeUmaCompeticao(listaAssociacaoEquipaCompeticao);
-        System.out.println(listaAssociacaoEquipaCompeticao.toString());
         response.setStatusCode(200);
         response.end(Json.encodePrettily(listaAssociacaoEquipaCompeticao));
     }
@@ -333,6 +358,13 @@ class Handlers {
         String id = rc.request().getParam("id");
         int idFinal = Integer.parseInt(id);
         eliminarEquipa(idFinal);
+        HttpServerResponse response = rc.response();
+        response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
+    }
+     public void deleteAssociacaoRobotRonda(RoutingContext rc) {
+        String id = rc.request().getParam("id");
+        int idFinal = Integer.parseInt(id);
+        eliminarAssociacaoRobotRonda(idFinal);
         HttpServerResponse response = rc.response();
         response.setStatusCode(200).putHeader("content-type", "text/plain; charset=utf-8");
     }
