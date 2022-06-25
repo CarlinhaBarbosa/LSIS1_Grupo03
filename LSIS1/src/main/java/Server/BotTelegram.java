@@ -54,6 +54,7 @@ public final class BotTelegram extends TelegramLongPollingBot {
                 classificacaoRondaGeral(update);
                 System.out.println(msgRec);
             }
+            update.getMessage().getText();
         }
     }
 
